@@ -15,11 +15,8 @@ Copied from DJ-imageslider to give it a continuous loop
 * You’re done!
 
 ## Documentation
-* Gets calendar events via iCal url of google calendar ID, or an other url that point to an ics file.
-* Displays selected number of events, or events in a selected period from now as listgroup-items
-* Displays event start-date and summary; toggle details, description, start-, end-time, location. 
-*   see http://www.ietf.org/rfc/rfc5545.txt for specification of te ical format.
-* Displays most common repeating events 
+* ...
+*
 
 
 (This module is a Fork of version 3.2.3 of DJ-ImageSlider by DJ-Extensions,
