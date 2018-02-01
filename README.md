@@ -29,8 +29,8 @@ https://extensions.joomla.org/extension/dj-imageslider/)
 
 ## Copyright and License
 
-This project is licensed under the [GNU GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html), version 2 or later.
-2017&thinsp;&ndash;&thinsp;2017 &copy; [Bram Waasdorp](http://www.waasdorpsoekhan.nl).
+This project is licensed under the [GNU GPL], version 3 or later.
+2018&thinsp;&ndash;&thinsp;2018 &copy; [Bram Waasdorp](http://www.waasdorpsoekhan.nl).
 
 ## Changelog
 
