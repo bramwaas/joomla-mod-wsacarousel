@@ -1,21 +1,21 @@
 <?php
 /**
- * @version $Id: default.php 48 2017-08-04 11:41:27Z szymon $
- * @package DJ-ImageSlider
- * @subpackage DJ-ImageSlider Component
- * @copyright Copyright (C) 2017 DJ-Extensions.com, All rights reserved.
+ * @version $Id: default.php 
+ * @package wsacarousel
+ * @subpackage wsacarousel Module
+ * @copyright Copyright (C) 2018 wsacarousel, All rights reserved.
  * @license http://www.gnu.org/licenses GNU/GPL
- * @author url: http://dj-extensions.com
- * @author email contact@dj-extensions.com
- * @developer Szymon Woronowski - szymon.woronowski@design-joomla.eu
+ * @author url: https://www.waasdorpsoekhan.nl
+ * @author email contact@waasdorpsoekhan.nl
+ * @developer A.H.C. waasdorp
  *
  *
- * DJ-ImageSlider is free software: you can redistribute it and/or modify
+ * wsacarousel is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * DJ-ImageSlider is distributed in the hope that it will be useful,
+ * wsacarousel is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
