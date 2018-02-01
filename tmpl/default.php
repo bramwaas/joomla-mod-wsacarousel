@@ -24,20 +24,68 @@
  * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 
+use Joomla\CMS\Factory;
+$doc = Factory::getDocument ();
 
-$wcag = $params->get('wcag', 1) ? ' tabindex="0"' : ''; ?>
+$wcag = $params->get('wcag', 1) ? ' tabindex="0"' : ''; 
+
+
+$attribs = array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 'crossorigin' => 'anonymous');
+//$this->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', 'text/css', null,  $attribs);
+$doc->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),  $attribs);
+
+$doc->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> , array('version'=>'3.3.7'), array('id'=>'caption.js', 'defer'=>'defer')); // defer .  	
+
+
+
+/* change and nr of slides transition with style */
+/* TODO
+".carousel-inner > .item {
+    position: relative;
+    display: none;
+    -webkit-transition: 0.6s ease-in-out left;
+    -moz-transition: 0.6s ease-in-out left;
+    -o-transition: 0.6s ease-in-out left;
+    transition: 0.6s ease-in-out left;
+}"
+*/
+
+
+
+?>
 
 <div style="border: 0px !important;">
 <div id="djslider-loader<?php echo $mid; ?>" class="djslider-loader djslider-loader-<?php echo $theme ?>" data-animation='<?php echo $animationOptions ?>' data-djslider='<?php echo $moduleSettings ?>'<?php echo $wcag; ?>>
-    <div id="djslider<?php echo $mid; ?>" class="djslider djslider-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
-        <div id="slider-container<?php echo $mid; ?>" class="slider-container">
-        	<ul id="slider<?php echo $mid; ?>" class="djslider-in">
-          		<?php foreach ($slides as $slide) { 
+	<div id="djslider<?php echo $mid; ?>" class="djslider djslider-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
+		<!-- Container -->
+        <div id="slider-container<?php echo $mid; ?>" class="carousel slide slider-container" data-ride="carousel"
+		<!-- twbs data options -->
+		data-interval="3000" 
+		data-pause="hover"
+		data-wrap="true" 
+		data-keyboard="true"
+		<!-- twbs style options -->
+		data-animation='<?php echo $animationOptions ?>'
+		data-djslider='<?php echo $moduleSettings ?>'
+		>
+		
+		<!-- Indicators -->
+		<?php /* nog even niet TODO
+                        <ol class="carousel-indicators">
+                            <li data-target="#slider-container<?php echo $mid; ?>" data-slide-to="0" class="active"></li>
+                            <li data-target="#slider-container<?php echo $mid; ?>" data-slide-to="1"></li>
+                            <li data-target="#slider-container<?php echo $mid; ?>" data-slide-to="2"></li>
+                        </ol>
+		 */ ?>
+			<!-- Wrapper for slides -->
+        	<div id="slider<?php echo $mid; ?>" class="carousel-inner djslider-in"   role="listbox">
+			$itemnr = 0;          
+			<?php foreach ($slides as $slide) { /* per slide */
+					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<li style="<?php echo $style['slide'] ?>">
+          			<div class="item item<?php echo $itemnr; if ($itemnr==1) {echo " active"}; ?>" style"="<?php echo $style['slide'] ?>">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
           					if($action > 1) {
@@ -62,7 +110,7 @@ $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : ''; ?>
 						<?php } ?>
 						<?php if($params->get('slider_source') && ($params->get('show_title') || ($params->get('show_desc') && !empty($slide->description) || ($params->get('show_readmore') && $slide->link)))) { ?>
 						<!-- Slide description area: START -->
-						<div class="slide-desc" style="<?php echo $style['desc'] ?>">
+						<div class="carousel-caption slide-desc" style="<?php echo $style['desc'] ?>">
 						  <div class="slide-desc-in">	
 							<div class="slide-desc-bg slide-desc-bg-<?php echo $theme ?>"></div>
 							<div class="slide-desc-text slide-desc-text-<?php echo $theme ?>">
@@ -96,15 +144,18 @@ $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : ''; ?>
 						<!-- Slide description area: END -->
 						<?php } ?>						
 						
-					</li>
+					</div>
                 <?php } ?>
-        	</ul>
+        	</div>
         </div>
         <?php if($show->arr || $show->btn) { ?>
         <div id="navigation<?php echo $mid; ?>" class="navigation-container" style="<?php echo $style['navi'] ?>">
         	<?php if($show->arr) { ?>
+			<a class="left carousel-control" href="#slider-container<?php echo $mid; ?>" role="button" data-slide="prev">
         	<img id="prev<?php echo $mid; ?>" class="prev-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_DJIMAGESLIDER_NEXT') : JText::_('MOD_DJIMAGESLIDER_PREVIOUS'); ?>"<?php echo $wcag; ?> />
-			<img id="next<?php echo $mid; ?>" class="next-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_DJIMAGESLIDER_PREVIOUS') : JText::_('MOD_DJIMAGESLIDER_NEXT'); ?>"<?php echo $wcag; ?> />
+			</a>
+			<a class="right carousel-control" href="#slider-container<?php echo $mid; ?>" role="button" data-slide="next">			<img id="next<?php echo $mid; ?>" class="next-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_DJIMAGESLIDER_PREVIOUS') : JText::_('MOD_DJIMAGESLIDER_NEXT'); ?>"<?php echo $wcag; ?> />
+			</a>
 			<?php } ?>
 			<?php if($show->btn) { ?>
 			<img id="play<?php echo $mid; ?>" class="play-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->play; ?>" alt="<?php echo JText::_('MOD_DJIMAGESLIDER_PLAY'); ?>"<?php echo $wcag; ?> />
