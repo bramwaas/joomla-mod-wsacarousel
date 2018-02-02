@@ -27,6 +27,9 @@
  
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
+use Joomla\CMS\Factory;
+$doc = Factory::getDocument ();
+
 
 class modDJImageSliderHelper
 {
@@ -81,7 +84,7 @@ class modDJImageSliderHelper
         $catid = $params->get('category',0);
 		
 		// build query to get slides
-		$db = JFactory::getDBO();
+		$db = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select('a.*');
 		$query->from('#__djimageslider AS a');
@@ -92,7 +95,7 @@ class modDJImageSliderHelper
 		
 		// Filter by start and end dates.
 		$nullDate	= $db->Quote($db->getNullDate());
-		$nowDate	= $db->Quote(JFactory::getDate()->format($db->getDateFormat()));
+		$nowDate	= $db->Quote(Factory::getDate()->format($db->getDateFormat()));
 		
 		$query->where('a.published = 1');
 		$query->where('(a.publish_up = '.$nullDate.' OR a.publish_up <= '.$nowDate.')');
@@ -135,8 +138,8 @@ class modDJImageSliderHelper
 	
 	static function getSlideLink(&$slide) {
 		$link = '';
-		$db = JFactory::getDBO();
-		$app = JFactory::getApplication();
+		$db = Factory::getDBO();
+		$app = Factory::getApplication();
 		
 		switch($slide->params->get('link_type', '')) {
 			case 'menu':
