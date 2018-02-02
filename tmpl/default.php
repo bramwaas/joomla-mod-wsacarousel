@@ -34,19 +34,24 @@ $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : '';
 if(!is_numeric($duration = $params->get('duration'))) $duration = 0;
 if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 $delay = $delay + $duration;
-
-
-
+$transition = $params->get('effect');
+$easing = $params->get('effect_type');
+$css3transition = $params->get('css3') ? modDJImageSliderHelper::getCSS3Transition($transition, $easing) : '';
+if($transition=='ease') {
+        $transition = 'swing';
+        $easing = '';
+}
+$transition = $easing.$transition;
 
 /* change and nr of slides transition with style */
 $styledecl = "
 .carousel-inner > .item {
     position: relative;
     display: none;
-    -webkit-transition:". $duration ."s " . $transition . " left;
-    -moz-transition: ". $duration ."s " . $transition . " left;
-    -o-transition:". $duration ."s " . $transition . " left;
-    transition: ". $duration ."s " . $transition . " left;
+    -webkit-transition: " . $duration ."ms " . $transition . " left;
+    -moz-transition: " . $duration ."ms " . $transition . " left;
+    -o-transition: " . $duration ."ms " . $transition . " left;
+    transition: " . $duration ."ms " . $transition . " left;
 }
 /* override position and transform in 3.3.x */
 /*
@@ -69,8 +74,6 @@ $styledecl = "
   transform: translateX(0);
 }
 */
-
-
 
 ";
 
