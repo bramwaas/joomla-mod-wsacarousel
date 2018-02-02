@@ -79,18 +79,18 @@ $decl = "
 $doc->addStyleDeclaration($decl);
 $decl =
 "
-$('.carousel .item').each(function(){
-  var next = $(this).next();
+jQuery('.carousel .item').each(function(){
+  var next = jQuery(this).next();
   if (!next.length) {
-    next = $(this).siblings(':first');
+    next = jQuery(this).siblings(':first');
   }
-  next.children(':first-child').clone().appendTo($(this));
+  next.children(':first-child').clone().appendTo(jQuery(this));
   
   if (next.next().length>0) {
     next.next().children(':first-child').clone().appendTo($(this));
   }
   else {
-  	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+  	jQuery(this).siblings(':first').children(':first-child').clone().appendTo(jQuery(this));
   }
 });
 ";
