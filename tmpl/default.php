@@ -41,16 +41,16 @@ if($transition=='ease') {
         $transition = 'swing';
         $easing = '';
 }
-$trans = " left " . $duration/1000 ."s " . (strtolower($transition) . " " . $delay/1000 ;
+$trans = " left " . $duration/1000 . "s " . strtolower($transition) . " " . $delay/1000 . "s;";
 
 
 /* change and nr of slides transition with style */
 $styledecl = "
 .carousel-inner > .item {
-    -webkit-transition: ".$trans . ";
-    -moz-transition: ".$trans . ";
-    -o-transition: ".$trans . ";
-    transition: ".$trans . ";
+    -webkit-transition: " . $trans . "
+    -moz-transition: " . $trans . "
+    -o-transition: " . $trans . "
+    transition: " . $trans . "
 }
 /* override position and transform in 3.3.x */
 
