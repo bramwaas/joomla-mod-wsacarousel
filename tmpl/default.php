@@ -78,6 +78,7 @@ $decl = "
 $doc->addStyleDeclaration($decl);
 $decl =
 "
+jQuery(document).ready(function() {
 jQuery('.carousel .item').each(function(){
   var next = jQuery(this).next();
   if (!next.length) {
@@ -92,6 +93,7 @@ jQuery('.carousel .item').each(function(){
   	jQuery(this).siblings(':first').children(':first-child').clone().appendTo(jQuery(this));
   }
 });
+})
 ";
 $doc->addScriptDeclaration($decl);
 	
