@@ -36,12 +36,12 @@ $attribs = array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dG
 //$this->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', 'text/css', null,  $attribs);
 $doc->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),  $attribs);
 
-$doc->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> , array('version'=>'3.3.7'), array('id'=>'caption.js', 'defer'=>'defer')); // defer .  	
-$output = "
+$doc->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" , array('version'=>'3.3.7'), array('id'=>'caption.js', 'defer'=>'defer')); // defer .  	
+$output = '
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-";
+';
 $doc->addCustomTag ( $output );
 
 
@@ -62,18 +62,16 @@ $doc->addCustomTag ( $output );
 ?>
 
 <div style="border: 0px !important;">
-<div id="djslider-loader<?php echo $mid; ?>" class="djslider-loader djslider-loader-<?php echo $theme ?>" data-animation='<?php echo $animationOptions ?>' data-djslider='<?php echo $moduleSettings ?>'<?php echo $wcag; ?>>
-	<div id="djslider<?php echo $mid; ?>" class="djslider djslider-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
-		<!-- Container -->
+<div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>" data-animation='<?php echo $animationOptions ?>' data-wsacarousel='<?php echo $moduleSettings ?>'<?php echo $wcag; ?>>
+	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
+		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="slider-container<?php echo $mid; ?>" class="carousel slide slider-container" data-ride="carousel"
-		<!-- twbs data options -->
 		data-interval="3000" 
 		data-pause="hover"
 		data-wrap="true" 
 		data-keyboard="true"
-		<!-- twbs style options -->
 		data-animation='<?php echo $animationOptions ?>'
-		data-djslider='<?php echo $moduleSettings ?>'
+		data-wsacarousel='<?php echo $moduleSettings ?>'
 		>
 		
 		<!-- Indicators -->
@@ -85,12 +83,12 @@ $doc->addCustomTag ( $output );
                         </ol>
 		 */ ?>
 			<!-- Wrapper for slides -->
-        	<div id="slider<?php echo $mid; ?>" class="carousel-inner djslider-in"   role="listbox">
+        	<div id="slider<?php echo $mid; ?>" class="carousel-inner wsacarousel-in"   role="listbox">
 			$itemnr = 0;          
 			<?php foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="item item<?php echo $itemnr; if ($itemnr==1) {echo " active"}; ?>" style"="<?php echo $style['slide'] ?>">
+          			<div class="item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" style="<?php echo $style['slide'] ?>">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
           					if($action > 1) {
@@ -178,4 +176,4 @@ $doc->addCustomTag ( $output );
     </div>
 </div>
 </div>
-<div class="djslider-end" style="clear: both"<?php echo $wcag; ?>></div>
+<div class="wsacarousel-end" style="clear: both"<?php echo $wcag; ?>></div>
