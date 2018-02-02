@@ -45,7 +45,7 @@ $trans = " transform " . $duration/1000 . "s " . strtolower($transition) . " lef
 
 
 /* change and nr of slides transition with style */
-$styledecl = "
+$decl = "
 .carousel-innerX > .item {
     -webkit-transition: " . $trans . "
     -moz-transition: " . $trans . "
@@ -76,9 +76,26 @@ $styledecl = "
 
 ";
 
-$doc->addStyleDeclaration($styledecl);
-
-
+$doc->addStyleDeclaration($decl);
+$decl =
+"
+$('.carousel .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  if (next.next().length>0) {
+    next.next().children(':first-child').clone().appendTo($(this));
+  }
+  else {
+  	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+  }
+});
+";
+$doc->addScriptDeclaration($decl);
+	
 
 ?>
 
