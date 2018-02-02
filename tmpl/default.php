@@ -41,7 +41,7 @@ if($transition=='ease') {
         $transition = 'swing';
         $easing = '';
 }
-$transition = $easing.$transition;
+//$transition = $easing.$transition;
 
 /* change and nr of slides transition with style */
 $styledecl = "
