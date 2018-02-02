@@ -53,23 +53,22 @@ $decl = "
     transition: " . $trans . "
 }
 /* override position and transform in 3.3.x */
-
-.carousel-inner .carousel-item-left.active {
+.carousel-inner .item.left.active {
   transform: translateX(-50%);
 }
-.carousel-inner .carousel-item-right.active {
+.carousel-inner .item.right.active {
   transform: translateX(50%);
 }
 
-.carousel-inner .carousel-item-next {
+.carousel-inner .item.next {
   transform: translateX(50%)
 }
-.carousel-inner .carousel-item-prev {
+.carousel-inner .item.prev {
   transform: translateX(-50%)
 }
-  
-.carousel-innerx .carousel-item-right,
-.carousel-innerx .carousel-item-left{ 
+
+.carousel-inner .item.right,
+.carousel-inner .item.left { 
   transform: translateX(0);
 }
 
@@ -87,7 +86,7 @@ jQuery('.carousel .item').each(function(){
   next.children(':first-child').clone().appendTo(jQuery(this));
   
   if (next.next().length>0) {
-    next.next().children(':first-child').clone().appendTo($(this));
+    next.next().children(':first-child').clone().appendTo(jQuery(this));
   }
   else {
   	jQuery(this).siblings(':first').children(':first-child').clone().appendTo(jQuery(this));
@@ -100,7 +99,7 @@ $doc->addScriptDeclaration($decl);
 ?>
 
 <div style="border: 0px !important;">
-<div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>" data-animation='<?php echo $animationOptions ?>' data-wsacarousel='<?php echo $moduleSettings ?>'<?php echo $wcag; ?>>
+<div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
 	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="slider-container<?php echo $mid; ?>" class="carousel slide slider-container" data-ride="carousel"
