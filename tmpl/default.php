@@ -46,15 +46,13 @@ if($transition=='ease') {
 /* change and nr of slides transition with style */
 $styledecl = "
 .carousel-inner > .item {
-    position: relative;
-    display: none;
-    -webkit-transition: " . $duration ."ms " . $transition . " left;
-    -moz-transition: " . $duration ."ms " . $transition . " left;
-    -o-transition: " . $duration ."ms " . $transition . " left;
-    transition: " . $duration ."ms " . $transition . " left;
+    -webkit-transition: left " . ($duration/1000) ."s " . $transition . " ;
+    -moz-transition: left " . ($duration/1000) ."s " . $transition . " ;
+    -o-transition: left " . ($duration/1000) ."s " . $transition . " ;
+    transition: left " . ($duration/1000) ."s " . $transition . " ;
 }
 /* override position and transform in 3.3.x */
-/*
+
 .carousel-inner .carousel-item-left.active {
   transform: translateX(-50%);
 }
@@ -73,7 +71,7 @@ $styledecl = "
 .carousel-inner .carousel-item-left{ 
   transform: translateX(0);
 }
-*/
+
 
 ";
 
