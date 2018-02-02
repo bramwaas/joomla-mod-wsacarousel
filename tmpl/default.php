@@ -41,12 +41,12 @@ if($transition=='ease') {
         $transition = 'swing';
         $easing = '';
 }
-$trans = " left " . $duration/1000 . "s " . strtolower($transition) . " " . $delay/1000 . "s;";
+$trans = " transform " . $duration/1000 . "s " . strtolower($transition) . " left;";
 
 
 /* change and nr of slides transition with style */
 $styledecl = "
-.carousel-inner > .item {
+.carousel-innerX > .item {
     -webkit-transition: " . $trans . "
     -moz-transition: " . $trans . "
     -o-transition: " . $trans . "
