@@ -40,18 +40,18 @@ $document = Factory::getDocument();
 if($params->get('slider_source')==1) {
 	jimport('joomla.application.component.helper');
 	if(!JComponentHelper::isEnabled('com_djimageslider', true)){
-		$app->enqueueMessage(JText::_('MOD_DJIMAGESLIDER_NO_COMPONENT'),'notice');
+		$app->enqueueMessage(JText::_('MOD_WSACAROUSEL_NO_COMPONENT'),'notice');
 		return;
 	}
 	$slides = modDJImageSliderHelper::getImagesFromDJImageSlider($params);
 	if($slides==null) {
-		$app->enqueueMessage(JText::_('MOD_DJIMAGESLIDER_NO_CATEGORY_OR_ITEMS'),'notice');
+		$app->enqueueMessage(JText::_('MOD_WSACAROUSEL_NO_CATEGORY_OR_ITEMS'),'notice');
 		return;
 	}
 } else {
 	$slides = modDJImageSliderHelper::getImagesFromFolder($params);
 	if($slides==null) {
-		$app->enqueueMessage(JText::_('MOD_DJIMAGESLIDER_NO_CATALOG_OR_FILES'),'notice');
+		$app->enqueueMessage(JText::_('MOD_WSACAROUSEL_NO_CATALOG_OR_FILES'),'notice');
 		return;
 	}
 }

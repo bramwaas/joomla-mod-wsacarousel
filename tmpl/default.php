@@ -31,6 +31,11 @@ $doc = Factory::getDocument ();
 
 $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : ''; 
 
+if(!is_numeric($duration = $params->get('duration'))) $duration = 0;
+if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
+$delay = $delay + $duration;
+
+
 
 
 /* change and nr of slides transition with style */
@@ -38,33 +43,34 @@ $styledecl = "
 .carousel-inner > .item {
     position: relative;
     display: none;
-    -webkit-transition: 0.6s ease-in-out left;
-    -moz-transition: 0.6s ease-in-out left;
-    -o-transition: 0.6s ease-in-out left;
-    transition: 2000ms linear left;
+    -webkit-transition:". $duration ."s " . $transition . " left;
+    -moz-transition: ". $duration ."s " . $transition . " left;
+    -o-transition:". $duration ."s " . $transition . " left;
+    transition: ". $duration ."s " . $transition . " left;
 }
 /* override position and transform in 3.3.x */
-.carousel-inner .item.left.active {
+/*
+.carousel-inner .carousel-item-left.active {
   transform: translateX(-50%);
 }
-.carousel-inner .item.right.active {
+.carousel-inner .carousel-item-right.active {
   transform: translateX(50%);
 }
 
-.carousel-inner .item.next {
+.carousel-inner .carousel-item-next {
   transform: translateX(50%)
 }
-.carousel-inner .item.prev {
+.carousel-inner .carousel-item-prev {
   transform: translateX(-50%)
 }
-
-.carousel-inner .item.right,
-.carousel-inner .item.left { 
+  
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
   transform: translateX(0);
 }
+*/
 
 
-/* .carousel-control.left,.carousel-control.right {background-image:none;} */
 
 ";
 
@@ -97,8 +103,8 @@ $doc->addStyleDeclaration($styledecl);
 		 */ ?>
 			<!-- Wrapper for slides -->
         	<div id="slider<?php echo $mid; ?>" class="carousel-inner wsacarousel-in"   role="listbox">
-			$itemnr = 0;          
-			<?php foreach ($slides as $slide) { /* per slide */
+			<?php $itemnr = 0; 
+			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
           			<div class="item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" style="<?php echo $style['slide'] ?>">
