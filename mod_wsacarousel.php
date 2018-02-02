@@ -29,11 +29,12 @@
 defined('_JEXEC') or die('Restricted access');
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 jimport('joomla.filesystem.file');
+use Joomla\CMS\Factory;
 
 // Include the syndicate functions only once
 require_once (dirname(__FILE__).DS.'helper.php');
-$app = JFactory::getApplication();
-$document = JFactory::getDocument();
+$app = Factory::getApplication();
+$document = Factory::getDocument();
 
 // taking the slides from the source
 if($params->get('slider_source')==1) {
@@ -92,7 +93,7 @@ if($direction == 'rtl') { // load rtl css if exists in theme or joomla template
 $jquery = version_compare(JVERSION, '3.0.0', '>=');
 $canDefer = preg_match('/(?i)msie [6-9]/', @$_SERVER['HTTP_USER_AGENT']) ? false : true;
 
-$db = JFactory::getDBO();
+$db = Factory::getDBO();
 $db->setQuery("SELECT manifest_cache FROM #__extensions WHERE element='mod_djimageslider' LIMIT 1");
 $ver = json_decode($db->loadResult());
 $ver = $ver->version;
@@ -100,7 +101,20 @@ $ver = $ver->version;
 if ($jquery) {
 	JHTML::_('jquery.framework');
 	$document->addScript(JURI::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', 'text/javascript', $canDefer);
-	$document->addScript(JURI::root(true).'/modules/mod_djimageslider/assets/js/slider.js?v='.$ver, 'text/javascript', $canDefer);
+	/* $document->addScript(JURI::root(true).'/modules/mod_djimageslider/assets/js/slider.js?v='.$ver, 'text/javascript', $canDefer); */
+	$attribs = array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 'crossorigin' => 'anonymous');
+	//$this->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', 'text/css', null,  $attribs);
+	$document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),  $attribs);
+	
+	$document->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" , array('version'=>'3.3.7'), array('id'=>'caption.js', 'defer'=>'defer')); // defer .
+	/*
+	$output = '
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    
+';
+	$doc->addCustomTag ( $output ); */
+	
 } else {
 	JHTML::_('behavior.framework', true);
 	$document->addScript(JURI::root(true).'/modules/mod_djimageslider/assets/js/moo.slider.js?v='.$ver, 'text/javascript', $canDefer);
