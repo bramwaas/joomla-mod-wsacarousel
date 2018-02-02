@@ -45,17 +45,17 @@ $styledecl = "
 }
 /* override position and transform in 3.3.x */
 .carousel-inner .item.left.active {
-  transform: translateX(-33%);
+  transform: translateX(-50%);
 }
 .carousel-inner .item.right.active {
-  transform: translateX(33%);
+  transform: translateX(50%);
 }
 
 .carousel-inner .item.next {
-  transform: translateX(33%)
+  transform: translateX(50%)
 }
 .carousel-inner .item.prev {
-  transform: translateX(-33%)
+  transform: translateX(-50%)
 }
 
 .carousel-inner .item.right,
