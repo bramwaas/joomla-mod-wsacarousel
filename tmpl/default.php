@@ -33,18 +33,42 @@ $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : '';
 
 
 
-
 /* change and nr of slides transition with style */
-/* TODO
-".carousel-inner > .item {
+$styledecl = "
+.carousel-inner > .item {
     position: relative;
     display: none;
     -webkit-transition: 0.6s ease-in-out left;
     -moz-transition: 0.6s ease-in-out left;
     -o-transition: 0.6s ease-in-out left;
-    transition: 0.6s ease-in-out left;
-}"
-*/
+    transition: 2000ms linear left;
+}
+/* override position and transform in 3.3.x */
+.carousel-inner .item.left.active {
+  transform: translateX(-33%);
+}
+.carousel-inner .item.right.active {
+  transform: translateX(33%);
+}
+
+.carousel-inner .item.next {
+  transform: translateX(33%)
+}
+.carousel-inner .item.prev {
+  transform: translateX(-33%)
+}
+
+.carousel-inner .item.right,
+.carousel-inner .item.left { 
+  transform: translateX(0);
+}
+
+
+/* .carousel-control.left,.carousel-control.right {background-image:none;} */
+
+";
+
+$doc->addStyleDeclaration($styledecl);
 
 
 
