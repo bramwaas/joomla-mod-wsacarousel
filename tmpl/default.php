@@ -68,8 +68,8 @@ $decl = "
   transform: translateX(-50%)
 }
   
-.carousel-inner .carousel-item-right,
-.carousel-inner .carousel-item-left{ 
+.carousel-innerx .carousel-item-right,
+.carousel-innerx .carousel-item-left{ 
   transform: translateX(0);
 }
 
