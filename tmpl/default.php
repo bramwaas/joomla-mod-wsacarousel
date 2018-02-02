@@ -41,15 +41,16 @@ if($transition=='ease') {
         $transition = 'swing';
         $easing = '';
 }
-//$transition = $easing.$transition;
+$trans = " left " . $duration/1000 ."s " . (strtolower($transition) . " " . $delay/1000 ;
+
 
 /* change and nr of slides transition with style */
 $styledecl = "
 .carousel-inner > .item {
-    -webkit-transition: left " . ($duration/1000) ."s " . $transition . " ;
-    -moz-transition: left " . ($duration/1000) ."s " . $transition . " ;
-    -o-transition: left " . ($duration/1000) ."s " . $transition . " ;
-    transition: left " . ($duration/1000) ."s " . $transition . " ;
+    -webkit-transition: ".$trans . ";
+    -moz-transition: ".$trans . ";
+    -o-transition: ".$trans . ";
+    transition: ".$trans . ";
 }
 /* override position and transform in 3.3.x */
 
@@ -90,8 +91,6 @@ $doc->addStyleDeclaration($styledecl);
 		data-pause="hover"
 		data-wrap="true" 
 		data-keyboard="true"
-		data-animation='<?php echo $animationOptions ?>'
-		data-wsacarousel='<?php echo $moduleSettings ?>'
 		>
 		
 		<!-- Indicators -->
