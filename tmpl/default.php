@@ -39,36 +39,42 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
    otherwise the slide disappears afte 0.6 sec.
 */
 $decl = "
+@media all and (transform-3d), (-webkit-transform-3d) {
 .carousel-inner > .item {
     -webkit-transition-duration: " . $duration/1000 . "
     -moz-transition-duration: " . $duration/1000 . "
     -o-transition-duration: " . $duration/1000 . "
     transition-duration: " . $duration/1000 . "
-}
+}";
+
+if ($count > 1) {
+	
+$decl = $decl .
+"	
 /* override position and transform in 3.3.x */
 .carousel-inner .item.left.active {
-  transform: translateX(-50%);
+  transform: translateX(-" . 100/$count . "%);
 }
 .carousel-inner .item.right.active {
-  transform: translateX(50%);
+  transform: translateX(" . 100/$count . "%);
 }
 
 .carousel-inner .item.next {
-  transform: translateX(50%)
+  transform: translateX(" . 100/$count . "%)
 }
 .carousel-inner .item.prev {
-  transform: translateX(-50%)
+  transform: translateX(-" . 100/$count . "%)
 }
 
 .carousel-inner .item.right,
 .carousel-inner .item.left { 
   transform: translateX(0);
+}"
 }
-
-
-";
-
-$doc->addStyleDeclaration($decl);
+$decl = $decl .
+"
+}";
+doc->addStyleDeclaration($decl);
 
 if ($count > 1)
 {	
