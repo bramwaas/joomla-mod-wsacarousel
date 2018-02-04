@@ -42,10 +42,13 @@ $decl = "
 @media all and (transform-3d), (-webkit-transform-3d) {
 .carousel-inner > .item {
     -webkit-transition-duration: " . $duration/1000 . "
-    -moz-transition-duration: " . $duration/1000 . "
+    -moz-transition-duration: " . $duration/1000 . ": " . $slide_size
     -o-transition-duration: " . $duration/1000 . "
     transition-duration: " . $duration/1000 . "
 }";
+
+echo "<!-- count: " . $count . " duration: " . $duration . " delay: " . $delay . " interval: " . $interval . " . 
+	slide_size: " . $slide_size . " width: " . $width . " height: " . $height " -->"
 
 if ($count > 1) {
 	
@@ -120,7 +123,7 @@ $doc->addScriptDeclaration($decl);
 	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="slider-container<?php echo $mid; ?>" class="carousel slide " data-ride="carousel"
-		data-interval="3000" 
+		data-interval="<?php echo $interval; ?>" 
 		data-pause="hover"
 		data-wrap="true" 
 		data-keyboard="true"
@@ -135,12 +138,12 @@ $doc->addScriptDeclaration($decl);
                         </ol>
 		 */ ?>
 			<!-- Wrapper for slides -->
-        	<div id="slider<?php echo $mid; ?>" class="carousel-inner wsacarousel-in"   role="listbox">
+        	<div id="wsacarousel-inner<?php echo $mid; ?>" class="carousel-inner"   role="listbox">
 			<?php $itemnr = 0; 
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" style="<?php echo $style['slide'] ?>">
+          			<div class="item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"?>"><div class="item-inner">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
           					if($action > 1) {
@@ -158,27 +161,24 @@ $doc->addScriptDeclaration($decl);
 	            			<?php if (($slide->link && $action==1) || $action>1) { ?>
 								<a <?php echo $attr; ?> href="<?php echo ($action>1 ? $slide->image : $slide->link); ?>" target="<?php echo $slide->target; ?>">
 							<?php } ?>
-								<img class="dj-image" src="<?php echo $slide->image; ?>" alt="<?php echo $slide->alt; ?>" <?php echo (!empty($slide->img_title) ? ' title="'.$slide->img_title.'"':''); ?> style="<?php echo $style['image'] ?>"/>
+								<img class="img-responsive" src="<?php echo $slide->image; ?>" alt="<?php echo $slide->alt; ?>" <?php echo (!empty($slide->img_title) ? ' title="'.$slide->img_title.'"':''); ?> style="<?php echo $style['image'] ?>"/>
 							<?php if (($slide->link && $action==1) || $action>1) { ?>
 								</a>
 							<?php } ?>
 						<?php } ?>
 						<?php if($params->get('slider_source') && ($params->get('show_title') || ($params->get('show_desc') && !empty($slide->description) || ($params->get('show_readmore') && $slide->link)))) { ?>
 						<!-- Slide description area: START -->
-						<div class="carousel-caption slide-desc" style="<?php echo $style['desc'] ?>">
-						  <div class="slide-desc-in">	
-							<div class="slide-desc-bg slide-desc-bg-<?php echo $theme ?>"></div>
-							<div class="slide-desc-text slide-desc-text-<?php echo $theme ?>">
+						<div class="carousel-caption" >
 							<?php if($params->get('show_title')) { ?>
-								<div class="slide-title">
-									<?php if($params->get('link_title') && $slide->link) { ?><a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>><?php } ?>
+							<div class="slide-title">
+							<?php if($params->get('link_title') && $slide->link) { ?><a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>><?php } ?>
 										<?php echo $slide->title; ?>
 									<?php if($params->get('link_title') && $slide->link) { ?></a><?php } ?>
-								</div>
+							</div>
 							<?php } ?>
 							
 							<?php if($params->get('show_desc')) { ?>
-								<div class="slide-text">
+							<div class="slide-text">
 									<?php if($params->get('link_desc') && $slide->link) { ?>
 									<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>>
 										<?php echo strip_tags($slide->description,"<br><span><em><i><b><strong><small><big>"); ?>
@@ -186,20 +186,17 @@ $doc->addScriptDeclaration($decl);
 									<?php } else { ?>
 										<?php echo $slide->description; ?>
 									<?php } ?>
-								</div>
+							</div>
 							<?php } ?>
 							
 							<?php if($params->get('show_readmore') && $slide->link) { ?>
 								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo ($params->get('readmore_text',0) ? $params->get('readmore_text') : JText::_('MOD_WSACAROUSEL_READMORE')); ?></a>
 							<?php } ?>
-							<div style="clear: both"></div>
-							</div>
-						  </div>
 						</div>
 						<!-- Slide description area: END -->
 						<?php } ?>						
 						
-					</div>
+					</div></div>
                 <?php } ?>
         	</div>
         </div>
