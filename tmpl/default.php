@@ -33,24 +33,17 @@ $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : '';
 
 if(!is_numeric($duration = $params->get('duration'))) $duration = 0;
 if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
-$delay = $delay + $duration;
-$transition = $params->get('effect');
-$easing = $params->get('effect_type');
-$css3transition = $params->get('css3') ? modDJImageSliderHelper::getCSS3Transition($transition, $easing) : '';
-if($transition=='ease') {
-        $transition = 'swing';
-        $easing = '';
-}
-$trans = " transform " . $duration/1000 . "s " . strtolower($transition) . " left;";
 
-
-/* change and nr of slides transition with style */
+/* change duration of transformation
+   needs als a change in  .emulateTransitionEnd(600) in Carousel.prototype.slide = function (type, next)
+   otherwise the slide disappears afte 0.6 sec.
+*/
 $decl = "
-.carousel-innerX > .item {
-    -webkit-transition: " . $trans . "
-    -moz-transition: " . $trans . "
-    -o-transition: " . $trans . "
-    transition: " . $trans . "
+.carousel-inner > .item {
+    -webkit-transition-duration: " . $duration/1000 . "
+    -moz-transition-duration: " . $duration/1000 . "
+    -o-transition-duration: " . $duration/1000 . "
+    transition-duration: " . $duration/1000 . "
 }
 /* override position and transform in 3.3.x */
 .carousel-inner .item.left.active {
@@ -76,7 +69,11 @@ $decl = "
 ";
 
 $doc->addStyleDeclaration($decl);
+
+if ($count > 1)
+{	
 $decl =
+
 "
 jQuery(document).ready(function() {
 jQuery('.carousel .item').each(function(){
@@ -85,10 +82,12 @@ jQuery('.carousel .item').each(function(){
     next = jQuery(this).siblings(':first');
   }
   next.children(':first-child').clone().appendTo(jQuery(this));
-  "
-/*
- .
-  "
+  " 
+;
+if ($count > 2)	{
+	
+$decl = $decl .
+"
   for (var i=0;i<2;i++) {
     next=next.next();
     if (!next.length) {
@@ -98,13 +97,14 @@ jQuery('.carousel .item').each(function(){
     next.children(':first-child').clone().appendTo(jQuery(this));
   }
   "
-*/	
-.	
+}
+$decl = $decl .	
 "	
 });
 })
 ";
 $doc->addScriptDeclaration($decl);
+}
 	
 
 ?>
@@ -113,7 +113,7 @@ $doc->addScriptDeclaration($decl);
 <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
 	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
-        <div id="slider-container<?php echo $mid; ?>" class="carousel slide slider-container" data-ride="carousel"
+        <div id="slider-container<?php echo $mid; ?>" class="carousel slide " data-ride="carousel"
 		data-interval="3000" 
 		data-pause="hover"
 		data-wrap="true" 
