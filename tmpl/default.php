@@ -39,6 +39,17 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
    otherwise the slide disappears afte 0.6 sec.
 */
 $decl = "
+.carousel-inner .carousel-caption{
+position: relative; /* or absolute */
+bottom: 0;
+padding:0;
+
+}
+.item-inner{
+position: relative;
+width: " . 100/$count . "%;
+float: left;
+}
 @media all and (transform-3d), (-webkit-transform-3d) {
 .carousel-inner > .item {
     -webkit-transition-duration: " . $duration/1000 . "s;
