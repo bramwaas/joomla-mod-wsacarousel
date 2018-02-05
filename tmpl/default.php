@@ -39,6 +39,10 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
    otherwise the slide disappears afte 0.6 sec.
 */
 $decl = "
+#wsacarousel" . $mid . "
+{
+ " . $style['slider'] . "
+}
 #wsacarousel-container" . $mid . "   .carousel-inner .carousel-caption{
 position: relative; /* or absolute */
 bottom: 0;
@@ -131,7 +135,7 @@ $doc->addScriptDeclaration($decl);
 
 <div style="border: 0px !important;">
 <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
-	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
+	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="wsacarousel-container<?php echo $mid; ?>" class="carousel slide " data-ride="carousel"
 		data-interval="<?php echo $delay; ?>" 
