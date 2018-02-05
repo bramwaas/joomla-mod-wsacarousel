@@ -39,19 +39,19 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
    otherwise the slide disappears afte 0.6 sec.
 */
 $decl = "
-.carousel-inner .carousel-caption{
+#wsacarousel-container" . $mid . "   .carousel-inner .carousel-caption{
 position: relative; /* or absolute */
 bottom: 0;
 padding:0;
 
 }
-.item-inner{
+#wsacarousel-container" . $mid . " .item-inner{
 position: relative;
 width: " . 100/$count . "%;
 float: left;
 }
 @media all and (transform-3d), (-webkit-transform-3d) {
-.carousel-inner > .item {
+#wsacarousel-container" . $mid . " .carousel-inner > .item {
     -webkit-transition-duration: " . $duration/1000 . "s;
     -moz-transition-duration: " . $duration/1000 . "s; 
     -o-transition-duration: " . $duration/1000 . "s;
@@ -66,22 +66,22 @@ if ($count > 1) {
 $decl = $decl .
 "	
 /* override position and transform in 3.3.x */
-.carousel-inner .item.left.active {
+#wsacarousel-container" . $mid . " .carousel-inner .item.left.active {
   transform: translateX(-" . 100/$count . "%);
 }
-.carousel-inner .item.right.active {
+#wsacarousel-container" . $mid . " .carousel-inner .item.right.active {
   transform: translateX(" . 100/$count . "%);
 }
 
-.carousel-inner .item.next {
+#wsacarousel-container" . $mid . " .carousel-inner .item.next {
   transform: translateX(" . 100/$count . "%)
 }
-.carousel-inner .item.prev {
+#wsacarousel-container" . $mid . " .carousel-inner .item.prev {
   transform: translateX(-" . 100/$count . "%)
 }
 
-.carousel-inner .item.right,
-.carousel-inner .item.left { 
+#wsacarousel-container" . $mid . " .carousel-inner .item.right,
+#wsacarousel-container" . $mid . " .carousel-inner .item.left { 
   transform: translateX(0);
 }";
 }
@@ -133,7 +133,7 @@ $doc->addScriptDeclaration($decl);
 <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
 	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
-        <div id="slider-container<?php echo $mid; ?>" class="carousel slide " data-ride="carousel"
+        <div id="wsacarousel-container<?php echo $mid; ?>" class="carousel slide " data-ride="carousel"
 		data-interval="<?php echo $delay; ?>" 
 		data-pause="hover"
 		data-wrap="true" 
