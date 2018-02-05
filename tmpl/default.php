@@ -42,13 +42,13 @@ $decl = "
 @media all and (transform-3d), (-webkit-transform-3d) {
 .carousel-inner > .item {
     -webkit-transition-duration: " . $duration/1000 . "
-    -moz-transition-duration: " . $duration/1000 . ": " . $slide_size
+    -moz-transition-duration: " . $duration/1000 . ": 
     -o-transition-duration: " . $duration/1000 . "
     transition-duration: " . $duration/1000 . "
 }";
 
 echo "<!-- count: " . $count . " duration: " . $duration . " delay: " . $delay . " interval: " . $interval . " . 
-	slide_size: " . $slide_size . " width: " . $width . " height: " . $height " -->"
+	slide_size: " . $slide_size . " width: " . $width . " height: " . $height . " -->";
 
 if ($count > 1) {
 	
@@ -72,12 +72,12 @@ $decl = $decl .
 .carousel-inner .item.right,
 .carousel-inner .item.left { 
   transform: translateX(0);
-}"
+}";
 }
 $decl = $decl .
 "
 }";
-doc->addStyleDeclaration($decl);
+$doc->addStyleDeclaration($decl);
 
 if ($count > 1)
 {	
@@ -105,7 +105,7 @@ $decl = $decl .
     
     next.children(':first-child').clone().appendTo(jQuery(this));
   }
-  "
+  ";
 }
 $decl = $decl .	
 "	
