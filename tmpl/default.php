@@ -41,10 +41,10 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 $decl = "
 @media all and (transform-3d), (-webkit-transform-3d) {
 .carousel-inner > .item {
-    -webkit-transition-duration: " . $duration/1000 . "s
-    -moz-transition-duration: " . $duration/1000 . "s 
-    -o-transition-duration: " . $duration/1000 . "s
-    transition-duration: " . $duration/1000 . "s
+    -webkit-transition-duration: " . $duration/1000 . "s;
+    -moz-transition-duration: " . $duration/1000 . "s; 
+    -o-transition-duration: " . $duration/1000 . "s;
+    transition-duration: " . $duration/1000 . "s;
 }";
 
 echo "<!-- count: " . $count . " duration: " . $duration . " delay: " . $delay . "
