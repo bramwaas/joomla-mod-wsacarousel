@@ -47,7 +47,7 @@ $decl = "
     transition-duration: " . $duration/1000 . "
 }";
 
-echo "<!-- count: " . $count . " duration: " . $duration . " delay: " . $delay . " interval: " . $interval . " . 
+echo "<!-- count: " . $count . " duration: " . $duration . " delay: " . $delay . "
 	slide_size: " . $slide_size . " width: " . $width . " height: " . $height . " -->";
 
 if ($count > 1) {
@@ -123,7 +123,7 @@ $doc->addScriptDeclaration($decl);
 	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>" style="<?php echo $style['slider'] ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="slider-container<?php echo $mid; ?>" class="carousel slide " data-ride="carousel"
-		data-interval="<?php echo $interval; ?>" 
+		data-interval="<?php echo $delay; ?>" 
 		data-pause="hover"
 		data-wrap="true" 
 		data-keyboard="true"
@@ -143,7 +143,7 @@ $doc->addScriptDeclaration($decl);
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"?>"><div class="item-inner">
+          			<div class="item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"><div class="item-inner">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
           					if($action > 1) {
