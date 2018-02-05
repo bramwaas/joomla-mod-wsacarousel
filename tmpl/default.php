@@ -100,7 +100,7 @@ $decl =
 
 "
 jQuery(document).ready(function() {
-jQuery('#wsacarousel-container" . $mid . " .carousel .item').each(function(){
+jQuery('.carousel .item').each(function(){
   var next = jQuery(this).next();
   if (!next.length) {
     next = jQuery(this).siblings(':first');
