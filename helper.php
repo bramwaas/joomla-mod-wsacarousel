@@ -447,7 +447,7 @@ class modDJImageSliderHelper
 		$style = array();
 		$style['slider'] = 'height: '.$slider_height.'px; width: '.$slider_width.'px;';
 //		if(!$params->get('full_width', 0)) $style['slider'].= ' max-width: '.$slider_width.'px !important;';
-		if($params->get('full_width') == "1") $style['slider'] = ' width: 100%; height: auto;';
+		if($params->get('full_width') == '1') $style['slider'] = ' width: 100%; height: auto;';
 		$style['image'] = $image_width.'; '.$image_height.';';		
 		$style['navi'] = 'top: '.$arrows_top.'; margin: 0 '.$arrows_horizontal.';';
 		$style['desc'] = 'bottom: '.$desc_bottom.'; left: '.$desc_left.'; width: '.$desc_width.';';

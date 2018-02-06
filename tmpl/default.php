@@ -43,14 +43,14 @@ if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 16
 
 $decl = "
 #wsacarousel-loader" . $mid . "
-{
+{/*    full_width: " . $params->get('full_width') . " */
  " . $style['slider'] . "
  max-width: 100%;
  overflow: hidden;
 }
 
 #wsacarousel" . $mid . "
-{
+{ 
 width: " . $count * 100 . "%; 
 }
 
