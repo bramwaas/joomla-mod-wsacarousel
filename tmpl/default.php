@@ -38,12 +38,16 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
    needs als a change in  .emulateTransitionEnd(600) in Carousel.prototype.slide = function (type, next)
    otherwise the slide disappears afte 0.6 sec.
 */
+if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
+if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
+
 $decl = "
 #wsacarousel" . $mid . "
 {
  width:" . $slide_width . "px;
  height:" . $slide_height . "px;
  max-width: 100%;
+ overflow: hidden;
 }
 @media (min-width: 768px) {
 #wsacarousel" . $mid . "
