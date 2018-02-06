@@ -45,7 +45,9 @@ $decl = "
 #wsacarousel-loader" . $mid . "
 {
  " . $style['slider'] . "
- max-width: 100%;
+height: auto;
+ 
+max-width: 100%;
  overflow: hidden;
 }
 
@@ -55,6 +57,10 @@ width: " . $count * 100 . "%;
 }
 
 @media (min-width: 768px) {
+#wsacarousel-loader" . $mid . "
+{
+" . $style['slider'] . "
+}
 #wsacarousel" . $mid . "
 {
  width: 100%;
