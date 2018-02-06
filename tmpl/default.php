@@ -42,17 +42,22 @@ if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
 if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
 
 $decl = "
-#wsacarousel" . $mid . "
+#wsacarousel-loader" . $mid . "
 {
- width:" . $slide_width . "px;
- height:" . $slide_height . "px;
+ " . $style['slider'] . "
  max-width: 100%;
  overflow: hidden;
 }
+
+#wsacarousel" . $mid . "
+{
+width: " . $count * 100 . "%; 
+}
+
 @media (min-width: 768px) {
 #wsacarousel" . $mid . "
 {
- " . $style['slider'] . "
+ width: 100%;
 }
 }
 #wsacarousel-container" . $mid . "   .carousel-inner .carousel-caption{
