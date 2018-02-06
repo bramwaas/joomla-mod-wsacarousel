@@ -41,7 +41,15 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 $decl = "
 #wsacarousel" . $mid . "
 {
+ width:" . $slide_width . "px;
+ height:" . $slide_height . "px;
+ max-width: 100%;
+}
+@media (min-width: 768px) {
+#wsacarousel" . $mid . "
+{
  " . $style['slider'] . "
+}
 }
 #wsacarousel-container" . $mid . "   .carousel-inner .carousel-caption{
 position: relative; /* or absolute */
