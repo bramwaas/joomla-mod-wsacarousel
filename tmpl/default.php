@@ -49,10 +49,13 @@ bottom: 0;
 padding:0;
 
 }
-#wsacarousel-container" . $mid . " .item-inner{
+#wsacarousel-container" . $mid . " .carousel-item-inner{
 position: relative;
 width: " . 100/$count . "%;
 float: left;
+}
+#wsacarousel-container" . $mid . " .carousel-item-img{
+" . $style['image'] . "
 }
 @media all and (transform-3d), (-webkit-transform-3d) {
 #wsacarousel-container" . $mid . " .carousel-inner > .item {
@@ -62,8 +65,6 @@ float: left;
     transition-duration: " . $duration/1000 . "s;
 }";
 
-echo "<!-- count: " . $count . " duration: " . $duration . " delay: " . $delay . "
-	slide_size: " . $slide_size . " width: " . $width . " height: " . $height . " -->";
 
 if ($count > 1) {
 	
@@ -158,7 +159,7 @@ $doc->addScriptDeclaration($decl);
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"><div class="item-inner">
+          			<div class="carousel-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"><div class="carousel-item-inner">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
           					if($action > 1) {
@@ -176,7 +177,7 @@ $doc->addScriptDeclaration($decl);
 	            			<?php if (($slide->link && $action==1) || $action>1) { ?>
 								<a <?php echo $attr; ?> href="<?php echo ($action>1 ? $slide->image : $slide->link); ?>" target="<?php echo $slide->target; ?>">
 							<?php } ?>
-								<img class="img-responsive" src="<?php echo $slide->image; ?>" alt="<?php echo $slide->alt; ?>" <?php echo (!empty($slide->img_title) ? ' title="'.$slide->img_title.'"':''); ?>"/>
+								<img class="carousel-item-img" src="<?php echo $slide->image; ?>" alt="<?php echo $slide->alt; ?>" <?php echo (!empty($slide->img_title) ? ' title="'.$slide->img_title.'"':''); ?>"/>
 							<?php if (($slide->link && $action==1) || $action>1) { ?>
 								</a>
 							<?php } ?>
