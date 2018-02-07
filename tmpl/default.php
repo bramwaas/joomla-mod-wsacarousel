@@ -174,6 +174,7 @@ $doc->addScriptDeclaration($decl);
 		data-pause="hover"
 		data-wrap="true" 
 		data-keyboard="true"
+		data-duration="<?php echo $duration; ?>
 		>
 		
 		<!-- Indicators -->
