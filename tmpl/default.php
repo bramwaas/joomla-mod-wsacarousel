@@ -31,7 +31,7 @@ $doc = Factory::getDocument ();
 
 $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : ''; 
 
-if(!is_numeric($duration = $params->get('duration'))) $duration = 0;
+if(!is_numeric($duration = $params->get('duration'))) $duration = 600;
 if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 
 /* change duration of transformation
@@ -40,6 +40,7 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 */
 if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
 if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
+
 
 $decl = "
 #wsacarousel-loader" . $mid . "
@@ -67,7 +68,7 @@ width: " . $count * 100 . "%;
 }
 }
 #wsacarousel-container" . $mid . "   .carousel-inner .carousel-caption{
-position: relative; /* or absolute */
+position: " . ($params->get('caption_overlay', 1) == '1' ? 'absolute':'relative') . "; 
 bottom: 0;
 padding:0;
 
@@ -93,21 +94,28 @@ if ($count > 1) {
 	
 $decl = $decl .
 "	
-/* override position and transform in 3.3.x */
+/* override position and transform in 3.3.x and 4.0.x 
+*/
+#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-left.active,
 #wsacarousel-container" . $mid . " .carousel-inner .item.left.active {
   transform: translateX(-" . 100/$count . "%);
 }
+#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-right.active,
 #wsacarousel-container" . $mid . " .carousel-inner .item.right.active {
   transform: translateX(" . 100/$count . "%);
 }
 
-#wsacarousel-container" . $mid . " .carousel-inner .item.next {
+#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-next,
+#wsacarousel-container" . $mid . " .carousel-inner .item.next  {
   transform: translateX(" . 100/$count . "%)
 }
+#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-prev,
 #wsacarousel-container" . $mid . " .carousel-inner .item.prev {
   transform: translateX(-" . 100/$count . "%)
 }
 
+#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-right,
+#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-left,
 #wsacarousel-container" . $mid . " .carousel-inner .item.right,
 #wsacarousel-container" . $mid . " .carousel-inner .item.left { 
   transform: translateX(0);

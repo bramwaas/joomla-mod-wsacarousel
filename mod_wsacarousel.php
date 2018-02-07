@@ -22,6 +22,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
+ * 7-2-2018 added J3.8 J4.0namespaces.
  *
  */
 
@@ -30,6 +31,11 @@ defined('_JEXEC') or die('Restricted access');
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 jimport('joomla.filesystem.file');
 use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Helper\ModuleHelper;
 
 // Include the syndicate functions only once
 require_once (dirname(__FILE__).DS.'helper.php');
@@ -39,19 +45,19 @@ $document = Factory::getDocument();
 // taking the slides from the source
 if($params->get('slider_source')==1) {
 	jimport('joomla.application.component.helper');
-	if(!JComponentHelper::isEnabled('com_djimageslider', true)){
-		$app->enqueueMessage(JText::_('MOD_WSACAROUSEL_NO_COMPONENT'),'notice');
+	if(!ComponentHelper::isEnabled('com_djimageslider', true)){
+		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_COMPONENT'),'notice');
 		return;
 	}
 	$slides = modDJImageSliderHelper::getImagesFromDJImageSlider($params);
 	if($slides==null) {
-		$app->enqueueMessage(JText::_('MOD_WSACAROUSEL_NO_CATEGORY_OR_ITEMS'),'notice');
+		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_CATEGORY_OR_ITEMS'),'notice');
 		return;
 	}
 } else {
 	$slides = modDJImageSliderHelper::getImagesFromFolder($params);
 	if($slides==null) {
-		$app->enqueueMessage(JText::_('MOD_WSACAROUSEL_NO_CATALOG_OR_FILES'),'notice');
+		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_CATALOG_OR_FILES'),'notice');
 		return;
 	}
 }
@@ -81,16 +87,16 @@ if($theme != '_override') {
 }
 // add only if theme file exists
 if(JFile::exists(JPATH_ROOT . DS . $css)) {
-	$document->addStyleSheet(JURI::root(true).'/'.$css);
+	$document->addStyleSheet(Uri::root(true).'/'.$css);
 }
 if($direction == 'rtl') { // load rtl css if exists in theme or joomla template
 	$css_rtl = JFile::stripExt($css).'_rtl.css';
 	if(JFile::exists(JPATH_ROOT . DS . $css_rtl)) {
-		$document->addStyleSheet(JURI::root(true).'/'.$css_rtl);
+		$document->addStyleSheet(Uri::root(true).'/'.$css_rtl);
 	}
 }
 
-$jquery = version_compare(JVERSION, '3.0.0', '>=');
+$jquery = version_compare(JVERSION, '3.8.0', '>=');
 $canDefer = preg_match('/(?i)msie [6-9]/', @$_SERVER['HTTP_USER_AGENT']) ? false : true;
 
 $db = Factory::getDBO();
@@ -99,28 +105,41 @@ $ver = json_decode($db->loadResult());
 $ver = $ver->version;
 
 if ($jquery) {
-	JHTML::_('jquery.framework');
-	$document->addScript(JURI::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', 'text/javascript', $canDefer);
-	/* $document->addScript(JURI::root(true).'/modules/mod_wsacarousel/assets/js/slider.js?v='.$ver, 'text/javascript', $canDefer); */
-	$attribs = array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 'crossorigin' => 'anonymous');
-	//$this->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', 'text/css', null,  $attribs);
-	$document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),  $attribs);
-	
-	$document->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" , array('version'=>'3.3.7'), array('id'=>'caption.js', 'defer'=>'defer')); // defer .
-	
-} else {
-	JHTML::_('behavior.framework', true);
-	$document->addScript(JURI::root(true).'/modules/mod_wsacarousel/assets/js/moo.slider.js?v='.$ver, 'text/javascript', $canDefer);
+	HTMLHelper::_('jquery.framework');
+	$document->addScript(Uri::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', 'text/javascript', $canDefer);
+	if ($params->get('twbs_version',4) == "3") {
+	    if ($params->get('include_twbs_css') == "1") {
+	   $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),
+	       array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 'crossorigin' => 'anonymous'));
+	    }
+	    if ($params->get('include_twbs_js') == "1") {
+	        $document->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" , array('version'=>'3.3.7'),
+	            array('id'=>'bootstrap.min.js', 'defer'=>'defer')); // defer .
+	    }
+	}
+	else {
+	    if ($params->get('include_twbs_css') == "1") {
+	        $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', array('version'=>'4.0.0'),
+	            array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', 'crossorigin' => 'anonymous'));
+	    }
+	    if ($params->get('include_twbs_js') == "1") {
+	        $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array('version'=>'1.12.9'),
+	            array('id'=>'popper.js', 'integrity'=>'sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q'));
+	        $document->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" , array('version'=>'4.0.0'), 
+	            array('id'=>'bootstrap.min.js', 'integrity' => 'sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', 'defer'=>'defer')); // defer .
+	    }
+	    
+	}
 }
 
 if($params->get('link_image',1) > 1) {
 	if($jquery) {
-		$document->addScript(JURI::root(true).'/media/djextensions/magnific/magnific.js', 'text/javascript', $canDefer);
-		$document->addStyleSheet(JURI::root(true).'/media/djextensions/magnific/magnific.css');
-		$document->addScript(JURI::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js', 'text/javascript', $canDefer);
+		$document->addScript(Uri::root(true).'/media/djextensions/magnific/magnific.js', 'text/javascript', $canDefer);
+		$document->addStyleSheet(Uri::root(true).'/media/djextensions/magnific/magnific.css');
+		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js', 'text/javascript', $canDefer);
 	} else {
-		$document->addScript(JURI::root(true).'/modules/mod_wsacarousel/assets/slimbox/js/slimbox.js', 'text/javascript', $canDefer);
-		$document->addStyleSheet(JURI::root(true).'/modules/mod_wsacarousel/assets/slimbox/css/slimbox.css');
+		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/slimbox/js/slimbox.js', 'text/javascript', $canDefer);
+		$document->addStyleSheet(Uri::root(true).'/modules/mod_wsacarousel/assets/slimbox/css/slimbox.css');
 	}
 }
 
@@ -158,4 +177,4 @@ $style = modDJImageSliderHelper::getStyles($params);
 $navigation = modDJImageSliderHelper::getNavigation($params,$mid);
 $show = (object) array('arr'=>$params->get('show_arrows'), 'btn'=>$params->get('show_buttons'), 'idx'=>$params->get('show_custom_nav'));
 
-require JModuleHelper::getLayoutPath('mod_wsacarousel', $params->get('layout','default'));
+require ModuleHelper::getLayoutPath('mod_wsacarousel', $params->get('layout','default'));
