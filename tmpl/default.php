@@ -170,7 +170,7 @@ $doc->addScriptDeclaration($decl);
 	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="wsacarousel-container<?php echo $mid; ?>" class="carousel slide " data-ride="carousel"
-		data-interval="<?php echo $delay; ?>" 
+		data-interval="<?php echo $delay + $duration; ?>" 
 		data-pause="hover"
 		data-wrap="true" 
 		data-keyboard="true"
