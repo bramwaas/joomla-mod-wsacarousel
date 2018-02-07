@@ -28,6 +28,10 @@
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+use Joomla\Registry\Registry;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 $doc = Factory::getDocument ();
 
 
@@ -123,7 +127,7 @@ class modDJImageSliderHelper
 		$slides = $db->loadObjectList();
 		
 		foreach($slides as $slide){
-			$slide->params = new JRegistry($slide->params);
+			$slide->params = new Registry($slide->params);
 			$slide->link = modDJImageSliderHelper::getSlideLink($slide);
 			$slide->description = modDJImageSliderHelper::getSlideDescription($slide, $params->get('limit_desc'));
 			$slide->alt = $slide->params->get('alt_attr', $slide->title);
@@ -149,33 +153,33 @@ class modDJImageSliderHelper
 					$menuitem = $menu->getItem($menuid);
 					if($menuitem) switch($menuitem->type) {
 						case 'component': 
-							$link = JRoute::_($menuitem->link.'&Itemid='.$menuid);
+							$link = Route::_($menuitem->link.'&Itemid='.$menuid);
 							break;
 						case 'url':
 						case 'alias':
-							$link = JRoute::_($menuitem->link);
+							$link = Route::_($menuitem->link);
 							break;
 					}	
 				}
 				break;
 			case 'url':
 				if($itemurl = $slide->params->get('link_url',0)) {
-					$link = JRoute::_($itemurl);
+					$link = Route::_($itemurl);
 				}
 				break;
 			case 'article':
 				if ($artid = $slide->params->get('id',$slide->params->get('link_article',0))) {
 					jimport('joomla.application.component.model');
 					require_once(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
-					JModelLegacy::addIncludePath(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'models');
-					$model = JModelLegacy::getInstance('Articles', 'ContentModel', array('ignore_request'=>true));
+					BaseDatabaseModel::addIncludePath(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'models');
+					$model = BaseDatabaseModel::getInstance('Articles', 'ContentModel', array('ignore_request'=>true));
 					$model->setState('params', $app->getParams());
 					$model->setState('filter.article_id', $artid);
 					$model->setState('filter.article_id.include', true); // Include
 					$items = $model->getItems();
 					if($items && $item = $items[0]) {
 						$item->slug = $item->alias ? ($item->id . ':' . $item->alias) : $item->id;
-						$link = JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid));
+						$link = Route::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid));
 						$slide->introtext = $item->introtext;
 					}
 				}
@@ -186,7 +190,7 @@ class modDJImageSliderHelper
 	}
 	
 	static function getSlideDescription($slide, $limit) {
-		$sparams = new JRegistry($slide->params);
+		$sparams = new Registry($slide->params);
 		if($sparams->get('link_type','')=='article' && empty($slide->description)){ // if article and no description then get introtext as description
 			if(isset($slide->introtext)) $slide->description = $slide->introtext;
 		}
@@ -352,7 +356,7 @@ class modDJImageSliderHelper
 	
 	static function getSlideTarget($link) {
 		
-		if(preg_match("/^http/",$link) && !preg_match("/^".str_replace(array('/','.','-'), array('\/','\.','\-'),JURI::base())."/",$link)) {
+		if(preg_match("/^http/",$link) && !preg_match("/^".str_replace(array('/','.','-'), array('\/','\.','\-'),Text::base())."/",$link)) {
 			$target = '_blank';
 		} else {
 			$target = '_self';

@@ -190,7 +190,7 @@ $doc->addScriptDeclaration($decl);
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="carousel-item item item<?php echo $itemnr; if ($itemnr==1) echo " active carousel-item active"; ?>"><div class="carousel-item-inner">
+          			<div class="carousel-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"><div class="carousel-item-inner">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
           					if($action > 1) {
