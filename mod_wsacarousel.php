@@ -115,7 +115,7 @@ if ($jquery) {
 	    if ($params->get('include_twbs_js') == "1") {
 //	        $document->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" , array('version'=>'3.3.7'),
 //	            array('id'=>'bootstrap.min.js', 'defer'=>'defer')); // defer .
-	        $document->addScript("/assets/js/wsacarousel_bootstrap3.3.7", array('version'=>'3.3.7'),
+	        $document->addScript("/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>'3.3.7'),
 	            array('id'=>'bootstrap.min.js', 'defer'=>'defer')); // defer .
 	    }
 	}
