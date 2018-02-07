@@ -56,6 +56,22 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="include_twbs_css" type="radio" class="btn-group" default="1" label="MOD_WSACAROUSEL_INCLUDE_TWBS_CSS" description="MOD_WSACAROUSEL_INCLUDE_TWBS_CSS_DESC" showon="slider_source:1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="include_twbs_js" type="radio" class="btn-group" default="1" label="MOD_WSACAROUSEL_INCLUDE_TWBS_JS" description="MOD_WSACAROUSEL_INCLUDE_TWBS_JS_DESC" showon="slider_source:1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="twbs_version" type="radio" class="btn-group" default="3" label="MOD_WSACAROUSEL_TWBS_VERSION" description="MOD_WSACAROUSEL_TWBS_VERSION_DESC" showon="slider_source:1">
+					<option value="3">3.3.7</option>
+					<option value="4">4</option>
+				</field>
+				<field name="caption_overlay" type="radio" class="btn-group" default="1" label="MOD_WSACAROUSEL_CATPTION_OVERLAY" description="MOD_WSACAROUSEL_CAPTION_OVERLAY_DESC" showon="slider_source:1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 				<field name="show_desc" type="radio" class="btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_DESCRIPTION" description="MOD_WSACAROUSEL_SHOW_DESCRIPTION_DESC" showon="slider_source:1">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
