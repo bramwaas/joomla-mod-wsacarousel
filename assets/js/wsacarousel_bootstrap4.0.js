@@ -577,7 +577,7 @@ var Carousel = function ($$$1) {
           setTimeout(function () {
             return $$$1(_this3._element).trigger(slidEvent);
           }, 0);
-        }).emulateTransitionEnd(this.options._duration);
+        }).emulateTransitionEnd(this._config.duration);
       } else {
         $$$1(activeElement).removeClass(ClassName.ACTIVE);
         $$$1(nextElement).addClass(ClassName.ACTIVE);
