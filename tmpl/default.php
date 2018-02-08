@@ -57,6 +57,12 @@ if ($params->get('twbs_version',4) == "3") {
 
 
 $decl = "
+carousel-control{ /* alleen voor bs 3 nodig */
+    display: -webkit-box; 
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+}
 #wsacarousel-loader" . $mid . "
 {
  " . $style['slider'] . "
