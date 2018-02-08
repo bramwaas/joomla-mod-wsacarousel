@@ -261,10 +261,10 @@ $doc->addScriptDeclaration($decl);
         <?php if($show->arr || $show->btn) { ?>
         <div id="navigation<?php echo $mid; ?>" class="navigation-container" style="<?php echo $style['navi'] ?>">
         	<?php if($show->arr) { ?>
-			<a class="left carousel-control" href="#slider-container<?php echo $mid; ?>" role="button" data-slide="prev">
+			<a class="left carousel-control carousel-control-prev" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="prev">
         	<img id="prev<?php echo $mid; ?>" class="prev-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_WSACAROUSEL_NEXT') : JText::_('MOD_WSACAROUSEL_PREVIOUS'); ?>"<?php echo $wcag; ?> />
 			</a>
-			<a class="right carousel-control" href="#slider-container<?php echo $mid; ?>" role="button" data-slide="next">			<img id="next<?php echo $mid; ?>" class="next-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_WSACAROUSEL_PREVIOUS') : JText::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
+			<a class="right carousel-control carousel-control-next" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="next">			<img id="next<?php echo $mid; ?>" class="next-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_WSACAROUSEL_PREVIOUS') : JText::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
 			</a>
 			<?php } ?>
 			<?php if($show->btn) { ?>
