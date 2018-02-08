@@ -61,7 +61,7 @@ $decl = "
     display: -webkit-box; 
     display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 #wsacarousel-loader" . $mid . "
 {
