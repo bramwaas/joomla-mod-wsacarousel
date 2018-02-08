@@ -696,4 +696,3 @@ var Carousel = function ($$$1) {
 
   return Carousel;
 }($);
-
