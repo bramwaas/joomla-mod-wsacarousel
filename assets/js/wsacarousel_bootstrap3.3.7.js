@@ -44,7 +44,7 @@ if (typeof jQuery === 'undefined') {
     this.interval    = null
     this.$active     = null
     this.$items      = null
-	this.$duration   = null
+	this.duration   = null
 
     this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
 
