@@ -40,6 +40,20 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 */
 if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
 if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
+if ($params->get('twbs_version',4) == "3") {
+    $carousel_item_left = 'item.left';
+    $carousel_item_right = 'item.right';
+    $carousel_item_next = 'item.next';
+    $carousel_item_prev = 'item.prev';
+    
+    
+} else {  /* twbs version = 4.0 */
+    $carousel_item_left = 'carousel-item-left';
+    $carousel_item_right = 'carousel-item-right';
+    $carousel_item_next = 'carousel-item-next';
+    $carousel_item_prev = 'carousel-item-prev';
+    
+}
 
 
 $decl = "
@@ -96,28 +110,24 @@ $decl = $decl .
 "	
 /* override position and transform in 3.3.x and 4.0.x 
 */
-#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-left.active,
-#wsacarousel-container" . $mid . " .carousel-inner .item.left.active {
+#wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_left . ".active {
   transform: translateX(-" . 100/$count . "%);
 }
-#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-right.active,
-#wsacarousel-container" . $mid . " .carousel-inner .item.right.active {
+#wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_right . ".active {
   transform: translateX(" . 100/$count . "%);
 }
 
-#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-next,
-#wsacarousel-container" . $mid . " .carousel-inner .item.next  {
+#wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_next . "  {
   transform: translateX(" . 100/$count . "%)
 }
-#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-prev,
-#wsacarousel-container" . $mid . " .carousel-inner .item.prev {
+#wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_prev . " {
   transform: translateX(-" . 100/$count . "%)
 }
 
-#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-right,
-#wsacarousel-container" . $mid . " .carousel-inner .carousel-item-left,
-#wsacarousel-container" . $mid . " .carousel-inner .item.right,
-#wsacarousel-container" . $mid . " .carousel-inner .item.left { 
+#wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_left . ",
+#wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_right . ",
+#wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_left . ",
+#wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_right . " { 
   transform: translateX(0);
 }";
 }

@@ -3,6 +3,7 @@
 	<name>joomla-mod-wsacarousel</name>
 	<comment></comment>
 	<projects>
+		<project>joomla-cms</project>
 		<project>joomla-cms-4.0-dev</project>
 	</projects>
 	<buildSpec>
