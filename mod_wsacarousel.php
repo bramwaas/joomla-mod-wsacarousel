@@ -80,10 +80,10 @@ $params->set('direction', $direction);
 $theme = $params->get('theme', 'default');
 
 if($theme != '_override') {
-	$css = 'modules/mod_wsacarousel/themes/'.$theme.'/css/djimageslider.css';
+	$css = 'modules/mod_wsacarousel/themes/'.$theme.'/css/wsacarousel.css';
 } else {
 	$theme = 'override';
-	$css = 'templates/'.$app->getTemplate().'/css/djimageslider.css';
+	$css = 'templates/'.$app->getTemplate().'/css/wsacarousel.css';
 }
 // add only if theme file exists
 if(JFile::exists(JPATH_ROOT . DS . $css)) {
@@ -97,7 +97,6 @@ if($direction == 'rtl') { // load rtl css if exists in theme or joomla template
 }
 
 $jquery = version_compare(JVERSION, '3.8.0', '>=');
-$canDefer = preg_match('/(?i)msie [6-9]/', @$_SERVER['HTTP_USER_AGENT']) ? false : true;
 
 $db = Factory::getDBO();
 $db->setQuery("SELECT manifest_cache FROM #__extensions WHERE element='mod_wsacarousel' LIMIT 1");
@@ -106,16 +105,14 @@ $ver = $ver->version;
 
 if ($jquery) {
 	HTMLHelper::_('jquery.framework');
-	$document->addScript(Uri::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', 'text/javascript', $canDefer);
+	$document->addScript(dirname(__FILE__).'/media/djextensions/jquery-easing/jquery.easing.min.js', array('id'=>'jquery.easing.min.js', 'defer'=>'defer'));
 	if ($params->get('twbs_version',4) == "3") {
 	    if ($params->get('include_twbs_css') == "1") {
 	   $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),
 	       array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 'crossorigin' => 'anonymous'));
 	    }
 	    if ($params->get('include_twbs_js') == "1") {
-//	        $document->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" , array('version'=>'3.3.7'),
-//	            array('id'=>'bootstrap.min.js', 'defer'=>'defer')); // defer .
-	        $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>'3.3.7'),
+	        $document->addScript(dirname(__FILE__)."/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>'3.3.7'),
 	            array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
 	    }
 	}
@@ -127,9 +124,7 @@ if ($jquery) {
 	    if ($params->get('include_twbs_js') == "1") {
 	        $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array('version'=>'1.12.9'),
 	            array('id'=>'popper.js' /* , 'integrity'=>'sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' */));
-//	        $document->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" , array('version'=>'4.0.0'), 
-//	            array('id'=>'bootstrap.min.js' /* , 'integrity' => 'sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' */ , 'defer'=>'defer')); // defer .
-            $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>'4.0.0'),
+	        $document->addScript(dirname(__FILE__)."/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>'4.0.0'),
                 array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
 	    }
 	    
@@ -138,13 +133,10 @@ if ($jquery) {
 
 if($params->get('link_image',1) > 1) {
 	if($jquery) {
-		$document->addScript(Uri::root(true).'/media/djextensions/magnific/magnific.js', 'text/javascript', $canDefer);
+	    $document->addScript(Uri::root(true).'/media/djextensions/magnific/magnific.js',  array('id'=>'magnific.js', 'defer'=>'defer'));
 		$document->addStyleSheet(Uri::root(true).'/media/djextensions/magnific/magnific.css');
-		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js', 'text/javascript', $canDefer);
-	} else {
-		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/slimbox/js/slimbox.js', 'text/javascript', $canDefer);
-		$document->addStyleSheet(Uri::root(true).'/modules/mod_wsacarousel/assets/slimbox/css/slimbox.css');
-	}
+		$document->addScript(dirname(__FILE__).'/assets/js/magnific-init.js',  array('id'=>'magnific-init.js', 'defer'=>'defer'));
+	} 
 }
 
 if(!is_numeric($width = $params->get('image_width'))) $width = 240;

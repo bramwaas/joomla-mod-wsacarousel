@@ -45,34 +45,38 @@ if ($params->get('twbs_version',4) == "3") {
     $carousel_item_right = 'item.right';
     $carousel_item_next = 'item.next';
     $carousel_item_prev = 'item.prev';
-    
-    
+    $carousel_control_css = '.carousel-control{ /* alleen voor bs 3 nodig */
+    display: -webkit-box; 
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;}';
+     
 } else {  /* twbs version = 4.0 */
     $carousel_item_left = 'carousel-item-left';
     $carousel_item_right = 'carousel-item-right';
     $carousel_item_next = 'carousel-item-next';
     $carousel_item_prev = 'carousel-item-prev';
-    
+    $carousel_control_css = '';
 }
 
-
-$decl = "
-.carousel-control{ /* alleen voor bs 3 nodig */
-    display: -webkit-box; 
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+$decl = $carousel_control_css . "
 #wsacarousel-loader" . $mid . "
 {
  " . $style['slider'] . "
 height: auto;
- 
 max-width: 100%;
  overflow: hidden;
 }
-
+#wsacarousel-loader" . $mid . " .showOnHover {
+	opacity: 0;
+	-webkit-transition: opacity 200ms ease 50ms;
+	transition: opacity 200ms ease 50ms;
+}
+#wsacarousel-loader" . $mid . ":hover .showOnHover,
+#wsacarousel-loader" . $mid . ".focused .showOnHover {
+	opacity: 1;
+}
 #wsacarousel" . $mid . "
 { 
 width: " . $count * 100 . "%; 
