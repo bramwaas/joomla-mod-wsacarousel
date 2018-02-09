@@ -356,7 +356,7 @@ class modDJImageSliderHelper
 	
 	static function getSlideTarget($link) {
 		
-		if(preg_match("/^http/",$link) && !preg_match("/^".str_replace(array('/','.','-'), array('\/','\.','\-'),Text::base())."/",$link)) {
+		if(preg_match("/^http/",$link) && !preg_match("/^".str_replace(array('/','.','-'), array('\/','\.','\-'),Uri::base())."/",$link)) {
 			$target = '_blank';
 		} else {
 			$target = '_self';
@@ -375,14 +375,14 @@ class modDJImageSliderHelper
 		$theme = $params->get('theme', 'default');
 		
 		if($params->get('slider_type')==1) {			
-			if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_djimageslider/themes/'.$theme.'/images/up.png';			
-			if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_djimageslider/themes/'.$theme.'/images/down.png';
+			if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/up.png';			
+			if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/down.png';
 		} else {			
-			if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_djimageslider/themes/'.$theme.'/images/prev.png';			
-			if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_djimageslider/themes/'.$theme.'/images/next.png';
+			if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/prev.png';			
+			if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/next.png';
 		}
-		if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'modules/mod_djimageslider/themes/'.$theme.'/images/play.png';
-		if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'modules/mod_djimageslider/themes/'.$theme.'/images/pause.png';
+		if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'modules/mod_wsacarousel/themes/'.$theme.'/images/play.png';
+		if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'modules/mod_wsacarousel/themes/'.$theme.'/images/pause.png';
 		
 		$navi = (object) array('prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
 		
