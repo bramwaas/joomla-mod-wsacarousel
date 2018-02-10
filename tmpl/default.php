@@ -275,7 +275,6 @@ $doc->addScriptDeclaration($decl);
 						</div>
 						<!-- Slide description area: END -->
 						<?php } ?>						
-         			<div class="carousel-item-inner1"><div class="carousel-item-inner2"></div></div>
  						
 					</div><!--  c-i-i --></div></div>
                 <?php } ?>
