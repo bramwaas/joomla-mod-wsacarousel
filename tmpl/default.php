@@ -106,6 +106,12 @@ float: left;
 #wsacarousel-container" . $mid . " .carousel-item-img{
 " . $style['image'] . "
 }
+
+
+#wsacarousel-container" . $mid . " .carousel-item-inner{
+height: 100%;
+}
+	
 @media all and (transform-3d), (-webkit-transform-3d) {
 #wsacarousel-container" . $mid . " .carousel-inner > .item {
     -webkit-transition-duration: " . $duration/1000 . "s;
@@ -119,15 +125,6 @@ if ($count > 1) {
 	
 $decl = $decl .
 "
-/* hoogte ? */
-#wsacarousel-container" . $mid . " .carousel-inner .carousel-item{
-  height: 100%;
-}
-#wsacarousel-container" . $mid . " .carousel-inner .carousel-item .active {
-  height: 100%;
-}
-/* hoogte einde */	
-
 
 /* override position and transform in 3.3.x and 4.0.x 
 */
