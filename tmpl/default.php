@@ -103,16 +103,6 @@ position: relative;
 width: " . 100/$count . "%;
 float: left;
 }
-#wsacarousel-container" . $mid . " .carousel-item-inner1{
-position: relative;
-width: 1px;
-height: 0;
-padding-bottom: 100%;
-}
-#wsacarousel-container" . $mid . " .carousel-item-inner2{
-position: relative;
-height: 100%;
-}
 #wsacarousel-container" . $mid . " .carousel-item-img{
 " . $style['image'] . "
 }
@@ -222,8 +212,7 @@ $doc->addScriptDeclaration($decl);
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="carousel-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>">
-          			<div class="carousel-item-inner">
+          			<div class="carousel-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"><div class="carousel-item-inner">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
           					if($action > 1) {
@@ -275,8 +264,8 @@ $doc->addScriptDeclaration($decl);
 						</div>
 						<!-- Slide description area: END -->
 						<?php } ?>						
- 						
-					</div><!--  c-i-i --></div></div>
+						
+					</div></div>
                 <?php } ?>
         	</div>
         </div>
