@@ -118,7 +118,17 @@ float: left;
 if ($count > 1) {
 	
 $decl = $decl .
-"	
+"
+/* hoogte ? */
+#wsacarousel-container" . $mid . " .carousel-inner {
+  height: 100%;
+}
+#wsacarousel-container" . $mid . " .carousel-inner .active, {
+  height: 100%;
+}
+/* hoogte einde */	
+
+
 /* override position and transform in 3.3.x and 4.0.x 
 */
 #wsacarousel-container" . $mid . " .carousel-inner ." . $carousel_item_left . ".active {
