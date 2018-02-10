@@ -120,10 +120,10 @@ if ($count > 1) {
 $decl = $decl .
 "
 /* hoogte ? */
-#wsacarousel-container" . $mid . " .carousel-inner {
+#wsacarousel-container" . $mid . " .carousel-inner .carousel-item{
   height: 100%;
 }
-#wsacarousel-container" . $mid . " .carousel-inner .active {
+#wsacarousel-container" . $mid . " .carousel-inner .carousel-item .active {
   height: 100%;
 }
 /* hoogte einde */	
