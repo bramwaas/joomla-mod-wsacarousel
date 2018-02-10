@@ -123,7 +123,7 @@ $decl = $decl .
 #wsacarousel-container" . $mid . " .carousel-inner {
   height: 100%;
 }
-#wsacarousel-container" . $mid . " .carousel-inner .active, {
+#wsacarousel-container" . $mid . " .carousel-inner .active {
   height: 100%;
 }
 /* hoogte einde */	
