@@ -99,6 +99,9 @@ bottom: 0;
 padding:0;
 left: 0;
 right: 0;
+font-size: 12px;
+line-height: 15.6px;
+background: RGBA(0,0,0,0.65)
 
 }
 #wsacarousel-container" . $mid . " .carousel-item-inner{
