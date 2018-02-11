@@ -301,10 +301,10 @@ $doc->addScriptDeclaration($decl);
 			<a class="right carousel-control carousel-control-next" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="next">			<img id="next<?php echo $mid; ?>" class="next-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_WSACAROUSEL_PREVIOUS') : JText::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
 			</a>
 			<?php } ?>
-			<?php if($show->btn) { ?>
+			<?php /* if($show->btn) { ?>
 			<img id="play<?php echo $mid; ?>" class="play-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->play; ?>" alt="<?php echo JText::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> />
 			<img id="pause<?php echo $mid; ?>" class="pause-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->pause; ?>" alt="<?php echo JText::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> />
-			<?php } ?>
+			<?php } */ ?>
         </div>
         <?php } ?>
         <?php if($show->idx) { ?>
