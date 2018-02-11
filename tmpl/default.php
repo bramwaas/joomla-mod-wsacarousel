@@ -40,6 +40,7 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 */
 if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
 if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
+$slide_heightprc = ($slide_width > 0 ) ?  100 * $slide_height / $slide_width : 75;
 if ($params->get('twbs_version',4) == "3") {
     $carousel_item_left = 'item.left';
     $carousel_item_right = 'item.right';
@@ -103,13 +104,23 @@ position: relative;
 width: " . 100/$count . "%;
 float: left;
 }
-#wsacarousel-container" . $mid . " .carousel-item-img{
-" . $style['image'] . "
+
+#wsacarousel-container" . $mid . " .carousel-item-content{
+float: left;
+width: 100%;
+}
+#wsacarousel-container" . $mid . " .carousel-item-height{
+float: left;
+width: 0;
+heiht: 0
+padding: 0;
+margin: 0;
+padding-bottom: " . $slide_heightprc . "%
 }
 
 
-#wsacarousel-container" . $mid . " .carousel-item-inner{
-height: 100%;
+#wsacarousel-container" . $mid . " .carousel-item-img{
+" . $style['image'] . "
 }
 	
 @media all and (transform-3d), (-webkit-transform-3d) {
@@ -220,6 +231,7 @@ $doc->addScriptDeclaration($decl);
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
           			<div class="carousel-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"><div class="carousel-item-inner">
+          			    <div class="carousel-item-content">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
           					if($action > 1) {
@@ -242,6 +254,8 @@ $doc->addScriptDeclaration($decl);
 								</a>
 							<?php } ?>
 						<?php } ?>
+						</div>
+						<div class="carousel-item-height"></div>
 						<?php if($params->get('slider_source') && ($params->get('show_title') || ($params->get('show_desc') && !empty($slide->description) || ($params->get('show_readmore') && $slide->link)))) { ?>
 						<!-- Slide description area: START -->
 						<div class="carousel-caption" >
