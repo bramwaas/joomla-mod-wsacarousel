@@ -97,6 +97,8 @@ width: " . $count * 100 . "%;
 position: " . ($params->get('caption_overlay', 1) == '1' ? 'absolute':'relative') . "; 
 bottom: 0;
 padding:0;
+left: 0;
+right: 0;
 
 }
 #wsacarousel-container" . $mid . " .carousel-item-inner{
