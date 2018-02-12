@@ -23,7 +23,7 @@
  * You should have received a copy of the GNU General Public License
  * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
  * 7-2-2018 added J3.8 J4.0namespaces.
- *
+ * 0.0.7
  */
 
 // no direct access
@@ -108,8 +108,10 @@ if ($jquery) {
 	$document->addScript(Uri::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', array('id'=>'jquery.easing.min.js', 'defer'=>'defer'));
 	if ($params->get('twbs_version',4) == "3") {
 	    if ($params->get('include_twbs_css') == "1") {
-	   $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),
-	       array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 'crossorigin' => 'anonymous'));
+//	   $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),
+//	       array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 'crossorigin' => 'anonymous'));
+	   $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>'3.3.7'),
+	       array('id'=>'wsacarousel_bootstrap.css',));
 	    }
 	    if ($params->get('include_twbs_js') == "1") {
 	        $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>'3.3.7'),
@@ -118,8 +120,10 @@ if ($jquery) {
 	}
 	else {
 	    if ($params->get('include_twbs_css') == "1") {
-	        $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', array('version'=>'4.0.0'),
-	            array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', 'crossorigin' => 'anonymous'));
+//	        $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', array('version'=>'4.0.0'),
+//	            array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', 'crossorigin' => 'anonymous'));
+	        $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap4.0.css", array('version'=>'4.0.0'),
+	            array('id'=>'wsacarousel_bootstrap.css',));
 	    }
 	    if ($params->get('include_twbs_js') == "1") {
 	        $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array('version'=>'1.12.9'),

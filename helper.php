@@ -22,7 +22,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
- * 0.0.1
+ * 0.0.7
  */
  
 // no direct access
