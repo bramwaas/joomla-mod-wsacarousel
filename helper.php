@@ -458,8 +458,14 @@ class modDJImageSliderHelper
 		$style['desc'] = 'bottom: '.$desc_bottom.'; left: '.$desc_left.'; width: '.$desc_width.';';
 		if($params->get('direction') == 'rtl') {
 			$style['slide'] = 'margin: 0 0 '.$padding_bottom.'px '.$padding_right.'px !important; height: '.$slide_height.'px; width: '.$slide_width.'px;';
+			$style['marginr'] = 0;
+			$style['marginb'] = $padding_bottom . 'px';
+			$style['marginl'] = $padding_right .'px';
 		} else {
 			$style['slide'] = 'margin: 0 '.$padding_right.'px '.$padding_bottom.'px 0 !important; height: '.$slide_height.'px; width: '.$slide_width.'px;';
+			$style['marginr'] = $padding_right .'px';
+			$style['marginb'] = $padding_bottom . 'px';
+			$style['marginl'] = 0;
 			
 		}
 		

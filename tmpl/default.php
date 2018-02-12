@@ -106,13 +106,15 @@ background: RGBA(0,0,0,0.65)
 }
 #wsacarousel-container" . $mid . " .carousel-item-inner{
 position: relative;
-width: " . 100/$count . "%;
+width: " . 100/$count . "%; 
 float: left;
 }
 
 #wsacarousel-container" . $mid . " .carousel-item-content{
 float: left;
+margin-bottom: " . $style['marginb'] . ";
 width: 100%;
+width:  calc(100% - " . $style['marginr'] . ");
 }
 #wsacarousel-container" . $mid . " .carousel-item-height{
 float: left;
