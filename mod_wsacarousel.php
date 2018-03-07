@@ -5,7 +5,7 @@
  * @subpackage wsacarousel Module
  * @copyright Copyright (C) 2018 AHC Waasdorp, All rights reserved.
  * @license http://www.gnu.org/licenses GNU/GPL
- * @author url: http://www.waasdorpsoekhan.nl
+ * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
  * @developer AHC Waasdorp
  *
@@ -21,9 +21,9 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
- * 7-2-2018 added J3.8 J4.0namespaces.
- * 0.0.7
+ * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
+ * 7-2-2018 added J3.8 J4.0namespaces deleted mootools and refs to JoomlaVersion < 3.0
+ * 0.0.8
  */
 
 // no direct access
@@ -45,17 +45,17 @@ $document = Factory::getDocument();
 // taking the slides from the source
 if($params->get('slider_source')==1) {
 	jimport('joomla.application.component.helper');
-	if(!ComponentHelper::isEnabled('com_djimageslider', true)){
+	if(!ComponentHelper::isEnabled('com_wsacarousel', true)){
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_COMPONENT'),'notice');
 		return;
 	}
-	$slides = modDJImageSliderHelper::getImagesFromDJImageSlider($params);
+	$slides = modWsaCarouselHelper::getImagesFromWsaCarousel($params);
 	if($slides==null) {
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_CATEGORY_OR_ITEMS'),'notice');
 		return;
 	}
 } else {
-	$slides = modDJImageSliderHelper::getImagesFromFolder($params);
+	$slides = modWsaCarouselHelper::getImagesFromFolder($params);
 	if($slides==null) {
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_CATALOG_OR_FILES'),'notice');
 		return;
@@ -168,13 +168,13 @@ switch($slider_type){
 		break;
 }
 
-$animationOptions = modDJImageSliderHelper::getAnimationOptions($params);
+$animationOptions = modWsaCarouselHelper::getAnimationOptions($params);
 $moduleSettings = json_encode(array('id' => $mid, 'slider_type' => $slider_type, 'slide_size' => $slide_size, 'visible_slides' => $count, 'direction' => $direction == 'rtl' ? 'right':'left',
 	'show_buttons' => $params->get('show_buttons',1), 'show_arrows' => $params->get('show_arrows',1), 'preload' => $preload, 'css3' => $params->get('css3', 0)
 ));
 
-$style = modDJImageSliderHelper::getStyles($params);
-$navigation = modDJImageSliderHelper::getNavigation($params,$mid);
+$style = modWsaCarouselHelper::getStyles($params);
+$navigation = modWsaCarouselHelper::getNavigation($params,$mid);
 $show = (object) array('arr'=>$params->get('show_arrows'), 'btn'=>$params->get('show_buttons'), 'idx'=>$params->get('show_custom_nav'));
 
 require ModuleHelper::getLayoutPath('mod_wsacarousel', $params->get('layout','default'));

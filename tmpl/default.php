@@ -7,7 +7,7 @@
  * @license http://www.gnu.org/licenses GNU/GPL
  * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
- * @developer A.H.C. waasdorp
+ * @developer A.H.C. Waasdorp
  *
  *
  * wsacarousel is free software: you can redistribute it and/or modify
@@ -21,8 +21,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
- * 0.0.7
+ * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
+ * 0.0.8
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 

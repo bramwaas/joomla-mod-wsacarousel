@@ -7,7 +7,7 @@
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
 	<authorEmail>contact@waasdorpsoekhan.nl</authorEmail>
 	<authorUrl>http://www.waasdorpsoekhan.nl</authorUrl>
-	<version>0.0.5</version>
+	<version>0.0.8</version>
 	<description>Slider / Carousel Module</description>
 	<files>
 		<filename module="mod_wsacarousel">mod_wsacarousel.php</filename>
@@ -25,7 +25,7 @@
 	</media>
 	
 	<config>
-		<fields name="params" addfieldpath="/administrator/components/com_djimageslider/models/fields">
+		<fields name="params" addfieldpath="/administrator/components/com_wsacarousel/models/fields">
 			<fieldset name="basic">
 				<field name="slider_source" type="list" default="0" label="MOD_WSACAROUSEL_SLIDER_SOURCE" description="MOD_WSACAROUSEL_SLIDER_SOURCE_DESC">
 					<option value="0">MOD_WSACAROUSEL_FOLDER</option>

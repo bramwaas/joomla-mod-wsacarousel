@@ -28,7 +28,7 @@
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
 use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
+// use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
@@ -36,7 +36,7 @@ use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 $doc = Factory::getDocument ();
 
 
-class modDJImageSliderHelper
+class modWsaCarouselHelper
 {
     static function getImagesFromFolder(&$params) {
     	
@@ -74,7 +74,7 @@ class modDJImageSliderHelper
         
 		$images = array_slice($files, 0, $max);
 		
-		$target = modDJImageSliderHelper::getSlideTarget($params->get('link'));
+		$target = modWsaCarouselHelper::getSlideTarget($params->get('link'));
 		
 		foreach($images as $image) {
 			$slides[] = (object) array('title'=>'', 'description'=>'', 'image'=>$folder.'/'.$image, 'link'=>$params->get('link'), 'alt'=>$image, 'target'=>$target);
@@ -83,8 +83,9 @@ class modDJImageSliderHelper
 		return $slides;
     }
 	
-	static function getImagesFromDJImageSlider(&$params) {
-		
+ //   static function getImagesFromDJImageSlider(&$params) {
+        static function getImagesFromWsaCarousel(&$params) {
+        
 		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
         $catid = $params->get('category',0);
 		
@@ -92,7 +93,8 @@ class modDJImageSliderHelper
 		$db = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select('a.*');
-		$query->from('#__djimageslider AS a');
+//		$query->from('#__djimageslider AS a');
+		$query->from('#__wsacarousel AS a');
 		
 		if (is_numeric($catid)) {
 			$query->where('a.catid = ' . (int) $catid);
@@ -129,13 +131,13 @@ class modDJImageSliderHelper
 		
 		foreach($slides as $slide){
 			$slide->params = new Registry($slide->params);
-			$slide->link = modDJImageSliderHelper::getSlideLink($slide);
-			$slide->description = modDJImageSliderHelper::getSlideDescription($slide, $params->get('limit_desc'));
+			$slide->link = modWsaCarouselHelper::getSlideLink($slide);
+			$slide->description = modWsaCarouselHelper::getSlideDescription($slide, $params->get('limit_desc'));
 			$slide->alt = $slide->params->get('alt_attr', $slide->title);
 			$slide->img_title = $slide->params->get('title_attr');
 			$slide->target = $slide->params->get('link_target','');
 			$slide->rel = $slide->params->get('link_rel','');
-			if(empty($slide->target)) $slide->target = modDJImageSliderHelper::getSlideTarget($slide->link);
+			if(empty($slide->target)) $slide->target = modWsaCarouselHelper::getSlideTarget($slide->link);
 		}
 		
 		return $slides;
@@ -274,41 +276,21 @@ class modDJImageSliderHelper
 		}
 		// add transition duration to delay
 		$delay = $delay + $duration;
-		$css3transition = $params->get('css3') ? modDJImageSliderHelper::getCSS3Transition($transition, $easing) : '';
+		$css3transition = $params->get('css3') ? modWsaCarouselHelper::getCSS3Transition($transition, $easing) : '';
 		
-		if (version_compare(JVERSION, '3.0.0', '<')) { // Joomla!2.5 - Mootools
-			if($transition=='ease') $transition = 'Sine';
-			$transition = $transition.(!empty($easing) ? '.'.$easing : '');
-			$transition = modDJImageSliderHelper::getMooTransition($transition);
-		} else { // Joomla!3 - jQuery
-			if($transition=='ease') {
+        // Joomla 3 - jQuery
+		if($transition=='ease') {
 				$transition = 'swing';
 				$easing = '';
-			}
-			$transition = $easing.$transition;
 		}
+		$transition = $easing.$transition;
+		
 		
 		$options = json_encode(array('auto' => $autoplay, 'looponce' => $looponce, 'transition' => $transition, 'css3transition' => $css3transition, 'duration' => $duration, 'delay' => $delay));
 		
 		return $options;
 	}
 	
-	static function getMooTransition($transition) {
-		
-		$parts = explode('.', $transition);
-		
-		$easing = '';
-		if(isset($parts[1])) {
-			switch($parts[1]) {
-				case 'easeIn': $easing = ':in'; break;
-				case 'easeOut': $easing = ':out'; break;
-				default: $easing = ':in:out'; break;
-			}
-		}
-		
-		return strtolower($parts[0]).$easing;
-		
-	}
 	
 	static function getCSS3Transition($transition, $easing) {
 		
