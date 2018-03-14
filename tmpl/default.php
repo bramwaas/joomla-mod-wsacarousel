@@ -46,19 +46,23 @@ if ($params->get('twbs_version',4) == "3") {
     $carousel_item_right = 'item.right';
     $carousel_item_next = 'item.next';
     $carousel_item_prev = 'item.prev';
-    $carousel_control_css = '.carousel-control{ /* alleen voor bs 3 nodig */
+    $carousel_control_css = '.carousel-control{ 
     display: -webkit-box; 
     display: -ms-flexbox;
     display: flex;
     align-items: center;
-    justify-content: center;}';
+    justify-content: center;
+    filter: alpha(opacity=1);
+    opacity: 0.01;}';
      
 } else {  /* twbs version = 4.0 */
     $carousel_item_left = 'carousel-item-left';
     $carousel_item_right = 'carousel-item-right';
     $carousel_item_next = 'carousel-item-next';
     $carousel_item_prev = 'carousel-item-prev';
-    $carousel_control_css = '';
+    $carousel_control_css = '.carousel-control{
+    filter: alpha(opacity=1);
+    opacity: 0.01;}';
 }
 
 $decl = $carousel_control_css . "
