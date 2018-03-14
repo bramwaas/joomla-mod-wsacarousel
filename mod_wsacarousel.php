@@ -79,15 +79,15 @@ $params->set('direction', $direction);
 
 $theme = $params->get('theme', 'default');
 
-if($theme != '_override') {
+if($theme != '_override' ) {
 	$css = 'modules/mod_wsacarousel/themes/'.$theme.'/css/wsacarousel.css';
 } else {
 	$theme = 'override';
 	$css = 'templates/'.$app->getTemplate().'/css/wsacarousel.css';
 }
 // add only if theme file exists
-if(JFile::exists(JPATH_ROOT . DS . $css)) {
-	$document->addStyleSheet(Uri::root(true).'/'.$css);
+if($theme != 'default' AND JFile::exists(JPATH_ROOT . DS . $css) ) {
+   $document->addStyleSheet(Uri::root(true).'/'.$css);
 }
 if($direction == 'rtl') { // load rtl css if exists in theme or joomla template
 	$css_rtl = JFile::stripExt($css).'_rtl.css';
@@ -103,44 +103,40 @@ $db->setQuery("SELECT manifest_cache FROM #__extensions WHERE element='mod_wsaca
 $ver = json_decode($db->loadResult());
 $ver = $ver->version;
 
-if ($jquery) {
-	HTMLHelper::_('jquery.framework');
-	$document->addScript(Uri::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', array('id'=>'jquery.easing.min.js', 'defer'=>'defer'));
-	if ($params->get('twbs_version',4) == "3") {
-	    if ($params->get('include_twbs_css') == "1") {
-//	   $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', array('version'=>'3.3.7'),
-//	       array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 'crossorigin' => 'anonymous'));
-	   $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>'3.3.7'),
+
+HTMLHelper::_('jquery.framework');
+$document->addScript(Uri::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', array('id'=>'jquery.easing.min.js', 'defer'=>'defer'));
+if ($params->get('twbs_version',4) == "3") {
+   if ($params->get('include_twbs_css') == "1") {
+   $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>''),
 	       array('id'=>'wsacarousel_bootstrap.css',));
-	    }
-	    if ($params->get('include_twbs_js') == "1") {
-	        $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>'3.3.7'),
+    }
+    if ($params->get('include_twbs_js') == "1") {
+        $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>''),
 	            array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
-	    }
+    }
+}
+else {
+    if ($params->get('include_twbs_css') == "1") {
+	$document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap4.0.css", array('version'=>''),
+	        array('id'=>'wsacarousel_bootstrap.css',));
 	}
-	else {
-	    if ($params->get('include_twbs_css') == "1") {
-//	        $document->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', array('version'=>'4.0.0'),
-//	            array('id'=>'bootstrap.min.css', 'integrity' => 'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', 'crossorigin' => 'anonymous'));
-	        $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap4.0.css", array('version'=>'4.0.0'),
-	            array('id'=>'wsacarousel_bootstrap.css',));
-	    }
-	    if ($params->get('include_twbs_js') == "1") {
-	        $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array('version'=>'1.12.9'),
-	            array('id'=>'popper.js' /* , 'integrity'=>'sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' */));
-	        $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>'4.0.0'),
-                array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
-	    }
+	if ($params->get('include_twbs_js') == "1") {
+	    $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array('version'=>''),
+	        array('id'=>'popper.js' ));
+        $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>''),
+            array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
+    }
 	    
-	}
 }
 
+
 if($params->get('link_image',1) > 1) {
-	if($jquery) {
+	
 	    $document->addScript(Uri::root(true).'/media/djextensions/magnific/magnific.js',  array('id'=>'magnific.js', 'defer'=>'defer'));
 		$document->addStyleSheet(Uri::root(true).'/media/djextensions/magnific/magnific.css');
 		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js',  array('id'=>'magnific-init.js', 'defer'=>'defer'));
-	} 
+	 
 }
 
 if(!is_numeric($width = $params->get('image_width'))) $width = 240;

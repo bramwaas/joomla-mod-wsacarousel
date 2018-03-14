@@ -78,6 +78,9 @@ max-width: 100%;
 #wsacarousel-loader" . $mid . ".focused .showOnHover {
 	opacity: 1;
 }
+.wsacarousel {
+    position: relative;
+}
 #wsacarousel" . $mid . "
 { 
 width: " . $count * 100 . "%; 
