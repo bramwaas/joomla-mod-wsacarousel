@@ -36,7 +36,7 @@
 					<option value="1">MOD_WSACAROUSEL_VERTICAL</option>
 					<option value="2">MOD_WSACAROUSEL_FADE</option>
 				</field>
-				<field name="theme" type="djfolderlist" default="default" label="MOD_WSACAROUSEL_THEME" description="MOD_WSACAROUSEL_THEME_DESC" directory="modules/mod_wsacarousel/themes" hide_none="true" hide_default="true">
+				<field name="theme" type="wsafolderlist" default="default" label="MOD_WSACAROUSEL_THEME" description="MOD_WSACAROUSEL_THEME_DESC" directory="modules/mod_wsacarousel/themes" hide_none="true" hide_default="true">
 					<option value="_override">MOD_WSACAROUSEL_THEME_OVERRIDE</option>
 				</field>
 				<field name="link_image" type="list" default="1" label="MOD_WSACAROUSEL_LINK_IMAGE" description="MOD_WSACAROUSEL_LINK_IMAGE_DESC">
@@ -46,11 +46,11 @@
 				</field>
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				
-				<field type="djspacer" label="MOD_WSACAROUSEL_FOLDER_AS_SOURCE_SETTINGS" showon="slider_source:0" />
+				<field type="wsaspacer" label="MOD_WSACAROUSEL_FOLDER_AS_SOURCE_SETTINGS" showon="slider_source:0" />
 				<field name="image_folder" type="text" default="images/sampledata/fruitshop" size="50" label="MOD_WSACAROUSEL_IMAGE_FOLDER" description="MOD_WSACAROUSEL_IMAGE_FOLDER_DESC" showon="slider_source:0" />
 				<field name="link" type="text" default="" size="50" label="MOD_WSACAROUSEL_LINK" description="MOD_WSACAROUSEL_LINK_DESC" showon="slider_source:0" />
 				
-				<field type="djspacer" label="MOD_WSACAROUSEL_COMPONENT_AS_SOURCE_SETTINGS" showon="slider_source:1" />
+				<field type="wsaspacer" label="MOD_WSACAROUSEL_COMPONENT_AS_SOURCE_SETTINGS" showon="slider_source:1" />
 				<field name="category" type="category" extension="com_djimageslider" label="MOD_WSACAROUSEL_SLIDES_CATEGORY" description="MOD_WSACAROUSEL_SLIDES_CATEGORY_DESC" showon="slider_source:1" />
 				<field name="show_title" type="radio" class="btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_TITLE" description="MOD_WSACAROUSEL_SHOW_TITLE_DESC" showon="slider_source:1">
 					<option value="0">JNO</option>
@@ -93,7 +93,7 @@
 				
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				
-				<field type="djspacer" label="MOD_WSACAROUSEL_BASIC_SLIDER_SETTINGS" description="MOD_WSACAROUSEL_SLIDER_DIMENSIONS" />
+				<field type="wsaspacer" label="MOD_WSACAROUSEL_BASIC_SLIDER_SETTINGS" description="MOD_WSACAROUSEL_SLIDER_DIMENSIONS" />
 				<field name="full_width" type="radio" class="btn-group" default="0" label="MOD_WSACAROUSEL_FULL_WIDTH" description="MOD_WSACAROUSEL_FULL_WIDTH_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
@@ -156,13 +156,13 @@
 			
 			<fieldset name="customise" label="MOD_WSACAROUSEL_CUSTOMISE">
 	
-				<field type="djspacer" label="MOD_WSACAROUSEL_CUSTOMISE_SLIDE_DESCRIPTION" />
+				<field type="wsaspacer" label="MOD_WSACAROUSEL_CUSTOMISE_SLIDE_DESCRIPTION" />
 				<field name="desc_width" type="text" default="" size="10" label="MOD_WSACAROUSEL_DESCRIPTION_WIDTH" description="MOD_WSACAROUSEL_DESCRIPTION_WIDTH_DESC" />
 				<field name="desc_bottom" type="text" default="0" size="10" label="MOD_WSACAROUSEL_DESCRIPTION_VERTICAL_POSITION" description="MOD_WSACAROUSEL_DESCRIPTION_VERTICAL_POSITION_DESC" />
 				<field name="desc_horizontal" type="text" default="0" size="10" label="MOD_WSACAROUSEL_DESCRIPTION_HORIZONTAL_POSITION" description="MOD_WSACAROUSEL_DESCRIPTION_HORIZONTAL_POSITION_DESC" />
 			
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
-				<field type="djspacer" label="MOD_WSACAROUSEL_CUSTOMISE_BUTTONS" />
+				<field type="wsaspacer" label="MOD_WSACAROUSEL_CUSTOMISE_BUTTONS" />
 				<field name="left_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_PREV_BUTTON" description="MOD_WSACAROUSEL_PREV_BUTTON_DESC" />
 				<field name="right_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_NEXT_BUTTON" description="MOD_WSACAROUSEL_NEXT_BUTTON_DESC" />
 				<field name="play_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PLAY_BUTTON" description="MOD_WSACAROUSEL_PLAY_BUTTON_DESC" />
@@ -175,7 +175,7 @@
 				</field>
 				
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
-				<field type="djspacer" label="MOD_WSACAROUSEL_SLIDE_EFFECT_OPTIONS" description="MOD_WSACAROUSEL_SLIDE_EFFECT_LINK" />
+				<field type="wsaspacer" label="MOD_WSACAROUSEL_SLIDE_EFFECT_OPTIONS" description="MOD_WSACAROUSEL_SLIDE_EFFECT_LINK" />
 				
 				<field name="effect" type="groupedlist" default="Expo" label="MOD_WSACAROUSEL_SLIDE_EFFECT" description="MOD_WSACAROUSEL_SLIDE_EFFECT_DESC">
 					<option value="Linear">Linear</option>
