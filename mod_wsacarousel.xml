@@ -51,7 +51,7 @@
 				<field name="link" type="text" default="" size="50" label="MOD_WSACAROUSEL_LINK" description="MOD_WSACAROUSEL_LINK_DESC" showon="slider_source:0" />
 				
 				<field type="wsaspacer" label="MOD_WSACAROUSEL_COMPONENT_AS_SOURCE_SETTINGS" showon="slider_source:1" />
-				<field name="category" type="category" extension="com_djimageslider" label="MOD_WSACAROUSEL_SLIDES_CATEGORY" description="MOD_WSACAROUSEL_SLIDES_CATEGORY_DESC" showon="slider_source:1" />
+				<field name="category" type="category" extension="com_wsacarousel" label="MOD_WSACAROUSEL_SLIDES_CATEGORY" description="MOD_WSACAROUSEL_SLIDES_CATEGORY_DESC" showon="slider_source:1" />
 				<field name="show_title" type="radio" class="btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_TITLE" description="MOD_WSACAROUSEL_SHOW_TITLE_DESC" showon="slider_source:1">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
