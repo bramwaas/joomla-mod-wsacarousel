@@ -124,9 +124,10 @@ else {
 	if ($params->get('include_twbs_js') == "1") {
 	    $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array('version'=>''),
 	        array('id'=>'popper.js' ));
-       $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>''),
-           array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
-//	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
+// javascript to CustomTag, to order it as latest	    
+//       $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>''),
+//           array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
+	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
     }
 	    
 }
