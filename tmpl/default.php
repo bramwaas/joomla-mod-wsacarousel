@@ -22,7 +22,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
- * 0.0.8
+ * 0.0.9
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 
@@ -82,11 +82,10 @@ max-width: 100%;
 #wsacarousel-loader" . $mid . ".focused .showOnHover {
 	opacity: 1;
 }
-.wsacarousel {
-    position: relative;
-}
+
 #wsacarousel" . $mid . "
 { 
+position: relative;
 width: " . $count * 100 . "%; 
 }
 
@@ -220,7 +219,7 @@ $doc->addScriptDeclaration($decl);
 
 <div style="border: 0px !important;">
 <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
-	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>">
+	<div id="wsacarousel<?php echo $mid; ?>" class=" wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="wsacarousel-container<?php echo $mid; ?>" class="carousel slide " data-ride="carousel"
 		data-interval="<?php echo $delay + $duration; ?>" 

@@ -23,7 +23,7 @@
  * You should have received a copy of the GNU General Public License
  * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
  * 7-2-2018 added J3.8 J4.0namespaces deleted mootools and refs to JoomlaVersion < 3.0
- * 0.0.8
+ * 0.0.9
  */
 
 // no direct access
@@ -105,7 +105,7 @@ $ver = $ver->version;
 
 
 HTMLHelper::_('jquery.framework');
-$document->addScript(Uri::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', array('id'=>'jquery.easing.min.js', 'defer'=>'defer'));
+//$document->addScript(Uri::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', array('id'=>'jquery.easing.min.js', 'defer'=>'defer'));
 if ($params->get('twbs_version',4) == "3") {
    if ($params->get('include_twbs_css') == "1") {
    $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>''),
