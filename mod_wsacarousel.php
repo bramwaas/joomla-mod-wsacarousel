@@ -104,9 +104,10 @@ $ver = json_decode($db->loadResult());
 $ver = $ver->version;
 
 
-HTMLHelper::_('jquery.framework');
-//$document->addScript(Uri::root(true).'/media/djextensions/jquery-easing/jquery.easing.min.js', array('id'=>'jquery.easing.min.js', 'defer'=>'defer'));
+//HTMLHelper::_('jquery.framework'); 
+$carousel_class = 'carousel';
 if ($params->get('twbs_version',4) == "3") {
+    HTMLHelper::_('jquery.framework'); // is always there in v4
    if ($params->get('include_twbs_css') == "1") {
    $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>''),
 	       array('id'=>'wsacarousel_bootstrap.css',));
@@ -122,12 +123,13 @@ else {
 	        array('id'=>'wsacarousel_bootstrap.css',));
 	}
 	if ($params->get('include_twbs_js') == "1") {
+	    $carousel_class = 'wsacarousel';
 	    $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array('version'=>''),
 	        array('id'=>'popper.js' ));
-// javascript to CustomTag, to order it as latest	    
-//       $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>''),
-//           array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
-	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
+// javascript to CustomTag, to order it as latest	makes no difference so back in old way and using other class to b e sure tu use this script in stead of order    
+       $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>''),
+           array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
+//	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
     }
 	    
 }

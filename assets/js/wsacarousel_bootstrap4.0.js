@@ -2,7 +2,8 @@
   * Bootstrap v4.0.0 (https://getbootstrap.com)
   * Copyright 2011-2018 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-  * BW 2010208 for wsacarousel only util and carousel, and duration added in option
+  * BW 20180208 for wsacarousel only util and carousel, and duration added in option 
+  * BW 20180331 data ride (and classnames) replaced carousel by wsacarousel to avoid conflict with default bootstrap .js  
   */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery'), require('popper.js')) :
@@ -207,9 +208,9 @@ var Carousel = function ($$$1) {
    * Constants
    * ------------------------------------------------------------------------
    */
-  var NAME = 'carousel';
+  var NAME = 'wsacarousel';
   var VERSION = '4.0.0';
-  var DATA_KEY = 'bs.carousel';
+  var DATA_KEY = 'bs.wsacarousel';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
   var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
@@ -253,23 +254,23 @@ var Carousel = function ($$$1) {
     CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
   };
   var ClassName = {
-    CAROUSEL: 'carousel',
+    CAROUSEL: 'wsacarousel',
     ACTIVE: 'active',
     SLIDE: 'slide',
-    RIGHT: 'carousel-item-right',
-    LEFT: 'carousel-item-left',
-    NEXT: 'carousel-item-next',
-    PREV: 'carousel-item-prev',
-    ITEM: 'carousel-item'
+    RIGHT: 'wsacarousel-item-right',
+    LEFT: 'wsacarousel-item-left',
+    NEXT: 'wsacarousel-item-next',
+    PREV: 'wsacarousel-item-prev',
+    ITEM: 'wsacarousel-item'
   };
   var Selector = {
     ACTIVE: '.active',
-    ACTIVE_ITEM: '.active.carousel-item',
-    ITEM: '.carousel-item',
-    NEXT_PREV: '.carousel-item-next, .carousel-item-prev',
-    INDICATORS: '.carousel-indicators',
+    ACTIVE_ITEM: '.active.wsacarousel-item',
+    ITEM: '.wsacarousel-item',
+    NEXT_PREV: '.wsacarousel-item-next, .wsacarousel-item-prev',
+    INDICATORS: '.wsacarousel-indicators',
     DATA_SLIDE: '[data-slide], [data-slide-to]',
-    DATA_RIDE: '[data-ride="carousel"]'
+    DATA_RIDE: '[data-ride="wsacarousel"]'
     /**
      * ------------------------------------------------------------------------
      * Class Definition
