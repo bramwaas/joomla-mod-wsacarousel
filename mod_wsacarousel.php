@@ -134,10 +134,10 @@ else {
 }
 
 
-if($params->get('link_image',1) > 1) {
+if($params->get('link_image',1) > 1 && $params->get('include_magnific',0) == 1) {
 	
-	    $document->addScript(Uri::root(true).'/media/djextensions/magnific/magnific.js',  array('id'=>'magnific.js', 'defer'=>'defer'));
-		$document->addStyleSheet(Uri::root(true).'/media/djextensions/magnific/magnific.css');
+	    $document->addScript(Uri::root(true).'/media/mod_wsacarousel/assets/magnific/magnificpopupv1-1-0.js',  array('id'=>'magnific.js', 'defer'=>'defer'));
+		$document->addStyleSheet(Uri::root(true).'/media/mod_wsacarousel/assets/magnific/magnific.css');
 		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js',  array('id'=>'magnific-init.js', 'defer'=>'defer'));
 	 
 }

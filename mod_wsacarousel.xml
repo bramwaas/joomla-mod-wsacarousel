@@ -44,6 +44,10 @@
 					<option value="1">MOD_WSACAROUSEL_HYPERLINK</option>
 					<option value="2">MOD_WSACAROUSEL_OPEN_IMAGE_IN_LIGHTBOX</option>
 				</field>
+				<field name="include_magnific" type="radio" class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_INCLUDE_MP" description="MOD_WSACAROUSEL_INCLUDE_MP_DESC" showon="link_image:1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				
 				<field type="wsaspacer" label="MOD_WSACAROUSEL_FOLDER_AS_SOURCE_SETTINGS" showon="slider_source:0" />
