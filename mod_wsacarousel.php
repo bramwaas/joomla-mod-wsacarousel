@@ -104,10 +104,9 @@ $ver = json_decode($db->loadResult());
 $ver = $ver->version;
 
 
-//HTMLHelper::_('jquery.framework'); 
+HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
 $carousel_class = 'carousel';
 if ($params->get('twbs_version',4) == "3") {
-    HTMLHelper::_('jquery.framework'); // is always there in v4
    if ($params->get('include_twbs_css') == "1") {
    $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>''),
 	       array('id'=>'wsacarousel_bootstrap.css',));
