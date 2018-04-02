@@ -83,7 +83,6 @@ class modWsaCarouselHelper
 		return $slides;
     }
 	
- //   static function getImagesFromDJImageSlider(&$params) {
         static function getImagesFromWsaCarousel(&$params) {
         
 		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
@@ -93,17 +92,13 @@ class modWsaCarouselHelper
 		$db = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select('a.*');
-//		$query->from('#__djimageslider AS a');
 		$query->from('#__wsacarousel AS a');
-		
 		if (is_numeric($catid)) {
 			$query->where('a.catid = ' . (int) $catid);
 		}
-		
 		// Filter by start and end dates.
 		$nullDate	= $db->Quote($db->getNullDate());
 		$nowDate	= $db->Quote(Factory::getDate()->format($db->getDateFormat()));
-		
 		$query->where('a.published = 1');
 		$query->where('(a.publish_up = '.$nullDate.' OR a.publish_up <= '.$nowDate.')');
 		$query->where('(a.publish_down = '.$nullDate.' OR a.publish_down >= '.$nowDate.')');
