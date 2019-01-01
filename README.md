@@ -33,3 +33,4 @@ This project is licensed under the [GNU GPL], version 3 or later.
 
 * 0.0 20180131 imported V3.2.3 of DJ-imageslider (https://extensions.joomla.org/extension/dj-imageslider/) by DJ-Extensions,
 and renamed some files and reference.
+* 0.0.9 For bootstrap 4 carousel changed in wsacarousel to make itindependent and to remove conflict in duration.  
