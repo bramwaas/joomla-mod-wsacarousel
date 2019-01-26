@@ -24,6 +24,8 @@
  * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
  * 7-2-2018 added J3.8 J4.0namespaces deleted mootools and refs to JoomlaVersion < 3.0
  * 0.0.9
+ * 26-1-2019 popper v 1.14.6 for compatibility with bootstrap 4.2.1
+ * 0.1.0
  */
 
 // no direct access
@@ -123,8 +125,8 @@ else {
 	}
 	if ($params->get('include_twbs_js') == "1") {
 	    $carousel_class = 'wsacarousel';
-	    $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array('version'=>''),
-	        array('id'=>'popper.js' ));
+	    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
+	        array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
 // javascript to CustomTag, to order it as latest	makes no difference so back in old way and using other class to b e sure tu use this script in stead of order    
        $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>''),
            array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
