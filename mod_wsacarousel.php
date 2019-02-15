@@ -26,6 +26,7 @@
  * 0.0.9
  * 26-1-2019 popper v 1.14.6 for compatibility with bootstrap 4.2.1
  * 0.1.0
+ * 0.2.0 15-2-2019
  */
 
 // no direct access
@@ -128,7 +129,7 @@ else {
 	    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
 	        array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
 // javascript to CustomTag, to order it as latest	makes no difference so back in old way and using other class to b e sure tu use this script in stead of order    
-       $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js", array('version'=>''),
+       $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.3.js", array('version'=>''),
            array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
 //	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
     }
