@@ -34,3 +34,5 @@ This project is licensed under the [GNU GPL], version 3 or later.
 * 0.0 20180131 imported V3.2.3 of DJ-imageslider (https://extensions.joomla.org/extension/dj-imageslider/) by DJ-Extensions,
 and renamed some files and reference.
 * 0.0.9 For bootstrap 4 carousel changed in wsacarousel to make itindependent and to remove conflict in duration.  
+* 0.2.0 For bootstrap 4 now using 4.3.1. In this version possibillity to change transition-duration is in standard so there is no need for own code to change this duration anymore. In 4.3.1 is also an option for individiual intervals per slide. I will implement this in one of the next versions of this module.
+see: https://getbootstrap.com/docs/4.3/components/carousel/  

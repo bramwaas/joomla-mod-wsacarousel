@@ -4,7 +4,7 @@
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   * BW 20180208 in v4.0 for wsacarousel only util and carousel, and duration added in option 
   * BW 20180331 in v4.0 data ride (and classnames) replaced carousel by wsacarousel to avoid conflict with default bootstrap .js  
- 
+  * BW 20190216 4.3 removed obsolete code for setting transition-duration because the script now gets teh valuae from the css
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery'), require('popper.js')) :
@@ -257,7 +257,6 @@
     keyboard: true,
     slide: false,
     pause: 'hover',
-	duration: 600, //wsa
     wrap: true,
     touch: true
   };
@@ -266,7 +265,6 @@
     keyboard: 'boolean',
     slide: '(boolean|string)',
     pause: '(string|boolean)',
-    duration: '(number|boolean)',//wsa
     wrap: 'boolean',
     touch: 'boolean'
   };
@@ -335,7 +333,6 @@
       this.touchTimeout = null;
       this.touchStartX = 0;
       this.touchDeltaX = 0;
-      this._duration = null;
       this._config = this._getConfig(config);
       this._element = element;
       this._indicatorsElement = this._element.querySelector(Selector$2.INDICATORS);
@@ -438,7 +435,6 @@
       this._isSliding = null;
       this._activeElement = null;
       this._indicatorsElement = null;
-      this._duration = null;
     } // Private
     ;
 
