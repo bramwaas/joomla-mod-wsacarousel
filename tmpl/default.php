@@ -22,7 +22,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
- * 0.0.9
+ * 0.2.0
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 
@@ -246,7 +246,7 @@ $doc->addScriptDeclaration($decl);
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo 'data-interval="' . $slide->delay > 0 . '" '; ?>><div class="<?php echo $carousel_class; ?>-item-inner">
+          			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo 'data-interval="' . $slide->delay  . '" '; ?>><div class="<?php echo $carousel_class; ?>-item-inner">
           			    <div class="<?php echo $carousel_class; ?>-item-content">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);

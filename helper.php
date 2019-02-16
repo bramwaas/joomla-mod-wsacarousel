@@ -133,7 +133,6 @@ class modWsaCarouselHelper
 			$slide->img_title = $slide->params->get('title_attr');
 			$slide->target = $slide->params->get('link_target','');
 			$slide->rel = $slide->params->get('link_rel','');
-			$slide->delay = $slide->params->get('delay','');
 	
 			if(empty($slide->target)) $slide->target = modWsaCarouselHelper::getSlideTarget($slide->link);
 		}
