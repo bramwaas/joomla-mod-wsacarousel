@@ -23,6 +23,7 @@
  * You should have received a copy of the GNU General Public License
  * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
  * 0.0.7
+ * 0.2.0 slide delay added.
  */
  
 // no direct access
@@ -132,6 +133,8 @@ class modWsaCarouselHelper
 			$slide->img_title = $slide->params->get('title_attr');
 			$slide->target = $slide->params->get('link_target','');
 			$slide->rel = $slide->params->get('link_rel','');
+			$slide->delay = $slide->params->get('delay','');
+	
 			if(empty($slide->target)) $slide->target = modWsaCarouselHelper::getSlideTarget($slide->link);
 		}
 		

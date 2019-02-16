@@ -39,6 +39,7 @@ if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 /* change duration of transformation
    needs a change in  .emulateTransitionEnd(600) in Carousel.prototype.slide = function (type, next)
    otherwise the slide disappears afte 0.6 sec.
+   solved for BS4 no change needed anymore.
 */
 if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
 if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
@@ -245,7 +246,7 @@ $doc->addScriptDeclaration($decl);
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;
           			$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>"><div class="<?php echo $carousel_class; ?>-item-inner">
+          			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo 'data-interval="' . $slide->delay > 0 . '" '; ?>><div class="<?php echo $carousel_class; ?>-item-inner">
           			    <div class="<?php echo $carousel_class; ?>-item-content">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
