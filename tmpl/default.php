@@ -139,7 +139,6 @@ padding-bottom: " . $slide_heightprc . "%
 " . $style['image'] . "
 }
 	
-@media all and (transform-3d), (-webkit-transform-3d) {
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner > .item {
     -webkit-transition-duration: " . $duration/1000 . "s;
     -moz-transition-duration: " . $duration/1000 . "s; 
@@ -176,9 +175,7 @@ $decl = $decl .
   transform: translateX(0);
 }";
 }
-$decl = $decl .
-"
-}";
+
 $doc->addStyleDeclaration($decl);
 
 if ($count > 1)
