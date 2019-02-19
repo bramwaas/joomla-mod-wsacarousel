@@ -23,13 +23,14 @@
  * You should have received a copy of the GNU General Public License
  * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
  * 0.2.0
+ * ook voor eigen javascript 3 wsacarousel
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 
 use Joomla\CMS\Factory;
 $doc = Factory::getDocument ();
 
-$carousel_class = 'carousel';
+if ($params->get('include_twbs_js') == "1") { $carousel_class = 'wsacarousel';} else {$carousel_class = 'carousel';}
 $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : ''; 
 
 
@@ -58,7 +59,7 @@ if ($params->get('twbs_version',4) == "3") {
     filter: alpha(opacity=1);
     opacity: 0.01;}';
      
-} else {  /* twbs version = 4.3 */if ($params->get('include_twbs_js') == "1") { $carousel_class = 'wsacarousel';}
+} else {  /* twbs version = 4.3 */
     $carousel_item_left =  $carousel_class .'-item-left';
     $carousel_item_right =  $carousel_class .'-item-right';
     $carousel_item_next =  $carousel_class .'-item-next';

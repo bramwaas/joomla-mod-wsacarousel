@@ -6,24 +6,30 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
  /* only carousel.css copied 11/2/2018 BW
  * from 0.0.7
+ * 1.0.0 wsa suffix 20190219
  */
 .img-responsive,
 .thumbnail > img,
 .thumbnail a > img,
+.wsacarousel-inner > .item > img,
+.wsacarousel-inner > .item > a > img, 
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
   max-width: 100%;
   height: auto;
 }
+.wsacarousel,
 .carousel {
   position: relative;
 }
+.wsacarousel-inner,
 .carousel-inner {
   position: relative;
   width: 100%;
   overflow: hidden;
 }
+.wsacarousel-inner > .item,
 .carousel-inner > .item {
   position: relative;
   display: none;
@@ -31,11 +37,14 @@
        -o-transition: .6s ease-in-out left;
           transition: .6s ease-in-out left;
 }
+.wsacarousel-inner > .item > img,
+.wsacarousel-inner > .item > a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   line-height: 1;
 }
 @media all and (transform-3d), (-webkit-transform-3d) {
+  .wsacarousel-inner > .item,
   .carousel-inner > .item {
     -webkit-transition: -webkit-transform .6s ease-in-out;
          -o-transition:      -o-transform .6s ease-in-out;
@@ -46,18 +55,25 @@
     -webkit-perspective: 1000px;
             perspective: 1000px;
   }
+  .wsacarousel-inner > .item.next,
+  .wsacarousel-inner > .item.active.right,
   .carousel-inner > .item.next,
   .carousel-inner > .item.active.right {
     left: 0;
     -webkit-transform: translate3d(100%, 0, 0);
             transform: translate3d(100%, 0, 0);
   }
+  .wsacarousel-inner > .item.prev,
+  .wsacarousel-inner > .item.active.left,
   .carousel-inner > .item.prev,
   .carousel-inner > .item.active.left {
     left: 0;
     -webkit-transform: translate3d(-100%, 0, 0);
             transform: translate3d(-100%, 0, 0);
   }
+  .wsacarousel-inner > .item.next.left,
+  .wsacarousel-inner > .item.prev.right,
+  .wsacarousel-inner > .item.active,
   .carousel-inner > .item.next.left,
   .carousel-inner > .item.prev.right,
   .carousel-inner > .item.active {
@@ -66,36 +82,49 @@
             transform: translate3d(0, 0, 0);
   }
 }
+.wsacarousel-inner > .active,
+.wsacarousel-inner > .next,
+.wsacarousel-inner > .prev,
 .carousel-inner > .active,
 .carousel-inner > .next,
 .carousel-inner > .prev {
   display: block;
 }
+.wsacarousel-inner > .active,
 .carousel-inner > .active {
   left: 0;
 }
+.wsacarousel-inner > .next,
+.wsacarousel-inner > .prev,
 .carousel-inner > .next,
 .carousel-inner > .prev {
   position: absolute;
   top: 0;
   width: 100%;
 }
+.wsacarousel-inner > .next,
 .carousel-inner > .next {
   left: 100%;
 }
+.wsacarousel-inner > .prev,
 .carousel-inner > .prev {
   left: -100%;
 }
+.wsacarousel-inner > .next.left,
+.wsacarousel-inner > .prev.right,
 .carousel-inner > .next.left,
 .carousel-inner > .prev.right {
   left: 0;
 }
+.wsacarousel-inner > .active.left,
 .carousel-inner > .active.left {
   left: -100%;
 }
+.wsacarousel-inner > .active.right,
 .carousel-inner > .active.right {
   left: 100%;
 }
+.wsacarousel-control,
 .carousel-control {
   position: absolute;
   top: 0;
@@ -110,6 +139,7 @@
   filter: alpha(opacity=50);
   opacity: .5;
 }
+.wsacarousel-control.left,
 .carousel-control.left {
   background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
   background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
@@ -118,6 +148,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
   background-repeat: repeat-x;
 }
+.wsacarousel-control.right,
 .carousel-control.right {
   right: 0;
   left: auto;
@@ -128,6 +159,8 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
   background-repeat: repeat-x;
 }
+.wsacarousel-control:hover,
+.wsacarousel-control:focus,
 .carousel-control:hover,
 .carousel-control:focus {
   color: #fff;
@@ -136,6 +169,10 @@
   outline: 0;
   opacity: .9;
 }
+.wsacarousel-control .icon-prev,
+.wsacarousel-control .icon-next,
+.wsacarousel-control .glyphicon-chevron-left,
+.wsacarousel-control .glyphicon-chevron-right,
 .carousel-control .icon-prev,
 .carousel-control .icon-next,
 .carousel-control .glyphicon-chevron-left,
@@ -146,16 +183,22 @@
   display: inline-block;
   margin-top: -10px;
 }
+.wsacarousel-control .icon-prev,
+.wsacarousel-control .glyphicon-chevron-left,
 .carousel-control .icon-prev,
 .carousel-control .glyphicon-chevron-left {
   left: 50%;
   margin-left: -10px;
 }
+.wsacarousel-control .icon-next,
+.wsacarousel-control .glyphicon-chevron-right,
 .carousel-control .icon-next,
 .carousel-control .glyphicon-chevron-right {
   right: 50%;
   margin-right: -10px;
 }
+.wsacarousel-control .icon-prev,
+.wsacarousel-control .icon-next,
 .carousel-control .icon-prev,
 .carousel-control .icon-next {
   width: 20px;
@@ -163,12 +206,15 @@
   font-family: serif;
   line-height: 1;
 }
+.wsacarousel-control .icon-prev:before,
 .carousel-control .icon-prev:before {
   content: '\2039';
 }
+.wsacarousel-control .icon-next:before,
 .carousel-control .icon-next:before {
   content: '\203a';
 }
+.wsacarousel-indicators,
 .carousel-indicators {
   position: absolute;
   bottom: 10px;
@@ -180,6 +226,7 @@
   text-align: center;
   list-style: none;
 }
+.wsacarousel-indicators li,
 .carousel-indicators li {
   display: inline-block;
   width: 10px;
@@ -192,12 +239,14 @@
   border: 1px solid #fff;
   border-radius: 10px;
 }
+.wsacarousel-indicators .active,
 .carousel-indicators .active {
   width: 12px;
   height: 12px;
   margin: 0;
   background-color: #fff;
 }
+.wsacarousel-caption,
 .carousel-caption {
   position: absolute;
   right: 15%;
@@ -210,10 +259,15 @@
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }
+.wsacarousel-caption .btn,
 .carousel-caption .btn {
   text-shadow: none;
 }
 @media screen and (min-width: 768px) {
+  .wsacarousel-control .glyphicon-chevron-left,
+  .wsacarousel-control .glyphicon-chevron-right,
+  .wsacarousel-control .icon-prev,
+  .wsacarousel-control .icon-next,
   .carousel-control .glyphicon-chevron-left,
   .carousel-control .glyphicon-chevron-right,
   .carousel-control .icon-prev,
@@ -223,19 +277,25 @@
     margin-top: -10px;
     font-size: 30px;
   }
+  .wsacarousel-control .glyphicon-chevron-left,
+  .wsacarousel-control .icon-prev,
   .carousel-control .glyphicon-chevron-left,
   .carousel-control .icon-prev {
     margin-left: -10px;
   }
+  .wsacarousel-control .glyphicon-chevron-right,
+  .wsacarousel-control .icon-next,
   .carousel-control .glyphicon-chevron-right,
   .carousel-control .icon-next {
     margin-right: -10px;
   }
+  .wsacarousel-caption,
   .carousel-caption {
     right: 20%;
     left: 20%;
     padding-bottom: 30px;
   }
+  .wsacarousel-indicators,
   .carousel-indicators {
     bottom: 20px;
   }

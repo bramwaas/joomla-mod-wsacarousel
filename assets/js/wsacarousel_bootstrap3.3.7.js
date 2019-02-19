@@ -37,7 +37,7 @@ if (typeof jQuery === 'undefined') {
 
   var Carousel = function (element, options) {
     this.$element    = $(element)
-    this.$indicators = this.$element.find('.carousel-indicators')
+    this.$indicators = this.$element.find('.wsacarousel-indicators')
     this.options     = options
     this.paused      = null
     this.sliding     = null
@@ -233,7 +233,7 @@ if (typeof jQuery === 'undefined') {
     var href
     var $this   = $(this)
     var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
-    if (!$target.hasClass('carousel')) return
+    if (!$target.hasClass('wsacarousel')) return
     var options = $.extend({}, $target.data(), $this.data())
     var slideIndex = $this.attr('data-slide-to')
     if (slideIndex) options.interval = false
@@ -252,7 +252,7 @@ if (typeof jQuery === 'undefined') {
     .on('click.bs.carousel.data-api', '[data-slide-to]', clickHandler)
 
   $(window).on('load', function () {
-    $('[data-ride="carousel"]').each(function () {
+    $('[data-ride="wsacarousel"]').each(function () {
       var $carousel = $(this)
       Plugin.call($carousel, $carousel.data())
     })

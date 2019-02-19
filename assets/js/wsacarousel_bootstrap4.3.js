@@ -5,6 +5,7 @@
   * BW 20180208 in v4.0 for wsacarousel only util and carousel, and duration added in option 
   * BW 20180331 in v4.0 data ride (and classnames) replaced carousel by wsacarousel to avoid conflict with default bootstrap .js  
   * BW 20190216 4.3 removed obsolete code for setting transition-duration because the script now gets teh valuae from the css
+  *    20190219 CAROUSEL = wsacarousel
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery'), require('popper.js')) :
@@ -290,7 +291,7 @@
     CLICK_DATA_API: "click" + EVENT_KEY$2 + DATA_API_KEY$2
   };
   var ClassName$2 = {
-    CAROUSEL: 'carousel',
+    CAROUSEL: 'wsacarousel',
     ACTIVE: 'active',
     SLIDE: 'slide',
     RIGHT: 'wsacarousel-item-right',
