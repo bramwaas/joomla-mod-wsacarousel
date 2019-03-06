@@ -218,7 +218,7 @@ $doc->addScriptDeclaration($decl);
 
 ?>
 
-<div style="border: 0px !important;">
+<div class="mod-wsacarousel wsacarousel" style="border: 0px !important;">
 <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
 	<div id="wsacarousel<?php echo $mid; ?>" class=" wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
