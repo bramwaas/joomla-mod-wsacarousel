@@ -3,7 +3,7 @@
  * @version $Id: default.php 
  * @package wsacarousel
  * @subpackage wsacarousel Module
- * @copyright Copyright (C) 2018 wsacarousel, All rights reserved.
+ * @copyright Copyright (C) 2018 -2022 wsacarousel, All rights reserved.
  * @license http://www.gnu.org/licenses GNU/GPL
  * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
@@ -29,6 +29,7 @@
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 $doc = Factory::getDocument ();
 
 if ($params->get('include_twbs_js') == "1") { $carousel_class = 'wsacarousel';} else {$carousel_class = 'carousel';}
@@ -299,7 +300,7 @@ $doc->addScriptDeclaration($decl);
 							<?php } ?>
 							
 							<?php if($params->get('show_readmore') && $slide->link) { ?>
-								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo ($params->get('readmore_text',0) ? $params->get('readmore_text') : JText::_('MOD_WSACAROUSEL_READMORE')); ?></a>
+								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo ($params->get('readmore_text',0) ? $params->get('readmore_text') : Text::_('MOD_WSACAROUSEL_READMORE')); ?></a>
 							<?php } ?>
 						</div>
 						<!-- Slide description area: END -->
@@ -313,14 +314,14 @@ $doc->addScriptDeclaration($decl);
         <div id="navigation<?php echo $mid; ?>" class="navigation-container" style="<?php echo $style['navi'] ?>">
         	<?php if($show->arr) { ?>
 			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="prev">
-        	<img id="prev<?php echo $mid; ?>" class="prev-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_WSACAROUSEL_NEXT') : JText::_('MOD_WSACAROUSEL_PREVIOUS'); ?>"<?php echo $wcag; ?> />
+        	<img id="prev<?php echo $mid; ?>" class="prev-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_NEXT') : Text::_('MOD_WSACAROUSEL_PREVIOUS'); ?>"<?php echo $wcag; ?> />
 			</a>
-			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="next">			<img id="next<?php echo $mid; ?>" class="next-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? JText::_('MOD_WSACAROUSEL_PREVIOUS') : JText::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
+			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="next">			<img id="next<?php echo $mid; ?>" class="next-button <?php echo $show->arr==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
 			</a>
 			<?php } ?>
 			<?php /* if($show->btn) { ?>
-			<img id="play<?php echo $mid; ?>" class="play-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->play; ?>" alt="<?php echo JText::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> />
-			<img id="pause<?php echo $mid; ?>" class="pause-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->pause; ?>" alt="<?php echo JText::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> />
+			<img id="play<?php echo $mid; ?>" class="play-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> />
+			<img id="pause<?php echo $mid; ?>" class="pause-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> />
 			<?php } */ ?>
         </div>
         <?php } ?>
