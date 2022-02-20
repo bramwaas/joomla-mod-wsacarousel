@@ -24,6 +24,7 @@
  * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
  * 0.2.0
  * ook voor eigen javascript 3 wsacarousel
+ * 1.0.6 20-2-2022 adjustments for J4
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 
@@ -109,10 +110,14 @@ bottom: 0;
 padding:0;
 left: 0;
 right: 0;
+right:  calc(" . $style['marginr'] . ");
 font-size: 12px;
 line-height: 15.6px;
 background: RGBA(0,0,0,0.65)
-
+}
+.wsacarousel-caption {
+color: #fff;
+text-align: center;
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner{
 position: relative;
@@ -129,10 +134,10 @@ width:  calc(100% - " . $style['marginr'] . ");
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-height{
 float: left;
 width: 0;
-heiht: 0
-padding: 0;
+height: 0;
+padding: 0 0 " . $slide_heightprc . "% 0 ;
 margin: 0;
-padding-bottom: " . $slide_heightprc . "%
+padding-bottom: calc(" . $slide_heightprc . "% - " . $slide_heightprc / 100 . "*" . $style['marginr'] . ");
 }
 
 
