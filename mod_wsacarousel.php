@@ -27,18 +27,20 @@
  * 26-1-2019 popper v 1.14.6 for compatibility with bootstrap 4.2.1
  * 0.1.0
  * 0.2.0 15-2-2019
+ * 1.0.6 20-2-2022 adjustments for J4
  */
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-jimport('joomla.filesystem.file');
+//jimport('joomla.filesystem.file');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\ModuleHelper;
+use  Joomla\CMS\Filesystem\File;
 
 // Include the syndicate functions only once
 require_once (dirname(__FILE__).DS.'helper.php');
@@ -47,7 +49,7 @@ $document = Factory::getDocument();
 
 // taking the slides from the source
 if($params->get('slider_source')==1) {
-	jimport('joomla.application.component.helper');
+//	jimport('joomla.application.component.helper');
 	if(!ComponentHelper::isEnabled('com_wsacarousel', true)){
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_COMPONENT'),'notice');
 		return;
@@ -89,12 +91,12 @@ if($theme != '_override' ) {
 	$css = 'templates/'.$app->getTemplate().'/css/wsacarousel.css';
 }
 // add only if theme file exists
-if($theme != 'default' AND JFile::exists(JPATH_ROOT . DS . $css) ) {
+if($theme != 'default' AND File::exists(JPATH_ROOT . DS . $css) ) {
    $document->addStyleSheet(Uri::root(true).'/'.$css);
 }
 if($direction == 'rtl') { // load rtl css if exists in theme or joomla template
-	$css_rtl = JFile::stripExt($css).'_rtl.css';
-	if(JFile::exists(JPATH_ROOT . DS . $css_rtl)) {
+	$css_rtl = File::stripExt($css).'_rtl.css';
+	if(File::exists(JPATH_ROOT . DS . $css_rtl)) {
 		$document->addStyleSheet(Uri::root(true).'/'.$css_rtl);
 	}
 }

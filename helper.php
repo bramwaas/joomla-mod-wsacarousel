@@ -24,16 +24,21 @@
  * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
  * 0.0.7
  * 0.2.0 slide delay added.
+ * 1.0.6 20-2-2022 adjustments for J4
  */
  
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
+
+
 use Joomla\CMS\Factory;
 // use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\Component\Content\Site\Helper\RouteHelper as ContentHelperRoute;
+use Joomla\Filesystem\Path;
 use Joomla\Registry\Registry;
-use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 $doc = Factory::getDocument ();
 
 
@@ -48,7 +53,7 @@ class modWsaCarouselHelper
         {
             if (preg_match('/.+\.(jpg|jpeg|gif|png)$/i', $file)) {
             	// check with getimagesize() which attempts to return the image mime-type 
-            	$path = JPath::clean(JPATH_ROOT.DS.$folder.DS.$file);
+            	$path = Path::clean(JPATH_ROOT.DS.$folder.DS.$file);
             	if(getimagesize($path)!==FALSE) $files[filemtime($path).$file] = $file;
 			}
         }
@@ -142,7 +147,7 @@ class modWsaCarouselHelper
 	
 	static function getSlideLink(&$slide) {
 		$link = '';
-		$db = Factory::getDBO();
+		$db = Factory::getDbo();
 		$app = Factory::getApplication();
 		
 		switch($slide->params->get('link_type', '')) {
@@ -169,8 +174,8 @@ class modWsaCarouselHelper
 				break;
 			case 'article':
 				if ($artid = $slide->params->get('id',$slide->params->get('link_article',0))) {
-					jimport('joomla.application.component.model');
-					require_once(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
+//					jimport('joomla.application.component.model');
+//					require_once(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
 					BaseDatabaseModel::addIncludePath(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'models');
 					$model = BaseDatabaseModel::getInstance('Articles', 'ContentModel', array('ignore_request'=>true));
 					$model->setState('params', $app->getParams());

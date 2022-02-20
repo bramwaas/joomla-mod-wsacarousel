@@ -2,6 +2,7 @@
 <buildpath>
 	<buildpathentry combineaccessrules="false" kind="prj" path="/joomla-cms-4.0-dev"/>
 	<buildpathentry kind="src" path=""/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/joomla-framework"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry combineaccessrules="false" kind="prj" path="/joomla-cms"/>
 </buildpath>
