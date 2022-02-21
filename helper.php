@@ -25,6 +25,7 @@
  * 0.0.7
  * 0.2.0 slide delay added.
  * 1.0.6 20-2-2022 adjustments for J4
+ * 1.0.7
  */
  
 // no direct access
@@ -106,8 +107,8 @@ class modWsaCarouselHelper
 		$nullDate	= $db->Quote($db->getNullDate());
 		$nowDate	= $db->Quote(Factory::getDate()->format($db->getDateFormat()));
 		$query->where('a.published = 1');
-		$query->where('(a.publish_up = '.$nullDate.' OR a.publish_up <= '.$nowDate.')');
-		$query->where('(a.publish_down = '.$nullDate.' OR a.publish_down >= '.$nowDate.')');
+		$query->where('(a.publish_up IS NULL OR a.publish_up = '.$nullDate.' OR a.publish_up <= '.$nowDate.')');
+		$query->where('(a.publish_down IS NULL OR a.publish_down = '.$nullDate.' OR a.publish_down >= '.$nowDate.')');
 		
 		switch($params->get('sort_by',1)) {
 			case 1:
