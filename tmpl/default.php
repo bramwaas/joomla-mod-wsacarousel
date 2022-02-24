@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: default.php
+ * @version $Id: default.php 
  * @package wsacarousel
  * @subpackage wsacarousel Module
  * @copyright Copyright (C) 2018 -2022 wsacarousel, All rights reserved.
@@ -28,23 +28,23 @@
  * 1.0.7 24-2-2022 solve some bugs with dimensions and navigation after remarks of Jacob Cederberg <jacobcederberg@hotmail.com>
  */
 // no direct access
-defined('_JEXEC') or die ('Restricted access');
+defined('_JEXEC') or die ('Restricted access'); 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 $doc = Factory::getDocument ();
 
 if ($params->get('include_twbs_js') == "1") { $carousel_class = 'wsacarousel';} else {$carousel_class = 'carousel';}
-$wcag = $params->get('wcag', 1) ? ' tabindex="0"' : '';
+$wcag = $params->get('wcag', 1) ? ' tabindex="0"' : ''; 
 
 
 if(!is_numeric($duration = $params->get('duration'))) $duration = 600;
 if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 
 /* change duration of transformation
- needs a change in  .emulateTransitionEnd(600) in Carousel.prototype.slide = function (type, next)
- otherwise the slide disappears afte 0.6 sec.
- solved for BS4 no change needed anymore.
- */
+   needs a change in  .emulateTransitionEnd(600) in Carousel.prototype.slide = function (type, next)
+   otherwise the slide disappears afte 0.6 sec.
+   solved for BS4 no change needed anymore.
+*/
 if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
 if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
 $slide_heightprc = ($slide_width > 0 ) ?  100 * $slide_height / $slide_width : 75;
@@ -53,15 +53,15 @@ if ($params->get('twbs_version',4) == "3") {
     $carousel_item_right = 'item.right';
     $carousel_item_next = 'item.next';
     $carousel_item_prev = 'item.prev';
-    $carousel_control_css = ' .'. $carousel_class .'-control{
-    display: -webkit-box;
+    $carousel_control_css = ' .'. $carousel_class .'-control{ 
+    display: -webkit-box; 
     display: -ms-flexbox;
     display: flex;
     align-items: center;
     justify-content: center;
     filter: alpha(opacity=1);
     opacity: 0.01;} ';
-    
+     
 } else {  /* twbs version = 4.3 */
     $carousel_item_left =  $carousel_class .'-item-left';
     $carousel_item_right =  $carousel_class .'-item-right';
@@ -89,22 +89,23 @@ max-width: 100%;
 #wsacarousel-loader" . $mid . ".focused .showOnHover {
 	opacity: 1;
 }
-    
+
 #wsacarousel" . $mid . "
-{
+{ 
 position: relative;
 width: 100%;
+width: calc(100% + " . $style['marginr'] . ");
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner{
 display: none;
 position: relative;
-width: 100%;
+width: 100%; 
 float: left;
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner:first-child{
 display: block;
 }
-#wsacarousel" . $mid . $carousel_control_css . "
+#wsacarousel" . $mid . $carousel_control_css . " 
 #wsacarousel" . $mid . " .carousel-control-next {
 right:  calc(" . $style['marginr'] . ");
 }
@@ -113,17 +114,13 @@ right:  calc(" . $style['marginr'] . ");
 {
 " . $style['slider'] . "
 }
-#wsacarousel" . $mid . "
-{
- width: calc(100% + " . $style['marginr'] . ");
-}
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner{
-display:block;
-width: " . 100/$count . "%;
+display:block;	
+width: " . 100/$count . "%; 
 }
 }
 #wsacarousel-container" . $mid . "  .".  $carousel_class ."-inner .".  $carousel_class ."-caption{
-position: " . ($params->get('caption_overlay', 1) == '1' ? 'absolute':'relative') . ";
+position: " . ($params->get('caption_overlay', 1) == '1' ? 'absolute':'relative') . "; 
 bottom: 0;
 padding:0;
 left: 0;
@@ -137,7 +134,7 @@ background: RGBA(0,0,0,0.65)
 color: #fff;
 text-align: center;
 }
-    
+
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-content{
 float: left;
 margin-bottom: " . $style['marginb'] . ";
@@ -152,26 +149,26 @@ padding: 0 0 " . $slide_heightprc . "% 0 ;
 margin: 0;
 padding-bottom: calc(" . $slide_heightprc . "% - " . $slide_heightprc / 100 . "*" . $style['marginr'] . ");
 }
-    
-    
+
+
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-img{
 " . $style['image'] . "
 }
-    
+	
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner > .item {
     -webkit-transition-duration: " . $duration/1000 . "s;
-    -moz-transition-duration: " . $duration/1000 . "s;
+    -moz-transition-duration: " . $duration/1000 . "s; 
     -o-transition-duration: " . $duration/1000 . "s;
     transition-duration: " . $duration/1000 . "s;
 }";
 
 
 if ($count > 1) {
-    
-    $decl = $decl .
-    "
-        
-/* override position and transform in 3.3.x and 4.0.x
+	
+$decl = $decl .
+"
+
+/* override position and transform in 3.3.x and 4.0.x 
 */
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ".active {
   transform: translateX(-" . 100/$count . "%);
@@ -179,18 +176,18 @@ if ($count > 1) {
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . ".active {
   transform: translateX(" . 100/$count . "%);
 }
-      
+
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_next . "  {
   transform: translateX(" . 100/$count . "%)
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_prev . " {
   transform: translateX(-" . 100/$count . "%)
 }
-      
+
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ",
-#wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . " {
+#wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . " { 
   transform: translateX(0);
 }";
 }
@@ -198,10 +195,10 @@ if ($count > 1) {
 $doc->addStyleDeclaration($decl);
 
 if ($count > 1)
-{
-    $decl =
-    
-    "
+{	
+$decl =
+
+"
 jQuery(document).ready(function() {
 jQuery('#wsacarousel" . $mid . " .".  $carousel_class ." .item').each(function(){
   var next = jQuery(this).next();
@@ -209,30 +206,30 @@ jQuery('#wsacarousel" . $mid . " .".  $carousel_class ." .item').each(function()
     next = jQuery(this).siblings(':first');
   }
   next.children(':first-child').clone().appendTo(jQuery(this));
-  "
-  ;
-  if ($count > 2)	{
-      
-      $decl = $decl .
-      "
+  " 
+;
+if ($count > 2)	{
+	
+$decl = $decl .
+"
   for (var i=2;i<". $count . ";i++) {
     next=next.next();
     if (!next.length) {
     	next = jQuery(this).siblings(':first');
   	}
-      
+    
     next.children(':first-child').clone().appendTo(jQuery(this));
   }
   ";
-  }
-  $decl = $decl .
-  "
+}
+$decl = $decl .	
+"	
 });
 })
 ";
-  $doc->addScriptDeclaration($decl);
+$doc->addScriptDeclaration($decl);
 }
-
+	
 
 ?>
 
