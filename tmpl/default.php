@@ -25,7 +25,7 @@
  * 0.2.0
  * ook voor eigen javascript 3 wsacarousel
  * 1.0.6 20-2-2022 adjustments for J4
- * 1.0.7 24-2-2022 solve some bugs with dimensions and navigation after remarks of Jacob Cederberg <jacobcederberg@hotmail.com>
+ * 1.0.7 24-2-2022 solve some bugs with dimensions and navigation 
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 
