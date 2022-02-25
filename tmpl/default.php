@@ -105,8 +105,8 @@ float: left;
 }
 
 #wsacarousel" . $mid . $carousel_control_css . " 
-#wsacarousel" . $mid . " .carousel-control-next {
-right:  calc(" . $style['marginr'] . ");
+#wsacarousel" . $mid . " .wsacarousel-control-next {
+right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 }
 @media (min-width: 768px) {
 #wsacarousel-loader" . $mid . "
@@ -118,7 +118,9 @@ right:  calc(" . $style['marginr'] . ");
 width: 100%;
 width: calc(100% + " . $style['marginr'] . ");
 }
-
+#wsacarousel" . $mid . " .wsacarousel-control-next {
+right:  calc(" . $style['marginr'] . ");
+}
 }
 #wsacarousel-container" . $mid . "  .".  $carousel_class ."-inner .".  $carousel_class ."-caption{
 position: " . ($params->get('caption_overlay', 1) == '1' ? 'absolute':'relative') . "; 
