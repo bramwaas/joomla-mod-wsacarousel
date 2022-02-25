@@ -5,6 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * only carousel.css copied 11/2/2018 BW 
  * from 0.0.7
+ * 1.0.7 25-2-2022 removed extra { on line 92 that disabled almost entire file
  */
 :root {
   --blue: #007bff;
@@ -88,7 +89,6 @@
 .carousel-item-prev.carousel-item-right,
 .wsacarousel-item-next.wsacarousel-item-left,
 .wsacarousel-item-prev.wsacarousel-item-right {
- {
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
