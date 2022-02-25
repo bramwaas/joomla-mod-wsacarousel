@@ -26,6 +26,8 @@
  * ook voor eigen javascript 3 wsacarousel
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.0.7 24-2-2022 solve some bugs with dimensions and navigation 
+ * 1.0.7 25-2-2022 back to width (count * 100%) overflow: hidden; to display one slide in small screen-width
+ *  because solution with display:none for other than first slide gives more hitches.
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access'); 
@@ -93,18 +95,15 @@ max-width: 100%;
 #wsacarousel" . $mid . "
 { 
 position: relative;
-width: 100%;
-width: calc(100% + " . $style['marginr'] . ");
+width: " . $count * 100 . "%;
+width: calc(" . $count . " * (100% + " . $style['marginr'] . "));
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner{
-display: none;
 position: relative;
-width: 100%; 
+width: " . 100/$count . "%; 
 float: left;
 }
-#wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner:first-child{
-display: block;
-}
+
 #wsacarousel" . $mid . $carousel_control_css . " 
 #wsacarousel" . $mid . " .carousel-control-next {
 right:  calc(" . $style['marginr'] . ");
@@ -114,10 +113,12 @@ right:  calc(" . $style['marginr'] . ");
 {
 " . $style['slider'] . "
 }
-#wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner{
-display:block;	
-width: " . 100/$count . "%; 
+#wsacarousel" . $mid . "
+{
+width: 100%;
+width: calc(100% + " . $style['marginr'] . ");
 }
+
 }
 #wsacarousel-container" . $mid . "  .".  $carousel_class ."-inner .".  $carousel_class ."-caption{
 position: " . ($params->get('caption_overlay', 1) == '1' ? 'absolute':'relative') . "; 
