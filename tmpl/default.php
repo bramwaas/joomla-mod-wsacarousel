@@ -113,7 +113,7 @@ right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 #wsacarousel-loader" . $mid . " .show,
 #wsacarousel-loader" . $mid . ":hover .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover:hover,
-#wsacarousel-loader" . $mid . ".showOnHover.focused  {
+#wsacarousel-loader" . $mid . " .showOnHover.focused  {
 	opacity: 0.9;
 }
     
