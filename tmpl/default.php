@@ -111,7 +111,7 @@ right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 	transition: opacity 200ms ease 50ms;
 }
 #wsacarousel-loader" . $mid . " .show,
-#wsacarousel-loader" . $mid . ":hover .showOnHover.showBoth,
+#wsacarousel-loader" . $mid . ":hover .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover:hover,
 #wsacarousel-loader" . $mid . ".showOnHover.focused  {
 	opacity: 0.9;
@@ -335,10 +335,10 @@ jQuery('#wsacarousel" . $mid . " .".  $carousel_class ." .item').each(function()
         <?php if($show->arr || $show->btn) { ?>
         <div id="navigation<?php echo $mid; ?>" class="navigation-container" style="<?php echo $style['navi'] ?>">
         	<?php if($show->arr) { ?>
-			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo ($show->arr==1) ? 'showOnHover':'show' ?>" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="prev">
+			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo ($show->arr==1) ? 'showOnHover':(($show->arr==3) ? 'showBothOnHover' : 'show' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="prev">
         	<img id="prev<?php echo $mid; ?>" class="prev-button " src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_NEXT') : Text::_('MOD_WSACAROUSEL_PREVIOUS'); ?>"<?php echo $wcag; ?> />
 			</a>
-			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo ($show->arr==1) ? 'showOnHover':'show' ?>" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="next">			
+			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo ($show->arr==1) ? 'showOnHover':(($show->arr==3) ? 'showBothOnHover' : 'show' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="next">			
 			<img id="next<?php echo $mid; ?>" class="next-button " src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
 			</a>
 			<?php } ?>
