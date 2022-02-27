@@ -351,14 +351,6 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 			<img id="next<?php echo $mid; ?>" class="next-button " src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
 			</a>
 			<?php } ?>
-			<?php  if($show->btn) { ?>
-			<a id="play<?php echo $mid; ?>" class="play-button <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>"  role="button" >
-			<img  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> >
-			</a>
-			<a id="pause<?php echo $mid; ?>" class="pause-button <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>"  role="button">
-			<img src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> >
-			</a>
-			<?php }  ?>
         </div>
         <?php } ?>
         <?php if($show->idx) { ?>
@@ -369,6 +361,14 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
         </div>
         <?php } ?>
     </div>
+	<?php  if($show->btn) { ?>
+	<div class="play-pause <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>" >
+    	<img id="play<?php echo $mid; ?>" class="play-button "  role="button"
+    	  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> >
+    	<img id="pause<?php echo $mid; ?>" class="pause-button "  role="button"
+    	 src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> >
+    </div>	 
+	<?php }  ?>
 </div>
 </div>
 <div class="wsa<?php echo $carousel_class; ?>-end" style="clear: both"<?php echo $wcag; ?>></div>
