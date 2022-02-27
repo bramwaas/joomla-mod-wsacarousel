@@ -28,6 +28,8 @@
  * 1.0.7 24-2-2022 solve some bugs with dimensions and navigation
  * 1.0.7 25-2-2022 back to width (count * 100%) overflow: hidden; to display one slide in small screen-width
  *  because solution with display:none for other than first slide gives more hitches.
+ *  26-20222 improved navigation and added an extra option (showBoth on mouse over)
+ *           added standard indicators and (not yet working) play/pauze buttons.
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
@@ -61,8 +63,8 @@ if ($params->get('twbs_version',4) == "3") {
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: alpha(opacity=1);
-    opacity: 0.01;} ';
+	}
+	';
     
 } else {  /* twbs version = 4.3 */
     $carousel_item_left =  $carousel_class .'-item-left';
@@ -70,16 +72,8 @@ if ($params->get('twbs_version',4) == "3") {
     $carousel_item_next =  $carousel_class .'-item-next';
     $carousel_item_prev =  $carousel_class .'-item-prev';
     $carousel_control_css = ' .'. $carousel_class .'-control{
-    filter: alpha(opacity=1);
-    opacity: 0.01;}
-    .'. $carousel_class .'-control:hover,
-	.'. $carousel_class .'-control:focus {
-	color: #fff;
-	text-decoration: none;
-	filter: alpha(opacity=90);
-	outline: 0;
-	opacity: .9;
-	} ';
+	}
+	';
 }
 
 $decl =  "
@@ -114,6 +108,7 @@ right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 #wsacarousel-loader" . $mid . ":hover .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover:hover,
 #wsacarousel-loader" . $mid . " .showOnHover.focused  {
+	outline: 0;
 	opacity: 0.9;
 }
     
@@ -238,6 +233,12 @@ jQuery('#wsacarousel" . $mid . " .".  $carousel_class ." .item').each(function()
     $decl = $decl .
     "
 });
+jQuery('#pause"  . $mid . "').click(function() {
+jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('pause');
+});
+jQuery('#play"  . $mid . "').click(function() {
+jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
+});
 })
 ";
     $doc->addScriptDeclaration($decl);
@@ -259,13 +260,15 @@ jQuery('#wsacarousel" . $mid . " .".  $carousel_class ." .item').each(function()
 		>
 		
 		<!-- Indicators -->
-		<?php /* nog even niet TODO
-                        <ol class="<?php echo $carousel_class; ?>-indicators">
-                            <li data-target="#slider-container<?php echo $mid; ?>" data-slide-to="0" class="active"></li>
-                            <li data-target="#slider-container<?php echo $mid; ?>" data-slide-to="1"></li>
-                            <li data-target="#slider-container<?php echo $mid; ?>" data-slide-to="2"></li>
-                        </ol>
-		 */ ?>
+		<?php if($show->idx) { ?>
+         <ol class="<?php echo $carousel_class; ?>-indicators <?php echo ($show->idx==1)?' showOnHover':' show';?>" >
+		<?php $itemnr = 0; 
+			 foreach ($slides as $slide) { /* per slide */
+					$itemnr++;  ?>
+            <li data-target="#wsacarousel-container<?php echo $mid; ?>" data-slide-to="<?php echo $itemnr - 1;?>"  class="<?php if ($itemnr==1) echo 'active'; ?>" ></li>
+        <?php } /* end per slide */ ?> 
+         </ol>
+        <?php } /* end Indicators */ ?> 
 			<!-- Wrapper for slides -->
         	<div id="wsacarousel-inner<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-inner"   role="listbox">
 			<?php $itemnr = 0; 
@@ -342,10 +345,10 @@ jQuery('#wsacarousel" . $mid . " .".  $carousel_class ." .item').each(function()
 			<img id="next<?php echo $mid; ?>" class="next-button " src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
 			</a>
 			<?php } ?>
-			<?php /* if($show->btn) { ?>
-			<img id="play<?php echo $mid; ?>" class="play-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> />
-			<img id="pause<?php echo $mid; ?>" class="pause-button <?php echo $show->btn==1 ? 'showOnHover':'' ?>" src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> />
-			<?php } */ ?>
+			<?php  if($show->btn) { ?>
+			<button id="play<?php echo $mid; ?>" class="play-button <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>" ><img  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> ></button>
+			<button id="pause<?php echo $mid; ?>" class="pause-button <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>" ><img src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> ></button>
+			<?php }  ?>
         </div>
         <?php } ?>
         <?php if($show->idx) { ?>
