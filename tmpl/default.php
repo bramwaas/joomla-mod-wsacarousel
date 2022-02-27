@@ -57,24 +57,12 @@ if ($params->get('twbs_version',4) == "3") {
     $carousel_item_right = 'item.right';
     $carousel_item_next = 'item.next';
     $carousel_item_prev = 'item.prev';
-    $carousel_control_css = ' .'. $carousel_class .'-control{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-	}
-	';
-    
-} else {  /* twbs version = 4.3 */
+	} else {  /* twbs version = 4.3 */
     $carousel_item_left =  $carousel_class .'-item-left';
     $carousel_item_right =  $carousel_class .'-item-right';
     $carousel_item_next =  $carousel_class .'-item-next';
     $carousel_item_prev =  $carousel_class .'-item-prev';
-    $carousel_control_css = ' .'. $carousel_class .'-control{
-	}
-	';
-}
+	};
 
 $decl =  "
 #wsacarousel-loader" . $mid . "
@@ -95,8 +83,19 @@ position: relative;
 width: " . 100/$count . "%;
 float: left;
 }
-" . $carousel_control_css . "
-#wsacarousel" . $mid . " .".  $carousel_class ."-control-next {
+#wsacarousel" . $mid . " .". $carousel_class ."-control{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	width: " . 15/$count . "%;
+	}
+#wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
+	margin: 0 " . 15/$count . "% 1rem;
+}	
+#wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
+#wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 }
 #wsacarousel-loader" . $mid . " .showOnHover {
@@ -123,7 +122,14 @@ right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 width: 100%;
 width: calc(100% + " . $style['marginr'] . ");
 }
-#wsacarousel" . $mid . " .".  $carousel_class ."-control-next {
+#wsacarousel" . $mid . " .". $carousel_class ."-control{
+	width: 15%;
+}
+#wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
+	margin: 0 15% 1rem;
+}
+#wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
+#wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(" . $style['marginr'] . ");
 }
 }
@@ -346,8 +352,12 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 			</a>
 			<?php } ?>
 			<?php  if($show->btn) { ?>
-			<button id="play<?php echo $mid; ?>" class="play-button <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>" ><img  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> ></button>
-			<button id="pause<?php echo $mid; ?>" class="pause-button <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>" ><img src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> ></button>
+			<a id="play<?php echo $mid; ?>" class="play-button <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>"  role="button" >
+			<img  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> >
+			</a>
+			<a id="pause<?php echo $mid; ?>" class="pause-button <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>"  role="button">
+			<img src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> >
+			</a>
 			<?php }  ?>
         </div>
         <?php } ?>
