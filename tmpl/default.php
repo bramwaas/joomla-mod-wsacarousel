@@ -29,7 +29,7 @@
  * 1.0.7 25-2-2022 back to width (count * 100%) overflow: hidden; to display one slide in small screen-width
  *  because solution with display:none for other than first slide gives more hitches.
  *  26-20222 improved navigation and added an extra option (showBoth on mouse over)
- *           added standard indicators and (not yet working) play/pauze buttons.
+ *           added standard indicators and (not yet working in BS3) play/pauze buttons.
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
