@@ -28,7 +28,7 @@
  * 1.0.7 24-2-2022 solve some bugs with dimensions and navigation
  * 1.0.7 25-2-2022 back to width (count * 100%) overflow: hidden; to display one slide in small screen-width
  *  because solution with display:none for other than first slide gives more hitches.
- *  26-20222 improved navigation and added an extra option (showBoth on mouse over)
+ *  26-2-2022 - 28 improved navigation and added an extra option (showBoth on mouse over)
  *           added standard indicators and (not yet working in BS3) play/pauze buttons.
  */
 // no direct access
@@ -57,12 +57,12 @@ if ($params->get('twbs_version',4) == "3") {
     $carousel_item_right = 'item.right';
     $carousel_item_next = 'item.next';
     $carousel_item_prev = 'item.prev';
-} else {  /* twbs version = 4.3 */
+	} else {  /* twbs version = 4.3 */
     $carousel_item_left =  $carousel_class .'-item-left';
     $carousel_item_right =  $carousel_class .'-item-right';
     $carousel_item_next =  $carousel_class .'-item-next';
     $carousel_item_prev =  $carousel_class .'-item-prev';
-};
+	};
 
 $decl =  "
 #wsacarousel-loader" . $mid . "
@@ -93,7 +93,7 @@ float: left;
 	}
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 	margin: 0 " . 15/$count . "% 1rem;
-}
+}	
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
@@ -113,11 +113,14 @@ right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 .play-pause {
 position: absolute;
 left: " . 50/$count . "%;
-left: calc(" . 50/$count . "% - 0.5*" . $style['marginr'] . ");
+left: calc(" . 50/$count . "% - 0.5*" . $style['marginr'] . ");  
 top: 50%;
-margin-top: -18px;
-margin-left: -18px;
-}
+margin-top: -17.5px;
+margin-left: -17.5px;
+}  
+#play"  . $mid . " {
+display:none;
+}	
 @media (min-width: 768px) {
 #wsacarousel-loader" . $mid . "
 {
@@ -141,7 +144,7 @@ right:  calc(" . $style['marginr'] . ");
 .play-pause {
 position: absolute;
 left: 50%;
-left: calc(50% - 0.5*" . $style['marginr'] . ");
+left: calc(50% - 0.5*" . $style['marginr'] . ");  
 top: 50%;
 }
 }
@@ -252,9 +255,11 @@ jQuery('#wsacarousel" . $mid . " .".  $carousel_class ." .item').each(function()
     "
 });
 jQuery('#pause"  . $mid . "').click(function() {
+jQuery('#pause"  . $mid . ",#play"  . $mid . "').toggle();	
 jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('pause');
 });
 jQuery('#play"  . $mid . "').click(function() {
+jQuery('#play"  . $mid . ",#pause"  . $mid . "').toggle();	
 jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 });
 })
