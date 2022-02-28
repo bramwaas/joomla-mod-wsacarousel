@@ -371,7 +371,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
         </div>
         <?php } ?>
     	<?php  if($show->btn) { ?>
-    	<div class="play-pause <?php echo ($show->btn==1) ? 'showOnHover':'show'; ?>" >
+    	<div class="play-pause <?php echo ($show->btn==1) ? 'showOnHover':(($show->btn==3) ? 'showBothOnHover' : 'show' ); ?>" >
         	<img id="play<?php echo $mid; ?>" class="play-button "  role="button"
         	  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> >
         	<img id="pause<?php echo $mid; ?>" class="pause-button "  role="button"
