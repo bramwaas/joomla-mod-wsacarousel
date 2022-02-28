@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.5" client="site" method="upgrade">
 	<name>wsacarousel</name>
-	<creationDate>20-2-2022</creationDate>	
+	<creationDate>28-2-2022</creationDate>	
 	<author>A.H.C. waasdorpm</author>
 	<copyright>Copyright (C) 2018 - 2022 A.H.C. Waasdorp, All rights reserved.</copyright>
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
 	<authorEmail>contact@waasdorpsoekhan.nl</authorEmail>
 	<authorUrl>http://www.waasdorpsoekhan.nl</authorUrl>
-	<version>1.0.6</version>
+	<version>1.0.7</version>
 	<description>Slider / Carousel Module</description>
 	<files>
 		<filename module="mod_wsacarousel">mod_wsacarousel.php</filename>
@@ -138,16 +138,18 @@
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
+					<option value="3">MOD_WSACAROUSEL_ON_MOUSE_OVER_SLIDER</option>
 				</field>
 				<field name="show_arrows" type="radio" class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_NEXT_PREV" description="MOD_WSACAROUSEL_SHOW_NEXT_PREV_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
+					<option value="3">MOD_WSACAROUSEL_ON_MOUSE_OVER_SLIDER</option>
 				</field>
 				<field name="show_custom_nav" type="radio" class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION" description="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION_DESC">
 					<option value="0">JNO</option>
-					<option value="1">JYES</option>
-					<option value="2">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
+					<option value="2">JYES</option>
+					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
 				</field>
 			
 				<field type="spacer" label="&lt;hr &#47;&gt;" />

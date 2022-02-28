@@ -3,7 +3,7 @@
  * @version $Id: mod_wsacarousel.php 
  * @package wsacarousel
  * @subpackage wsacarousel Module
- * @copyright Copyright (C) 2018 AHC Waasdorp, All rights reserved.
+ * @copyright Copyright (C) 2018 - 2022 AHC Waasdorp, All rights reserved.
  * @license http://www.gnu.org/licenses GNU/GPL
  * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
@@ -22,7 +22,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with WsaCarousel. If not, see <http://www.gnu.org/licenses/>.
- * 7-2-2018 added J3.8 J4.0namespaces deleted mootools and refs to JoomlaVersion < 3.0
+ * 7-2-2018 added J3.8 J4.0 namespaces deleted mootools and refs to JoomlaVersion < 3.0
  * 0.0.9
  * 26-1-2019 popper v 1.14.6 for compatibility with bootstrap 4.2.1
  * 0.1.0
