@@ -98,6 +98,7 @@ float: left;
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 }
+#wsacarousel-loader" . $mid . " .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover {
 	opacity: 0;
 	-webkit-transition: opacity 200ms ease 50ms;
