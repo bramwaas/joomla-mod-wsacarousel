@@ -136,7 +136,18 @@ width: calc(100% + " . $style['marginr'] . ");
 	width: 15%;
 }
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
-	margin: 0 15% 1rem;
+margin: 0 15% 1rem;
+right: 0;
+left: 0;
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-pack: center;
+-ms-flex-pack: center;
+justify-content: center;
+padding-left: 0;
+}
+
 }
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
