@@ -138,13 +138,13 @@
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
-					<option value="3">MOD_WSACAROUSEL_BOTH_ON_MOUSE_OVER</option>
+					<option value="3">MOD_WSACAROUSEL_ON_MOUSE_OVER_SLIDER</option>
 				</field>
 				<field name="show_arrows" type="radio" class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_NEXT_PREV" description="MOD_WSACAROUSEL_SHOW_NEXT_PREV_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
-					<option value="3">MOD_WSACAROUSEL_BOTH_ON_MOUSE_OVER</option>
+					<option value="3">MOD_WSACAROUSEL_ON_MOUSE_OVER_SLIDER</option>
 				</field>
 				<field name="show_custom_nav" type="radio" class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION" description="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION_DESC">
 					<option value="0">JNO</option>
