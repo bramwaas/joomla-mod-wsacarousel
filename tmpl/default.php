@@ -313,7 +313,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 		<?php $itemnr = 0; 
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;  ?>
-            <li data-bs-target="#wsacarousel-container<?php echo $mid; ?>" data-slide-to="<?php echo $itemnr - 1;?>" data-target="#wsacarousel-container<?php echo $mid; ?>" data-slide-to="<?php echo $itemnr - 1;?>"  class="<?php if ($itemnr==1) echo 'active'; ?>" ></li>
+            <li data-bs-target="#wsacarousel-container<?php echo $mid; ?>" data-bs-slide-to="<?php echo $itemnr - 1;?>" data-target="#wsacarousel-container<?php echo $mid; ?>" data-slide-to="<?php echo $itemnr - 1;?>"  class="<?php if ($itemnr==1) echo 'active'; ?>" ></li>
         <?php } /* end per slide */ ?> 
          </ol>
         <?php } /* end Indicators */ ?> 
