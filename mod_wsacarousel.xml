@@ -169,6 +169,11 @@
 			
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				<field type="wsaspacer" label="MOD_WSACAROUSEL_CUSTOMISE_BUTTONS" />
+				<field name="nav_buttons_style" type="radio" class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_NAV_BUTTON_STYLE">
+					<option value="0">MOD_WSACAROUSEL_CUSTOM_NAV_BUTTON_IMG</option>
+					<option value="1">MOD_WSACAROUSEL_DEFAULT_NAV_BUTTON_BS</option>
+				</field>
+
 				<field name="left_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_PREV_BUTTON" description="MOD_WSACAROUSEL_PREV_BUTTON_DESC" />
 				<field name="right_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_NEXT_BUTTON" description="MOD_WSACAROUSEL_NEXT_BUTTON_DESC" />
 				<field name="play_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PLAY_BUTTON" description="MOD_WSACAROUSEL_PLAY_BUTTON_DESC" />

@@ -352,7 +352,8 @@ class modWsaCarouselHelper
 	}
 	
 	static function getNavigation(&$params, &$mid) {
-		
+	    
+	    $nav_buttons_style = $params->get('nav_buttons_style');
 		$prev = $params->get('left_arrow');
 		$next = $params->get('right_arrow');
 		$play = $params->get('play_button');
