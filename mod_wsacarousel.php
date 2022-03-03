@@ -111,31 +111,55 @@ $ver = $ver->version;
 
 HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
 $carousel_class = 'carousel';
-if ($params->get('twbs_version',4) == "3") {
-   if ($params->get('include_twbs_css') == "1") {
-   $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>''),
-	       array('id'=>'wsacarousel_bootstrap.css',));
+
+switch ($params->get('twbs_version',4)) {
+    case "3" : {
+        if ($params->get('include_twbs_css') == "1") {
+            $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>''),
+                array('id'=>'wsacarousel_bootstrap.css',));
+        }
+        if ($params->get('include_twbs_js') == "1") {
+            $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>''),
+                array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
+        }
     }
-    if ($params->get('include_twbs_js') == "1") {
-        $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>''),
-	            array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
+    break;
+    case "5" :         {
+        if ($params->get('include_twbs_css') == "1") {
+            $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap5.1.css", array('version'=>''),
+                array('id'=>'wsacarousel_bootstrap.css',));
+        }
+        if ($params->get('include_twbs_js') == "1") {
+            $carousel_class = 'wsacarousel';
+//TODO do we need popper ???
+//            $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
+//                array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
+            $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap5.1.js", array('version'=>''),
+                array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
+                //	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
+        }
+        
     }
-}
-else {
-    if ($params->get('include_twbs_css') == "1") {
-	$document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap4.0.css", array('version'=>''),
-	        array('id'=>'wsacarousel_bootstrap.css',));
-	}
-	if ($params->get('include_twbs_js') == "1") {
-	    $carousel_class = 'wsacarousel';
-	    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
-	        array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
-// javascript to CustomTag, to order it as latest	makes no difference so back in old way and using other class to b e sure tu use this script in stead of order    
-       $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.3.js", array('version'=>''),
-           array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
-//	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
-    }
-	    
+    break; 
+    case "4" :
+    default  : 
+        {
+            if ($params->get('include_twbs_css') == "1") {
+                $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap4.0.css", array('version'=>''),
+                    array('id'=>'wsacarousel_bootstrap.css',));
+            }
+            if ($params->get('include_twbs_js') == "1") {
+                $carousel_class = 'wsacarousel';
+                $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
+                    array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
+                // javascript to CustomTag, to order it as latest	makes no difference so back in old way and using other class to b e sure tu use this script in stead of order
+                $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.3.js", array('version'=>''),
+                    array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
+                    //	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
+            }
+            
+        }
+        
 }
 
 
