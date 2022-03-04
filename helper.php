@@ -3,7 +3,7 @@
  * @version $Id: helper.php 
  * @package wsacarousel
  * @subpackage wsacarousel Module
- * @copyright Copyright (C) 2018 A.H.C. Waasdorp, All rights reserved.
+ * @copyright Copyright (C) 2018 -2022 A.H.C. Waasdorp, All rights reserved.
  * @license http://www.gnu.org/licenses GNU/GPL
  * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
@@ -26,6 +26,7 @@
  * 0.2.0 slide delay added.
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.0.7
+ * 1.0.8 4-3-2022 using bootstrap css icons  as default navigation icons
  */
  
 // no direct access
@@ -353,25 +354,27 @@ class modWsaCarouselHelper
 	
 	static function getNavigation(&$params, &$mid) {
 	    
+	    $theme = $params->get('theme', 'default');
 	    $nav_buttons_style = $params->get('nav_buttons_style');
-		$prev = $params->get('left_arrow');
-		$next = $params->get('right_arrow');
+	    if ($nav_buttons_style == '1') {
+		  $prev = $params->get('left_arrow');
+		  $next = $params->get('right_arrow');
+		  if($params->get('slider_type')==1) {
+		      if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/up.png';
+		      if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/down.png';
+		  } else {
+		      if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/prev.png';
+		      if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/next.png';
+		  }
+	    }
+	    
 		$play = $params->get('play_button');
 		$pause = $params->get('pause_button');
 		
-		$theme = $params->get('theme', 'default');
-		
-		if($params->get('slider_type')==1) {			
-			if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/up.png';			
-			if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/down.png';
-		} else {			
-			if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/prev.png';			
-			if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/next.png';
-		}
 		if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'modules/mod_wsacarousel/themes/'.$theme.'/images/play.png';
 		if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'modules/mod_wsacarousel/themes/'.$theme.'/images/pause.png';
 		
-		$navi = (object) array('prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
+		$navi = (object) array('nav_buttons_style'=>$nav_buttons_style , 'prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
 		
 		return $navi;
 	}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.5" client="site" method="upgrade">
 	<name>wsacarousel</name>
-	<creationDate>2-3-2022</creationDate>	
+	<creationDate>4-3-2022</creationDate>	
 	<author>A.H.C. waasdorpm</author>
 	<copyright>Copyright (C) 2018 - 2022 A.H.C. Waasdorp, All rights reserved.</copyright>
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
@@ -170,8 +170,8 @@
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				<field type="wsaspacer" label="MOD_WSACAROUSEL_CUSTOMISE_BUTTONS" />
 				<field name="nav_buttons_style" type="radio" class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_NAV_BUTTON_STYLE">
-					<option value="0">MOD_WSACAROUSEL_CUSTOM_NAV_BUTTON_IMG</option>
-					<option value="1">MOD_WSACAROUSEL_DEFAULT_NAV_BUTTON_BS</option>
+					<option value="0">MOD_WSACAROUSEL_DEFAULT_NAV_BUTTON_BS</option>
+					<option value="1">MOD_WSACAROUSEL_CUSTOM_NAV_BUTTON_IMG</option>
 				</field>
 
 				<field name="left_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_PREV_BUTTON" description="MOD_WSACAROUSEL_PREV_BUTTON_DESC" />
