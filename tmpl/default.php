@@ -298,8 +298,9 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
 	<div id="wsacarousel<?php echo $mid; ?>" class=" wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
-        <div id="wsacarousel-container<?php echo $mid; ?>" class="<?php echo $carousel_class; ?> slide " <?php echo $bs_data; ?>ride="<?php echo $carousel_class; ?>" "
-        <?php echo $bs_data; ?>interval="<?php echo ($params->get('autoplay')) ? $delay + $duration : false ; ?>" 
+        <div id="wsacarousel-container<?php echo $mid; ?>" class="<?php echo $carousel_class; ?> slide " 
+        <?php echo $bs_data; ?>ride="<?php echo $carousel_class; ?>"
+        <?php echo $bs_data; ?>interval="<?php echo ($params->get('autoplay')) ? $delay + $duration : 'false' ; ?>" 
 		<?php echo $bs_data; ?>pause="hover"
 		<?php echo $bs_data; ?>wrap="true" 
 		<?php echo $bs_data; ?>keyboard="true"
