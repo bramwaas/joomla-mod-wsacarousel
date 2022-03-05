@@ -178,7 +178,7 @@
 					<option value="1">MOD_WSACAROUSEL_NBS_CUSTOM_IMG</option>
 				</field>
 
-				<field name="left_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_PREV_BUTTON" description="MOD_WSACAROUSEL_PREV_BUTTON_DESC"  showon="nav_buttons_style:1 "/>
+				<field name="left_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_PREV_BUTTON" description="MOD_WSACAROUSEL_PREV_BUTTON_DESC"  showon="nav_buttons_style:1" />
 				<field name="right_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_NEXT_BUTTON" description="MOD_WSACAROUSEL_NEXT_BUTTON_DESC"  showon="nav_buttons_style:1" />
 				<field name="play_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PLAY_BUTTON" description="MOD_WSACAROUSEL_PLAY_BUTTON_DESC" />
 				<field name="pause_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PAUSE_BUTTON" description="MOD_WSACAROUSEL_PAUSE_BUTTON_DESC" />
