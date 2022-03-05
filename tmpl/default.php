@@ -65,8 +65,8 @@ switch ($params->get('twbs_version',4)) {
 	}
 	break;
     case "5": {  
-    $carousel_item_left =  $carousel_class .'-item-left';
-    $carousel_item_right =  $carousel_class .'-item-right';
+    $carousel_item_left =  $carousel_class .'-item-start';
+    $carousel_item_right =  $carousel_class .'-item-end';
     $carousel_item_next =  $carousel_class .'-item-next';
     $carousel_item_prev =  $carousel_class .'-item-prev';
     $bs_data = 'data-bs-';
@@ -74,8 +74,8 @@ switch ($params->get('twbs_version',4)) {
 	break;
     case "4":
     default: {  /* twbs version = 4.3 */
-        $carousel_item_left =  $carousel_class .'-item-start';
-        $carousel_item_right =  $carousel_class .'-item-end';
+        $carousel_item_left =  $carousel_class .'-item-left';
+        $carousel_item_right =  $carousel_class .'-item-right';
         $carousel_item_next =  $carousel_class .'-item-next';
         $carousel_item_prev =  $carousel_class .'-item-prev';
         $bs_data = 'data-';
@@ -225,19 +225,23 @@ if ($count > 1) {
         
 /* override position and transform in 3.3.x and 4.3.x and 5.1.x
 */
+.carousel-item-prev,
+.active.carousel-item-left,
+.wsacarousel-item-prev,
+.active.wsacarousel-item-left {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-33%, 0, 0);
+}
+
+#wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_prev . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ".active {
   transform: translateX(-" . 100/$count . "%);
 }
+#wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_next . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . ".active {
   transform: translateX(" . 100/$count . "%);
 }
-      
-#wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_next . "  {
-  transform: translateX(" . 100/$count . "%)
-}
-#wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_prev . " {
-  transform: translateX(-" . 100/$count . "%)
-}
+
       
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . " {
