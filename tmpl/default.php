@@ -225,13 +225,6 @@ if ($count > 1) {
         
 /* override position and transform in 3.3.x and 4.3.x and 5.1.x
 */
-.carousel-item-prev,
-.active.carousel-item-left,
-.wsacarousel-item-prev,
-.active.wsacarousel-item-left {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-33%, 0, 0);
-}
 
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_prev . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ".active {
