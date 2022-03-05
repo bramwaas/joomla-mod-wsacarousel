@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.5" client="site" method="upgrade">
 	<name>wsacarousel</name>
-	<creationDate>4-3-2022</creationDate>	
+	<creationDate>5-3-2022</creationDate>	
 	<author>A.H.C. waasdorpm</author>
 	<copyright>Copyright (C) 2018 - 2022 A.H.C. Waasdorp, All rights reserved.</copyright>
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
@@ -32,7 +32,7 @@
 				</field>
 				<field name="slider_type" type="list" default="0" label="MOD_WSACAROUSEL_SLIDER_TYPE" description="MOD_WSACAROUSEL_SLIDER_TYPE_DESC">
 					<option value="0">MOD_WSACAROUSEL_HORIZONTAL</option>
-					<option value="1">MOD_WSACAROUSEL_VERTICAL</option>
+					<!-- option value="1">MOD_WSACAROUSEL_VERTICAL</option -->
 					<option value="2">MOD_WSACAROUSEL_FADE</option>
 				</field>
 				<field name="theme" type="wsafolderlist" default="default" label="MOD_WSACAROUSEL_THEME" description="MOD_WSACAROUSEL_THEME_DESC" directory="modules/mod_wsacarousel/themes" hide_none="true" hide_default="true">
@@ -127,14 +127,18 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<!-- 
 				<field name="autoplay" type="radio" class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_AUTOPLAY" description="MOD_WSACAROUSEL_AUTOPLAY_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				-->
+				<!-- 
 				<field name="looponce" type="radio" class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_LOOP_ONCE" description="MOD_WSACAROUSEL_LOOP_ONCE_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				-->
 				<field name="show_buttons" type="radio" class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE" description="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
@@ -170,12 +174,12 @@
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				<field type="wsaspacer" label="MOD_WSACAROUSEL_CUSTOMISE_BUTTONS" />
 				<field name="nav_buttons_style" type="radio" class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_NAV_BUTTON_STYLE">
-					<option value="0">MOD_WSACAROUSEL_DEFAULT_NAV_BUTTON_BS</option>
-					<option value="1">MOD_WSACAROUSEL_CUSTOM_NAV_BUTTON_IMG</option>
+					<option value="0">MOD_WSACAROUSEL_NBS_DEFAULT</option>
+					<option value="1">MOD_WSACAROUSEL_NBS_CUSTOM_IMG</option>
 				</field>
 
-				<field name="left_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_PREV_BUTTON" description="MOD_WSACAROUSEL_PREV_BUTTON_DESC" />
-				<field name="right_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_NEXT_BUTTON" description="MOD_WSACAROUSEL_NEXT_BUTTON_DESC" />
+				<field name="left_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_PREV_BUTTON" description="MOD_WSACAROUSEL_PREV_BUTTON_DESC"  showon="nav_buttons_style:1 "/>
+				<field name="right_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_NEXT_BUTTON" description="MOD_WSACAROUSEL_NEXT_BUTTON_DESC"  showon="nav_buttons_style:1" />
 				<field name="play_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PLAY_BUTTON" description="MOD_WSACAROUSEL_PLAY_BUTTON_DESC" />
 				<field name="pause_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PAUSE_BUTTON" description="MOD_WSACAROUSEL_PAUSE_BUTTON_DESC" />
 				<field name="arrows_top" type="text" default="40" size="10" label="MOD_WSACAROUSEL_NAV_BAR_VERTICAL_POSITION" description="MOD_WSACAROUSEL_NAV_BAR_VERTICAL_POSITION_DESC" />
