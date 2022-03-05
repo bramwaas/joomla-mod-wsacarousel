@@ -127,12 +127,12 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<!-- 
+				
 				<field name="autoplay" type="radio" class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_AUTOPLAY" description="MOD_WSACAROUSEL_AUTOPLAY_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				-->
+				
 				<!-- 
 				<field name="looponce" type="radio" class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_LOOP_ONCE" description="MOD_WSACAROUSEL_LOOP_ONCE_DESC">
 					<option value="0">JNO</option>
