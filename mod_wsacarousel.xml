@@ -7,7 +7,7 @@
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
 	<authorEmail>contact@waasdorpsoekhan.nl</authorEmail>
 	<authorUrl>http://www.waasdorpsoekhan.nl</authorUrl>
-	<version>1.0.7</version>
+	<version>1.0.8</version>
 	<description>Slider / Carousel Module</description>
 	<files>
 		<filename module="mod_wsacarousel">mod_wsacarousel.php</filename>
