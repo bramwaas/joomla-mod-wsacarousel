@@ -67,7 +67,7 @@ if($params->get('slider_source')==1) {
 		return;
 	}
 }
-
+$slidecnt = count($slides);
 $direction = $document->direction;
 // direction integration with joomla monster templates
 if ($app->input->get('direction') == 'rtl'){
@@ -178,7 +178,7 @@ if(!is_numeric($max = $params->get('max_images'))) $max = 20;
 if(!is_numeric($count = $params->get('visible_images'))) $count = 3;
 if(!is_numeric($spacing = $params->get('space_between_images'))) $spacing = 10;
 if(!is_numeric($preload = $params->get('preload'))) $preload = 800;
-if($count>count($slides)) $count = count($slides);
+if($count>$slidecnt) $count = $slidecnt;
 if($count<1) $count = 1;
 if($count>$max) $count = $max;
 $mid = $module->id;
