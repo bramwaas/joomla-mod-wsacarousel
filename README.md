@@ -36,3 +36,4 @@ see: https://getbootstrap.com/docs/4.3/components/carousel/
 * 1.0.0 first version that is correct working with IE10 and IE11
 * 1.0.6 tested with Joomla 4
 * 1.0.7 24-28 -2-2022 solved some bugs with dimensions and navigation and added an extra option (showBoth on mouse over) added standard indicators and  play/pauze buttons.
+* 1.0.8 6-3-2022 small patch to enable autoplay off
