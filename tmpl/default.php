@@ -32,7 +32,8 @@
  *           added standard indicators and play/pauze buttons.
  * 1.0.8 6-3-2022 small patch to enable autoplay off           
  * 1.10.0 3-3-2022 adding bootstrap 5 attributes classes 
- *       5-3-2022 choosing default navbuttons or image. Autoplay on/off         
+ *       5-3-2022 choosing default navbuttons or image. Autoplay on/off
+ *       6-3-2022 fill frame with php instead of javascript.         
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
@@ -245,37 +246,8 @@ if ($count > 1) {
 
 $doc->addStyleDeclaration($decl);
 
-if ($count > 1)
-{
-    $decl =
-    
+    $decl = 
     "
-jQuery(document).ready(function() {
-jQuery('#wsacarousel" . $mid . " .".  $carousel_class ." .item').each(function(){
-  var next = jQuery(this).next();
-  if (!next.length) {
-    next = jQuery(this).siblings(':first');
-  }
-  next.children(':first-child').clone().appendTo(jQuery(this));
-  "
-    ;
-    if ($count > 2)	{
-        
-        $decl = $decl .
-        "
-  for (var i=2;i<". $count . ";i++) {
-    next=next.next();
-    if (!next.length) {
-    	next = jQuery(this).siblings(':first');
-  	}
-      
-    next.children(':first-child').clone().appendTo(jQuery(this));
-  }
-  ";
-    }
-    $decl = $decl .
-    "
-});
 jQuery('#pause"  . $mid . "').click(function() {
 jQuery('#pause"  . $mid . ",#play"  . $mid . "').toggle();	
 jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('pause');
@@ -287,7 +259,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 })
 ";
     $doc->addScriptDeclaration($decl);
-}
+
 
 
 ?>
@@ -318,12 +290,13 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 			<!-- Wrapper for slides -->
         	<div id="wsacarousel-inner<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-inner"   role="listbox">
 			<?php $itemnr = 0; 
-			 foreach ($slides as $slide) { /* per slide frame */
+			 foreach ($slides as $slide) { /* frame per slide  */
 					$itemnr++;
 					$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
-          			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo $bs_data .'interval="' . $slide->delay  . '" '; ?>><div class="<?php echo $carousel_class; ?>-item-inner">
-          		<?php for ($seq = 0; ($seq < $count); $seq++) {
-                    $slide = $slides[($itemnr + $seq -1) % $slidecnt];           		    ?> 
+          			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo $bs_data .'interval="' . $slide->delay  . '" '; ?>>
+          		<?php for ($seq = 0; ($seq < $count); $seq++) { /* slides in frame */
+          		    $slide = $slides[($itemnr + $seq -1) % $slidecnt]; ?>
+          		    <div class="<?php echo $carousel_class; ?>-item-inner">
           			    <div class="<?php echo $carousel_class; ?>-item-content">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
