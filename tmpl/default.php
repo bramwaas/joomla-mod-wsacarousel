@@ -112,7 +112,7 @@ right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 	-webkit-transition: opacity 200ms ease 50ms;
 	transition: opacity 200ms ease 50ms;
 }
-#wsacarousel-loader" . $mid . " .show,
+#wsacarousel-loader" . $mid . " .wsashow,
 #wsacarousel-loader" . $mid . ":hover .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover:hover,
 #wsacarousel-loader" . $mid . " .showOnHover.focused  {
@@ -293,7 +293,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 		
 		<!-- Indicators -->
 		<?php if($show->idx) { ?>
-         <ol class="<?php echo $carousel_class; ?>-indicators <?php echo ($show->idx==1)?' showOnHover':' show';?>" >
+         <ol class="<?php echo $carousel_class; ?>-indicators <?php echo ($show->idx==1)?' showOnHover':' wsashow';?>" >
 		<?php $itemnr = 0; 
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;  ?>
@@ -370,17 +370,17 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
         <?php if($show->arr || $show->btn) { ?>
         <div id="navigation<?php echo $mid; ?>" class="navigation-container" style="<?php echo $style['navi'] ?>">
         	<?php if($show->arr) { ?>
-			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo ($show->arr==1) ? 'showOnHover':(($show->arr==3) ? 'showBothOnHover' : 'show' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="prev">
+			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo ($show->arr==1) ? 'showOnHover':(($show->arr==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="prev">
         	<img id="prev<?php echo $mid; ?>" class="prev-button " src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_NEXT') : Text::_('MOD_WSACAROUSEL_PREVIOUS'); ?>"<?php echo $wcag; ?> />
 			</a>
-			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo ($show->arr==1) ? 'showOnHover':(($show->arr==3) ? 'showBothOnHover' : 'show' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="next">			
+			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo ($show->arr==1) ? 'showOnHover':(($show->arr==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" role="button" data-slide="next">			
 			<img id="next<?php echo $mid; ?>" class="next-button " src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
 			</a>
 			<?php } ?>
         </div>
         <?php } ?>
     	<?php  if($show->btn) { ?>
-    	<div class="play-pause <?php echo ($show->btn==1) ? 'showOnHover':(($show->btn==3) ? 'showBothOnHover' : 'show' ); ?>" >
+    	<div class="play-pause <?php echo ($show->btn==1) ? 'showOnHover':(($show->btn==3) ? 'showBothOnHover' : 'wsashow' ); ?>" >
         	<img id="play<?php echo $mid; ?>" class="play-button "  role="button"
         	  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> >
         	<img id="pause<?php echo $mid; ?>" class="pause-button "  role="button"
