@@ -323,7 +323,9 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 					$rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
           			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo $bs_data .'interval="' . $slide->delay  . '" '; ?>><div class="<?php echo $carousel_class; ?>-item-inner">
           		<?php for ($seq = 0; ($seq < $count); $seq++) {
-          		    $slide = $slides[($itemnr + $seq -1) % $slidecnt];  ?> 
+          		 /*   $slide = $slides[($itemnr + $seq -1) % $slidecnt]; */
+          		    $slide = $slides[$itemnr - 1];
+          		    ?> 
           			    <div class="<?php echo $carousel_class; ?>-item-content">
           				<?php if($slide->image) { 
           					$action = $params->get('link_image',1);
