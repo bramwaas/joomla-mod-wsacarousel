@@ -28,6 +28,7 @@
  * 0.1.0
  * 0.2.0 15-2-2019
  * 1.0.6 20-2-2022 adjustments for J4
+ * 1.10.0 adjustments for bootstrap 5
  */
 
 // no direct access

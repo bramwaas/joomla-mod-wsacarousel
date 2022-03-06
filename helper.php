@@ -26,7 +26,7 @@
  * 0.2.0 slide delay added.
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.0.7
- * 1.0.8 4-3-2022 using bootstrap css icons  as default navigation icons
+ * 1.10.0 4-3-2022 using bootstrap css icons  as default navigation icons
  */
  
 // no direct access
