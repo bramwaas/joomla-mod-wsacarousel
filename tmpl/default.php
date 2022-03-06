@@ -30,6 +30,7 @@
  *  because solution with display:none for other than first slide gives more hitches.
  *  26-2-2022 - 28 improved navigation and added an extra option (showBoth on mouse over)
  *           added standard indicators and play/pauze buttons.
+ * 1.0.8 6-3-2022 small patch to enable autoplay off
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
@@ -283,7 +284,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 	<div id="wsacarousel<?php echo $mid; ?>" class=" wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="wsacarousel-container<?php echo $mid; ?>" class="<?php echo $carousel_class; ?> slide " data-ride="<?php echo $carousel_class; ?>"
-		data-interval="<?php echo $delay + $duration; ?>" 
+		data-interval="<?php echo ($params->get('autoplay')) ? $delay + $duration : 'false' ; ?>" 
 		data-pause="hover"
 		data-wrap="true" 
 		data-keyboard="true"
