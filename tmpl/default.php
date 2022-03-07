@@ -248,6 +248,7 @@ $doc->addStyleDeclaration($decl);
 
     $decl = 
     "
+jQuery(document).ready(function() {
 jQuery('#pause"  . $mid . "').click(function() {
 jQuery('#pause"  . $mid . ",#play"  . $mid . "').toggle();	
 jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('pause');
@@ -256,6 +257,7 @@ jQuery('#play"  . $mid . "').click(function() {
 jQuery('#play"  . $mid . ",#pause"  . $mid . "').toggle();	
 jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 });
+})
 ";
     $doc->addScriptDeclaration($decl);
 
