@@ -256,7 +256,6 @@ jQuery('#play"  . $mid . "').click(function() {
 jQuery('#play"  . $mid . ",#pause"  . $mid . "').toggle();	
 jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 });
-})
 ";
     $doc->addScriptDeclaration($decl);
 
