@@ -29,6 +29,7 @@
  * 0.2.0 15-2-2019
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.10.0 adjustments for bootstrap 5
+ *   magnific popup 
  */
 
 // no direct access
@@ -166,8 +167,8 @@ switch ($params->get('twbs_version',4)) {
 
 if($params->get('link_image',1) > 1 && $params->get('include_magnific',0) == 1) {
 	
-	    $document->addScript(Uri::root(true).'/media/mod_wsacarousel/assets/magnific/magnificpopupv1-1-0.js',  array('id'=>'magnific.js', 'defer'=>'defer'));
-		$document->addStyleSheet(Uri::root(true).'/media/mod_wsacarousel/assets/magnific/magnific.css');
+	    $document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/magnific/magnificpopupv1-1-0.js',  array('id'=>'magnific.js', 'defer'=>'defer'));
+		$document->addStyleSheet(Uri::root(true).'/modules/mod_wsacarousel/assets/magnific/magnific.css');
 		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js',  array('id'=>'magnific-init.js', 'defer'=>'defer'));
 	 
 }

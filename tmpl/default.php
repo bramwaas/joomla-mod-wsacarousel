@@ -33,7 +33,8 @@
  * 1.0.8 6-3-2022 small patch to enable autoplay off           
  * 1.10.0 3-3-2022 adding bootstrap 5 attributes classes 
  *       5-3-2022 choosing default navbuttons or image. Autoplay on/off
- *       6-3-2022 fill frame with php instead of javascript.         
+ *       6-3-2022 fill frame with php instead of javascript.  
+ *       7-3-2022 looponce on off working.       
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
@@ -245,7 +246,14 @@ if ($count > 1) {
 }
 
 $doc->addStyleDeclaration($decl);
-
+/* //TODO work without jQuery in BS5
+if ($params->get('twbs_version',4) == 5 ) {
+	$decl = "
+var wsaCarousel"  . $mid . " = document.querySelector('#wsacarousel-container"  . $mid . "')
+var carousel = new bootstrap.Carousel(wsaCarousel"  . $mid . ")	
+";
+} else 
+*/	
     $decl = 
     "
 jQuery(document).ready(function() {
@@ -259,6 +267,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 });
 })
 ";
+
     $doc->addScriptDeclaration($decl);
 
 
@@ -273,7 +282,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
         <?php echo $bs_data; ?>ride="<?php echo $carousel_class; ?>"
         <?php echo $bs_data; ?>interval="<?php echo ($params->get('autoplay')) ? $delay + $duration : 'false' ; ?>" 
 		<?php echo $bs_data; ?>pause="hover"
-		<?php echo $bs_data; ?>wrap="true" 
+		<?php echo $bs_data; ?>wrap="<?php echo ($params->get('looponce')) ? 'false' : 'true' ; ?>"
 		<?php echo $bs_data; ?>keyboard="true"
 		<?php echo $bs_data; ?>duration="<?php echo $duration; ?>"
 		>
