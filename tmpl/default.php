@@ -34,7 +34,8 @@
  * 1.10.0 3-3-2022 adding bootstrap 5 attributes classes 
  *       5-3-2022 choosing default navbuttons or image. Autoplay on/off
  *       6-3-2022 fill frame with php instead of javascript.  
- *       7-3-2022 looponce on off working.       
+ *       7-3-2022 looponce on off working.
+ *       8-3-2022 magnificPopup       
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');

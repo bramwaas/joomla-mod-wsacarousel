@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.5" client="site" method="upgrade">
 	<name>wsacarousel</name>
-	<creationDate>7-3-2022</creationDate>	
+	<creationDate>8-3-2022</creationDate>	
 	<author>A.H.C. waasdorpm</author>
 	<copyright>Copyright (C) 2018 - 2022 A.H.C. Waasdorp, All rights reserved.</copyright>
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
@@ -193,6 +193,7 @@
 				
 				<field name="effect" type="groupedlist" default="Expo" label="MOD_WSACAROUSEL_SLIDE_EFFECT" description="MOD_WSACAROUSEL_SLIDE_EFFECT_DESC">
 					<option value="Linear">Linear</option>
+					<!-- 
 					<option value="Quad">Quad</option>
 					<option value="Cubic">Cubic</option>
 					<option value="Quart">Quart</option>
@@ -208,12 +209,15 @@
 						<option value="Bounce">Bounce</option>
 						<option value="Elastic">Elastic</option>
 					</group>
+					 -->
 				</field>
 				<field name="effect_type" type="list" default="0" label="MOD_WSACAROUSEL_SLIDE_EFFECT_TYPE" description="MOD_WSACAROUSEL_SLIDE_EFFECT_TYPE_DESC">
 					<option value="0">MOD_WSACAROUSEL_SLIDE_AUTO</option>
+					<!-- 
 					<option value="easeIn">easeIn</option>
 					<option value="easeOut">easeOut</option>
 					<option value="easeInOut">easeInOut</option>
+					-->
 				</field>
 				<field name="duration" type="text" default="600" size="10" label="MOD_WSACAROUSEL_SLIDE_DURATION" description="MOD_WSACAROUSEL_SLIDE_DURATION_DESC"  />
 				<field name="delay" type="text" default="3000" size="10" label="MOD_WSACAROUSEL_NEXT_SLIDE_DELAY" description="MOD_WSACAROUSEL_NEXT_SLIDE_DELAY_DESC" />
