@@ -29,7 +29,7 @@
  * 1.10.0 4-3-2022 using bootstrap css icons  as default navigation icons
  *        8-3-2022 copied from helper.php to comply with Joomla namespaced model
  */
-namespace WaasdorpSoekhan\Module\Wsacarousel\Site\Helper;
+namespace Joomla\Module\Wsacarousel\Site\Helper;
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
 
