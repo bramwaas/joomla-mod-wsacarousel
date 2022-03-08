@@ -9,7 +9,7 @@
 	<authorUrl>http://www.waasdorpsoekhan.nl</authorUrl>
 	<version>1.10.0</version>
 	<description>Slider / Carousel Module</description>
-	<namespace path="src">Joomla\Module\Wsacarousel</namespace>
+	<namespace path="src">WaasdorpSoekhan\Module\Wsacarousel</namespace>
 	<files>
 		<filename module="mod_wsacarousel">mod_wsacarousel.php</filename>
 		<filename>mod_wsacarousel.xml</filename>
