@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="2.5.5" client="site" method="upgrade">
-	<name>wsacarousel</name>
+<extension type="module" client="site" method="upgrade">
+	<name>mod_wsacarousel</name>
 	<creationDate>8-3-2022</creationDate>	
-	<author>A.H.C. waasdorpm</author>
+	<author>A.H.C. Waasdorp</author>
 	<copyright>Copyright (C) 2018 - 2022 A.H.C. Waasdorp, All rights reserved.</copyright>
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
 	<authorEmail>contact@waasdorpsoekhan.nl</authorEmail>
