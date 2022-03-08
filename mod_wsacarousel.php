@@ -28,7 +28,7 @@
  * 0.1.0
  * 0.2.0 15-2-2019
  * 1.0.6 20-2-2022 adjustments for J4
- * 1.10.0 adjustments for bootstrap 5
+ * 1.1.0 adjustments for bootstrap 5
  *   magnific popup 
  *   adjustments to comply with Joomla namespaced model: copied WsacarouselHelper.php from helper.php 
  */
@@ -44,7 +44,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\ModuleHelper;
 use  Joomla\CMS\Filesystem\File;
-use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsaCarouselhelper;
+use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsaCarouselHelper;
 
 // Include the syndicate functions only once
 // require_once (dirname(__FILE__).DS.'helper.php');
