@@ -42,13 +42,14 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\Component\Content\Site\Helper\RouteHelper as ContentHelperRoute;
 use Joomla\Filesystem\Path;
 use Joomla\Registry\Registry;
-$doc = Factory::getDocument ();
 
 
 class WsacarouselHelper
 {
+    
     static function getImagesFromFolder(&$params) {
-    	
+        $doc = Factory::getDocument ();
+        
     	if(!is_numeric($max = $params->get('max_images'))) $max = 20;
         $folder = $params->get('image_folder');
         if(!$dir = @opendir($folder)) return null;
@@ -93,7 +94,8 @@ class WsacarouselHelper
     }
 	
         static function getImagesFromWsaCarousel(&$params) {
-        
+            $doc = Factory::getDocument ();
+            
 		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
         $catid = $params->get('category',0);
 		
@@ -149,6 +151,8 @@ class WsacarouselHelper
     }
 	
 	static function getSlideLink(&$slide) {
+	    $doc = Factory::getDocument ();
+	    
 		$link = '';
 		$db = Factory::getDbo();
 		$app = Factory::getApplication();
@@ -198,6 +202,8 @@ class WsacarouselHelper
 	}
 	
 	static function getSlideDescription($slide, $limit) {
+	    $doc = Factory::getDocument ();
+	    
 		$sparams = new Registry($slide->params);
 		if($sparams->get('link_type','')=='article' && empty($slide->description)){ // if article and no description then get introtext as description
 			if(isset($slide->introtext)) $slide->description = $slide->introtext;
@@ -224,6 +230,8 @@ class WsacarouselHelper
 	}
 
 	private function truncateDescription($text, $limit) {
+	    $doc = Factory::getDocument ();
+	    
 		
 		$text = preg_replace('/{djmedia\s*(\d*)}/i', '', $text);
 		
@@ -247,6 +255,8 @@ class WsacarouselHelper
 	}
 	
 	static function getAnimationOptions(&$params) {
+	    $doc = Factory::getDocument ();
+	    
 		$transition = $params->get('effect');
 		$easing = $params->get('effect_type');
 		if(!is_numeric($duration = $params->get('duration'))) $duration = 0;
@@ -298,7 +308,8 @@ class WsacarouselHelper
 	
 	
 	static function getCSS3Transition($transition, $easing) {
-		
+	    $doc = Factory::getDocument ();
+	    
 		switch($easing) {
 			
 			case '': return 'linear';
@@ -343,6 +354,8 @@ class WsacarouselHelper
 	}
 	
 	static function getSlideTarget($link) {
+	    $doc = Factory::getDocument ();
+	    
 		
 		if(preg_match("/^http/",$link) && !preg_match("/^".str_replace(array('/','.','-'), array('\/','\.','\-'),Uri::base())."/",$link)) {
 			$target = '_blank';
@@ -354,6 +367,8 @@ class WsacarouselHelper
 	}
 	
 	static function getNavigation(&$params, &$mid) {
+	    $doc = Factory::getDocument ();
+	    
 	    
 	    $theme = $params->get('theme', 'default');
 	    $nav_buttons_style = $params->get('nav_buttons_style');
@@ -381,6 +396,8 @@ class WsacarouselHelper
 	}
 	
 	static function getStyles($params) {
+	    $doc = Factory::getDocument ();
+	    
 		if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
 		if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
 		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
