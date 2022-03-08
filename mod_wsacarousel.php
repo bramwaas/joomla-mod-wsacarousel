@@ -44,7 +44,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\ModuleHelper;
 use  Joomla\CMS\Filesystem\File;
-use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsaCarouselHelper;
+use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper;
 
 // Include the syndicate functions only once
 // require_once (dirname(__FILE__).DS.'helper.php');
