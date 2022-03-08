@@ -313,7 +313,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
           					if($action > 1) {
 								$desc = $params->get('show_desc') ? 'title="'.(!empty($slide->title) ? htmlspecialchars($slide->title.' ') : '').(!empty($slide->description) ? htmlspecialchars('<small>'.strip_tags($slide->description,"<p><a><b><strong><em><i><u>").'</small>') : '').'"':'';
 	          					if($jquery) {
-	          						$attr = 'class="image-link" data-'.$desc;
+	          						$attr = 'class="image-link" data-wsmodal="true" data-'.$desc;
 	          						
 	          					} else {
 	          						$attr = 'rel="lightbox-slider'.$mid.'" '.$desc;
