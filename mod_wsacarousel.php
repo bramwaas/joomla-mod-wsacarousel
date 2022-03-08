@@ -30,6 +30,7 @@
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.10.0 adjustments for bootstrap 5
  *   magnific popup 
+ *   adjustments to comply with Joomla namespaced model: copied WsacarouselHelper.php from helper.php 
  */
 
 // no direct access
@@ -43,9 +44,10 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\ModuleHelper;
 use  Joomla\CMS\Filesystem\File;
+use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsaCarouselhelper;
 
 // Include the syndicate functions only once
-require_once (dirname(__FILE__).DS.'helper.php');
+// require_once (dirname(__FILE__).DS.'helper.php');
 $app = Factory::getApplication();
 $document = Factory::getDocument();
 
@@ -56,13 +58,13 @@ if($params->get('slider_source')==1) {
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_COMPONENT'),'notice');
 		return;
 	}
-	$slides = modWsaCarouselHelper::getImagesFromWsaCarousel($params);
+	$slides = WsacarouselHelper::getImagesFromWsaCarousel($params);
 	if($slides==null) {
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_CATEGORY_OR_ITEMS'),'notice');
 		return;
 	}
 } else {
-	$slides = modWsaCarouselHelper::getImagesFromFolder($params);
+	$slides = WsacarouselHelper::getImagesFromFolder($params);
 	if($slides==null) {
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_CATALOG_OR_FILES'),'notice');
 		return;
@@ -198,13 +200,13 @@ switch($slider_type){
 		break;
 }
 
-$animationOptions = modWsaCarouselHelper::getAnimationOptions($params);
+$animationOptions = WsacarouselHelper::getAnimationOptions($params);
 $moduleSettings = json_encode(array('id' => $mid, 'slider_type' => $slider_type, 'slide_size' => $slide_size, 'visible_slides' => $count, 'direction' => $direction == 'rtl' ? 'right':'left',
 	'show_buttons' => $params->get('show_buttons',1), 'show_arrows' => $params->get('show_arrows',1), 'preload' => $preload, 'css3' => $params->get('css3', 0)
 ));
 
-$style = modWsaCarouselHelper::getStyles($params);
-$navigation = modWsaCarouselHelper::getNavigation($params,$mid);
+$style = WsacarouselHelper::getStyles($params);
+$navigation = WsacarouselHelper::getNavigation($params,$mid);
 $show = (object) array('arr'=>$params->get('show_arrows'), 'btn'=>$params->get('show_buttons'), 'idx'=>$params->get('show_custom_nav'));
 
 require ModuleHelper::getLayoutPath('mod_wsacarousel', $params->get('layout','default'));

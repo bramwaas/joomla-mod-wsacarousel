@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: helper.php 
+ * @version $Id: WsaCarousel.php 
  * @package wsacarousel
  * @subpackage wsacarousel Module
  * @copyright Copyright (C) 2018 -2022 A.H.C. Waasdorp, All rights reserved.
@@ -27,6 +27,7 @@
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.0.7
  * 1.10.0 4-3-2022 using bootstrap css icons  as default navigation icons
+ *        8-3-2022 copied from helper.php to comply with Joomla namespaced model
  */
 namespace WaasdorpSoekhan\Module\Wsacarousel\Site\Helper;
 // no direct access
@@ -82,7 +83,7 @@ class WsacarouselHelper
         
 		$images = array_slice($files, 0, $max);
 		
-		$target = modWsaCarouselHelper::getSlideTarget($params->get('link'));
+		$target = WsacarouselHelper::getSlideTarget($params->get('link'));
 		
 		foreach($images as $image) {
 			$slides[] = (object) array('title'=>'', 'description'=>'', 'image'=>$folder.'/'.$image, 'link'=>$params->get('link'), 'alt'=>$image, 'target'=>$target);
@@ -134,14 +135,14 @@ class WsacarouselHelper
 		
 		foreach($slides as $slide){
 			$slide->params = new Registry($slide->params);
-			$slide->link = modWsaCarouselHelper::getSlideLink($slide);
-			$slide->description = modWsaCarouselHelper::getSlideDescription($slide, $params->get('limit_desc'));
+			$slide->link = WsacarouselHelper::getSlideLink($slide);
+			$slide->description = WsacarouselHelper::getSlideDescription($slide, $params->get('limit_desc'));
 			$slide->alt = $slide->params->get('alt_attr', $slide->title);
 			$slide->img_title = $slide->params->get('title_attr');
 			$slide->target = $slide->params->get('link_target','');
 			$slide->rel = $slide->params->get('link_rel','');
 	
-			if(empty($slide->target)) $slide->target = modWsaCarouselHelper::getSlideTarget($slide->link);
+			if(empty($slide->target)) $slide->target = WsacarouselHelper::getSlideTarget($slide->link);
 		}
 		
 		return $slides;
@@ -280,7 +281,7 @@ class WsacarouselHelper
 		}
 		// add transition duration to delay
 		$delay = $delay + $duration;
-		$css3transition = $params->get('css3') ? modWsaCarouselHelper::getCSS3Transition($transition, $easing) : '';
+		$css3transition = $params->get('css3') ? WsacarouselHelper::getCSS3Transition($transition, $easing) : '';
 		
         // Joomla 3 - jQuery
 		if($transition=='ease') {
