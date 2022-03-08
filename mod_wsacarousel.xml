@@ -15,11 +15,11 @@
 		<filename>mod_wsacarousel.xml</filename>
 		<filename>helper.php</filename>
 		<filename>index.html</filename>
-		<folder>tmpl</folder>
 		<folder>assets</folder>
 		<folder>language</folder>
-		<folder>themes</folder>
 		<folder>src</folder>
+		<folder>themes</folder>
+		<folder>tmpl</folder>
 	</files>
 	<media destination="wsacarousel" folder="media">
 		<folder>jquery-easing</folder>
