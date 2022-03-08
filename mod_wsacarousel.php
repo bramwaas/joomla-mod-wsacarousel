@@ -47,7 +47,7 @@ use  Joomla\CMS\Filesystem\File;
 //use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper;
 
 // Include the syndicate functions only once
-require_once (dirname(__FILE__).DS.'Helper\WsacarouselHelper.php');
+require_once (dirname(__FILE__).DS.'Helper'.DS.'WsacarouselHelper.php');
 $app = Factory::getApplication();
 $document = Factory::getDocument();
 
@@ -58,7 +58,7 @@ if($params->get('slider_source')==1) {
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_COMPONENT'),'notice');
 		return;
 	}
-	$slides = WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper::getImagesFromWsaCarousel($params);
+	$slides = WsacarouselHelper::getImagesFromWsaCarousel($params);
 	if($slides==null) {
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_CATEGORY_OR_ITEMS'),'notice');
 		return;
