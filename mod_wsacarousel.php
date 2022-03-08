@@ -47,7 +47,7 @@ use  Joomla\CMS\Filesystem\File;
 //use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper;
 
 // Include the syndicate functions only once
-require_once (dirname(__FILE__).DS.'Helper'.DS.'WsacarouselHelper.php');
+require_once (dirname(__FILE__).DS.'src'.DS.'Helper'.DS.'WsacarouselHelper.php');
 $app = Factory::getApplication();
 $document = Factory::getDocument();
 
