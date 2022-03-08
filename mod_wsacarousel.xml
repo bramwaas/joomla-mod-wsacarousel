@@ -9,6 +9,7 @@
 	<authorUrl>http://www.waasdorpsoekhan.nl</authorUrl>
 	<version>1.10.0</version>
 	<description>Slider / Carousel Module</description>
+	<namespace path="src">WaasdorpSoekhan\Module\Wsacarousel</namespace>
 	<files>
 		<filename module="mod_wsacarousel">mod_wsacarousel.php</filename>
 		<filename>mod_wsacarousel.xml</filename>
@@ -18,13 +19,15 @@
 		<folder>assets</folder>
 		<folder>language</folder>
 		<folder>themes</folder>
+		<folder>src</folder>
 	</files>
 	<media destination="wsacarousel" folder="media">
 		<folder>jquery-easing</folder>
 	</media>
 	
 	<config>
-		<fields name="params" addfieldpath="/administrator/components/com_wsacarousel/models/fields">
+		<fields name="params" addfieldpath="/administrator/components/com_wsacarousel/models/fields"
+		   addfieldprefix="Joomla\Component\Wsacarousel\Administrator\Field" >
 			<fieldset name="basic">
 				<field name="slider_source" type="list" default="0" label="MOD_WSACAROUSEL_SLIDER_SOURCE" description="MOD_WSACAROUSEL_SLIDER_SOURCE_DESC">
 					<option value="0">MOD_WSACAROUSEL_FOLDER</option>
