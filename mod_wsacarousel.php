@@ -167,9 +167,9 @@ switch ($params->get('twbs_version',4)) {
 
 if($params->get('link_image',1) > 1 && $params->get('include_magnific',0) == 1) {
 	
-	    $document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/magnific/magnificpopupv1-1-0.js',  array('id'=>'magnific.js', 'defer'=>'defer'));
-		$document->addStyleSheet(Uri::root(true).'/modules/mod_wsacarousel/assets/magnific/magnific.css');
-		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js',  array('id'=>'magnific-init.js', 'defer'=>'defer'));
+    $document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/magnific/magnificpopupv1-1-0.js' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.js' , 'defer'=>'defer'));
+    $document->addStyleSheet(Uri::root(true).'/modules/mod_wsacarousel/assets/magnific/magnific.css' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.css'));
+		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js', array('version'=>'1.1.0') ,  array('id'=>'magnific-init.js', 'defer'=>'defer'));
 	 
 }
 
