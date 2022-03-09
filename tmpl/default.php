@@ -47,17 +47,12 @@ if ($params->get('include_twbs_js') == "1") { $carousel_class = 'wsacarousel';} 
 $wcag = $params->get('wcag', 1) ? ' tabindex="0"' : '';
 
 
-if(!is_numeric($duration = $params->get('duration'))) $duration = 600;
-if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 
 /* change duration of transformation
  needs a change in  .emulateTransitionEnd(600) in Carousel.prototype.slide = function (type, next)
  otherwise the slide disappears afte 0.6 sec.
  solved for BS4 no change needed anymore.
  */
-if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
-if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
-$slide_heightprc = ($slide_width > 0 ) ?  100 * $slide_height / $slide_width : 75;
 
 switch ($params->get('twbs_version',4)) {
     case "3": {
@@ -97,12 +92,12 @@ max-width: 100%;
 #wsacarousel" . $mid . "
 {
 position: relative;
-width: " . $count * 100 . "%;
-width: calc(" . $count . " * (100% + " . $style['marginr'] . "));
+width: " . $vicnt * 100 . "%;
+width: calc(" . $vicnt . " * (100% + " . $style['marginr'] . "));
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner{
 position: relative;
-width: " . 100/$count . "%;
+width: " . 100/$vicnt . "%;
 float: left;
 }
 #wsacarousel" . $mid . " .". $carousel_class ."-control{
@@ -111,10 +106,10 @@ float: left;
     display: flex;
     align-items: center;
     justify-content: center;
-	width: " . 15/$count . "%;
+	width: " . 15/$vicnt . "%;
 	}
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
-	margin: 0 " . 15/$count . "% 1rem;
+	margin: 0 " . 15/$vicnt . "% 1rem;
 right: 0;
 left: 0;
 width:auto;
@@ -125,7 +120,7 @@ padding-left: 0;
 }	
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
-right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
+right:  calc(100% - " . 100/$vicnt . "% + " . $style['marginr'] . ");
 }
 #wsacarousel-loader" . $mid . " .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover {
@@ -142,8 +137,8 @@ right:  calc(100% - " . 100/$count . "% + " . $style['marginr'] . ");
 }
 .play-pause {
 position: absolute;
-left: " . 50/$count . "%;
-left: calc(" . 50/$count . "% - 0.5*" . $style['marginr'] . ");  
+left: " . 50/$vicnt . "%;
+left: calc(" . 50/$vicnt . "% - 0.5*" . $style['marginr'] . ");  
 top: 50%;
 margin-top: -17.5px;
 margin-left: -17.5px;
@@ -179,7 +174,7 @@ top: 50%;
 }
 }
 #wsacarousel-container" . $mid . "  .".  $carousel_class ."-inner .".  $carousel_class ."-caption{
-position: " . ($params->get('caption_overlay', 1) == '1' ? 'absolute':'relative') . ";
+position: " .  $caption_overlay . ";
 bottom: 0;
 padding:0;
 left: 0;
@@ -222,7 +217,7 @@ padding-bottom: calc(" . $slide_heightprc . "% - " . $slide_heightprc / 100 . "*
 }";
 
 
-if ($count > 1) {
+if ($vicnt > 1) {
     
     $decl = $decl .
     "
@@ -232,11 +227,11 @@ if ($count > 1) {
 
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_prev . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ".active {
-  transform: translateX(-" . 100/$count . "%);
+  transform: translateX(-" . 100/$vicnt . "%);
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_next . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . ".active {
-  transform: translateX(" . 100/$count . "%);
+  transform: translateX(" . 100/$vicnt . "%);
 }
 
       
@@ -277,20 +272,20 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 
 <div class="wsacarousel<?php echo $params->get('moduleclass_sfx') ?>" style="border: 0px !important;">
 <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
-	<div id="wsacarousel<?php echo $mid; ?>" class=" wsacarousel-<?php echo $theme; echo $params->get('image_centering', 0) ? ' img-vcenter':'' ?>">
+	<div id="wsacarousel<?php echo $mid; ?>" class=" wsacarousel-<?php  echo ($image_centering) ? ' img-vcenter':'' ?>">
 		<!-- Container with data-options (animation and wsa-carousel only for info) -->
         <div id="wsacarousel-container<?php echo $mid; ?>" class="<?php echo $carousel_class; ?> slide " 
         <?php echo $bs_data; ?>ride="<?php echo $carousel_class; ?>"
-        <?php echo $bs_data; ?>interval="<?php echo ($params->get('autoplay')) ? $delay + $duration : 'false' ; ?>" 
+        <?php echo $bs_data; ?>interval="<?php echo $interval ; ?>" 
 		<?php echo $bs_data; ?>pause="hover"
-		<?php echo $bs_data; ?>wrap="<?php echo ($params->get('looponce')) ? 'false' : 'true' ; ?>"
+		<?php echo $bs_data; ?>wrap="<?php echo $wrap; ?>"
 		<?php echo $bs_data; ?>keyboard="true"
 		<?php echo $bs_data; ?>duration="<?php echo $duration; ?>"
 		>
 		
 		<!-- Indicators -->
-		<?php if($show->idx) { ?>
-         <ol class="<?php echo $carousel_class; ?>-indicators <?php echo ($show->idx==1)?' showOnHover':' wsashow';?>" >
+		<?php if($show_idx && !$idx_style) { ?>
+         <ol class="<?php echo $carousel_class; ?>-indicators <?php echo ($show_idx==1)?' showOnHover':' wsashow';?>" >
 		<?php $itemnr = 0; 
 			 foreach ($slides as $slide) { /* per slide */
 					$itemnr++;  ?>
@@ -304,21 +299,16 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 			 foreach ($slides as $slide) { /* frame per slide  */
 					$itemnr++; ?>
           			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo $bs_data .'interval="' . $slide->delay  . '" '; ?>>
-          		<?php for ($seq = 0; ($seq < $count); $seq++) { /* slides in frame */
+          		<?php for ($seq = 0; ($seq < $vicnt); $seq++) { /* slides in frame */
           		    $slide = $slides[($itemnr + $seq -1) % $slidecnt];
           		    $rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
           		    <div class="<?php echo $carousel_class; ?>-item-inner seq<?php echo $seq; ?>">
           			    <div class="<?php echo $carousel_class; ?>-item-content">
           				<?php if($slide->image) { 
-          					$action = $params->get('link_image',1);
+          					$action = $link_image;
           					if($action > 1) {
-								$desc = $params->get('show_desc') ? 'title="'.(!empty($slide->title) ? htmlspecialchars($slide->title.' ') : '').(!empty($slide->description) ? htmlspecialchars('<small>'.strip_tags($slide->description,"<p><a><b><strong><em><i><u>").'</small>') : '').'"':'';
-	          					if($jquery) {
+								$desc = ($show_desc) ? 'title="'.(!empty($slide->title) ? htmlspecialchars($slide->title.' ') : '').(!empty($slide->description) ? htmlspecialchars('<small>'.strip_tags($slide->description,"<p><a><b><strong><em><i><u>").'</small>') : '').'"':'';
 	          						$attr = 'class="image-link" data-wsmodal="true" data-'.$desc;
-	          						
-	          					} else {
-	          						$attr = 'rel="lightbox-slider'.$mid.'" '.$desc;
-	          					}
 							} else {
 								$attr = $rel;
 							}
@@ -333,20 +323,20 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 						<?php } ?>
 						</div>
 						<div class="<?php echo $carousel_class; ?>-item-height"></div>
-						<?php if($params->get('slider_source') && ($params->get('show_title') || ($params->get('show_desc') && !empty($slide->description) || ($params->get('show_readmore') && $slide->link)))) { ?>
+						<?php if ($params->get('slider_source') && ($params->get('show_title') || $show_desc && !empty($slide->description) || $show_readmore && $slide->link)) { ?>
 						<!-- Slide description area: START -->
 						<div class="<?php echo $carousel_class; ?>-caption" >
 							<?php if($params->get('show_title')) { ?>
 							<div class="slide-title">
-							<?php if($params->get('link_title') && $slide->link) { ?><a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>><?php } ?>
+							<?php if ($link_title && $slide->link) { ?><a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>><?php } ?>
 										<?php echo $slide->title; ?>
-									<?php if($params->get('link_title') && $slide->link) { ?></a><?php } ?>
+									<?php if($link_title && $slide->link) { ?></a><?php } ?>
 							</div>
 							<?php } ?>
 							
-							<?php if($params->get('show_desc')) { ?>
+							<?php if ($show_desc) { ?>
 							<div class="slide-text">
-									<?php if($params->get('link_desc') && $slide->link) { ?>
+									<?php if ($link_desc && $slide->link) { ?>
 									<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>>
 										<?php echo strip_tags($slide->description,"<br><span><em><i><b><strong><small><big>"); ?>
 									</a>
@@ -356,8 +346,8 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 							</div>
 							<?php } ?>
 							
-							<?php if($params->get('show_readmore') && $slide->link) { ?>
-								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo ($params->get('readmore_text',0) ? $params->get('readmore_text') : Text::_('MOD_WSACAROUSEL_READMORE')); ?></a>
+							<?php if($show_readmore && $slide->link) { ?>
+								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo $readmore_text ; ?></a>
 							<?php } ?>
 						</div>
 						<!-- Slide description area: END -->
@@ -369,39 +359,37 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
                 <?php } ?>
         	</div>
         </div>
-        <?php if($show->arr || $show->btn) { ?>
+        <?php if($show_arrows ) { ?>
         <div id="navigation<?php echo $mid; ?>" class="navigation-container">
-        	<?php if($show->arr) { ?>
-			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo ($show->arr==1) ? 'showOnHover':(($show->arr==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="prev" >
+			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo ($show_arrows==1) ? 'showOnHover':(($show_arrows==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="prev" >
         	<?php if($navigation->nav_buttons_style) { ?>
         	<img id="prev<?php echo $mid; ?>" class="prev-button " src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_NEXT') : Text::_('MOD_WSACAROUSEL_PREVIOUS'); ?>"<?php echo $wcag; ?> />
         	<?php } else { ?>
         	<span class="<?php echo $carousel_class; ?>-control-prev-icon" aria-hidden="true"></span>
 			<?php } ?>
 			</a>
-			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo ($show->arr==1) ? 'showOnHover':(($show->arr==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="next" >			
+			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo ($show_arrows==1) ? 'showOnHover':(($show_arrows==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="next" >			
         	<?php if($navigation->nav_buttons_style) { ?>
 			<img id="next<?php echo $mid; ?>" class="next-button " src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
         	<?php } else { ?>
         	<span class="<?php echo $carousel_class; ?>-control-next-icon" aria-hidden="true"></span>
 			<?php } ?>
 			</a>
-			<?php } ?>
         </div>
         <?php } ?>
-    	<?php  if($show->btn) { ?>
-    	<div class="play-pause <?php echo ($show->btn==1) ? 'showOnHover':(($show->btn==3) ? 'showBothOnHover' : 'wsashow' ); ?>" >
+    	<?php  if($show_buttons) { ?>
+    	<div class="play-pause <?php echo ($show_buttons==1) ? 'showOnHover':(($show_buttons==3) ? 'showBothOnHover' : 'wsashow' ); ?>" >
         	<img id="play<?php echo $mid; ?>" class="play-button "  role="button"
         	  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> >
         	<img id="pause<?php echo $mid; ?>" class="pause-button "  role="button"
         	 src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> >
         </div>	 
     	<?php }  ?>
-        <?php if($show->idx) { ?>
-		<div id="cust-navigation<?php echo $mid; ?>" class="<?php echo $params->get('idx_style', 0) ? 'navigation-numbers' : 'navigation-container-custom' ?> <?php echo $show->idx==2 ? 'showOnHover':'' ?>">
-			<?php $i = 0; foreach ($slides as $slide) { 
-				?><span class="load-button<?php if ($i == 0) echo ' load-button-active'; ?>"<?php echo $wcag; ?>><?php if($params->get('idx_style')) echo ($i+1) ?></span><?php 
-			$i++; } ?>
+        <?php if($show_idx && $idx_style) { ?>
+		<div id="cust-navigation<?php echo $mid; ?>" class=" navigation-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
+			<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
+			<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="load-button<?php if ($itemnr == 1) echo ' load-button-active'; ?>"<?php echo $wcag; ?>><?php if($params->get('idx_style')) echo ($itemnr); ?></span>
+			<?php } ?>
         </div>
         <?php } ?>
     </div>

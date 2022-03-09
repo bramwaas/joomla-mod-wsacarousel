@@ -36,29 +36,29 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-//jimport('joomla.filesystem.file');
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Helper\ModuleHelper;
-use  Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Uri\Uri;
 use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper;
-
 
 // Include the syndicate functions it thea are not autoloaded only once
 if (!class_exists('WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper')) {
-   echo '<!-- class WsacarouselHelper not autoloaded -->';  
+//   echo '<!-- class WsacarouselHelper not autoloaded -->';  
    require_once (dirname(__FILE__).DS.'src'.DS.'Helper'.DS.'WsacarouselHelper.php');
    class_alias('WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper', 'WsacarouselHelper');
 }
 $app = Factory::getApplication();
 $document = Factory::getDocument();
+$mid = $module->id;
+$direction = $document->direction;
+$asset_dir = Uri::root(true)."/modules/mod_wsacarousel/assets/";
 
 // taking the slides from the source
 if($params->get('slider_source')==1) {
-//	jimport('joomla.application.component.helper');
 	if(!ComponentHelper::isEnabled('com_wsacarousel', true)){
 		$app->enqueueMessage(Text::_('MOD_WSACAROUSEL_NO_COMPONENT'),'notice');
 		return;
@@ -76,142 +76,119 @@ if($params->get('slider_source')==1) {
 	}
 }
 $slidecnt = count($slides);
-$direction = $document->direction;
-// direction integration with joomla monster templates
-if ($app->input->get('direction') == 'rtl'){
-	$direction = 'rtl';
-} else if ($app->input->get('direction') == 'ltr') {
-	$direction = 'ltr';
-} else {
-	if (isset($_COOKIE['jmfdirection'])) {
-		$direction = $_COOKIE['jmfdirection'];
-	} else {
-		$direction = $app->input->get('jmfdirection', $direction);
-	}
+$slider_type = $params->get('slider_type',0);
+switch($slider_type){
+    case 2:
+        $slide_size = $width;
+        $vicnt = 1;
+        break;
+    case 1:
+        $slide_size = $height + $spacing;
+        break;
+    case 0:
+    default:
+        $slide_size = $width + $spacing;
+        break;
 }
-$params->set('direction', $direction);
 
-$theme = $params->get('theme', 'default');
-
-if($theme != '_override' ) {
-	$css = 'modules/mod_wsacarousel/themes/'.$theme.'/css/wsacarousel.css';
-} else {
-	$theme = 'override';
-	$css = 'templates/'.$app->getTemplate().'/css/wsacarousel.css';
+$css = $asset_dir.'css/wsacarousel.css'; // module css
+//$css = Uri::root(true).'/templates/'.$app->getTemplate().'/css/wsacarousel.css'; //TODO do we need template css ???
+if( File::exists(JPATH_ROOT . DS . $css) ) {
+   $document->addStyleSheet($css);
 }
-// add only if theme file exists
-if($theme != 'default' AND File::exists(JPATH_ROOT . DS . $css) ) {
-   $document->addStyleSheet(Uri::root(true).'/'.$css);
-}
-if($direction == 'rtl') { // load rtl css if exists in theme or joomla template
+if($direction == 'rtl') { // load rtl css if exists 
 	$css_rtl = File::stripExt($css).'_rtl.css';
 	if(File::exists(JPATH_ROOT . DS . $css_rtl)) {
-		$document->addStyleSheet(Uri::root(true).'/'.$css_rtl);
+		$document->addStyleSheet($css_rtl);
 	}
 }
 
-$jquery = version_compare(JVERSION, '3.8.0', '>=');
-
-$db = Factory::getDBO();
-$db->setQuery("SELECT manifest_cache FROM #__extensions WHERE element='mod_wsacarousel' LIMIT 1");
-$ver = json_decode($db->loadResult());
-$ver = $ver->version;
-
-
-HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
 $carousel_class = 'carousel';
-
 switch ($params->get('twbs_version',4)) {
     case "3" : {
         if ($params->get('include_twbs_css') == "1") {
-            $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap3.3.7.css", array('version'=>''),
+            $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap3.3.7.css", array('version'=>'3.3.7'),
                 array('id'=>'wsacarousel_bootstrap.css',));
         }
         if ($params->get('include_twbs_js') == "1") {
-            $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap3.3.7.js", array('version'=>''),
+            HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
+            $document->addScript($asset_dir . "js/wsacarousel_bootstrap3.3.7.js", array('version'=>'3.3.7'),
                 array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
         }
     }
     break;
-    case "5" :         {
+    case "5" : {
         if ($params->get('include_twbs_css') == "1") {
-            $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap5.1.css", array('version'=>''),
+            $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap5.1.css", array('version'=>'5.1.3'),
                 array('id'=>'wsacarousel_bootstrap.css',));
         }
         if ($params->get('include_twbs_js') == "1") {
             $carousel_class = 'wsacarousel';
-//TODO do we need popper ???
-//            $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
-//                array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
-            $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap5.1.js", array('version'=>''),
+            $document->addScript($asset_dir . "js/wsacarousel_bootstrap5.1.js", array('version'=>'5.1.3'),
                 array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
-                //	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
         }
-        
     }
     break; 
     case "4" :
-    default  : 
-        {
+    default  : {
             if ($params->get('include_twbs_css') == "1") {
-                $document->addStyleSheet(Uri::root(true)."/modules/mod_wsacarousel/assets/css/wsacarousel_bootstrap4.0.css", array('version'=>''),
+                $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap4.0.css", array('version'=>'4.3.1'),
                     array('id'=>'wsacarousel_bootstrap.css',));
             }
             if ($params->get('include_twbs_js') == "1") {
                 $carousel_class = 'wsacarousel';
+                HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
                 $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
                     array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
-                // javascript to CustomTag, to order it as latest	makes no difference so back in old way and using other class to b e sure tu use this script in stead of order
-                $document->addScript(Uri::root(true)."/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.3.js", array('version'=>''),
+                $document->addScript($asset_dir . "js/wsacarousel_bootstrap4.3.js", array('version'=>'4.3.1'),
                     array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
-                    //	    $document->addCustomTag('<script src="'. Uri::root(true) . '/modules/mod_wsacarousel/assets/js/wsacarousel_bootstrap4.0.js" id="wsacarousel_bootstrap.js" defer></script>'); // after all other js
             }
-            
         }
-        
 }
-
-
-if($params->get('link_image',1) > 1 && $params->get('include_magnific',0) == 1) {
-	
-    $document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/magnific/magnificpopupv1-1-0.js' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.js' , 'defer'=>'defer'));
-    $document->addStyleSheet(Uri::root(true).'/modules/mod_wsacarousel/assets/magnific/magnific.css' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.css'));
-		$document->addScript(Uri::root(true).'/modules/mod_wsacarousel/assets/js/magnific-init.js', array('version'=>'1.1.0') ,  array('id'=>'magnific-init.js', 'defer'=>'defer'));
-	 
+$link_image = $params->get('link_image',1);
+if($link_image > 1 && $params->get('include_magnific',0) == 1) {
+    $document->addScript($asset_dir.'magnific/magnificpopupv1-1-0.js' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.js' , 'defer'=>'defer'));
+    $document->addStyleSheet($asset_dir.'magnific/magnific.css' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.css'));
+    $document->addScript($asset_dir.'js/magnific-init.js', array('version'=>'1.1.0') ,  array('id'=>'magnific-init.js', 'defer'=>'defer'));
 }
-
+$caption_overlay = ($params->get('caption_overlay', 1)  ? 'absolute':'relative');
+$show_desc = $params->get('show_desc', 1);
+$show_readmore = $params->get('show_readmore', 0);
+$readmore_text = ($params->get('readmore_text', 0) ? $params->get('readmore_text') : Text::_('MOD_WSACAROUSEL_READMORE'));
+$link_title = $params->get('link_title', 1);
+$link_desc = $params->get('link_desc', 0);
+// $limit_desc = $params->get('limit_desc'); //only used in Helper.
+// $full_width = $params->get('full_width', 0)
+// $fit_to = $params->get('fit_to', 0);
+// $sort_by = $params->get('sort_by', 1);
+// tricky but value of assignment == value of assigned variable.
 if(!is_numeric($width = $params->get('image_width'))) $width = 240;
 if(!is_numeric($height = $params->get('image_height'))) $height = 180;
 if(!is_numeric($max = $params->get('max_images'))) $max = 20;
-if(!is_numeric($count = $params->get('visible_images'))) $count = 3;
+if(!is_numeric($vicnt = $params->get('visible_images'))) $vicnt = 3;
 if(!is_numeric($spacing = $params->get('space_between_images'))) $spacing = 10;
 if(!is_numeric($preload = $params->get('preload'))) $preload = 800;
-if($count>$slidecnt) $count = $slidecnt;
-if($count<1) $count = 1;
-if($count>$max) $count = $max;
-$mid = $module->id;
-$slider_type = $params->get('slider_type',0);
-switch($slider_type){
-	case 2:
-		$slide_size = $width;
-		$count = 1;
-		break;
-	case 1:
-		$slide_size = $height + $spacing;
-		break;
-	case 0:
-	default:
-		$slide_size = $width + $spacing;
-		break;
-}
+$slide_heightprc = ($width > 0 ) ?  100 * $height / $slide_width : 75;
+if($vicnt>$slidecnt) $vicnt = $slidecnt;
+if($vicnt<1) $vicnt = 1;
+if($vicnt>$max) $vicnt = $max;
+$image_centering = $params->get('image_centering', 0);
+if(!is_numeric($duration = $params->get('duration'))) $duration = 600;
+if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
+$interval = ($params->get('autoplay', 1)) ? 'false' : $delay + $duration;
+$wrap = $params->get('looponce', 0) ? 'false': 'true';
+$show_buttons = $params->get('show_buttons',1);
+$show_arrows = $params->get('show_arrows',1);
+$show_idx = $params->get('show_custom_nav', 0);
+$idx_style = $params->get('idx_style', 0);
+
 
 $animationOptions = WsacarouselHelper::getAnimationOptions($params);
-$moduleSettings = json_encode(array('id' => $mid, 'slider_type' => $slider_type, 'slide_size' => $slide_size, 'visible_slides' => $count, 'direction' => $direction == 'rtl' ? 'right':'left',
+$moduleSettings = json_encode(array('id' => $mid, 'slider_type' => $slider_type, 'slide_size' => $slide_size, 'visible_slides' => $vicnt, 'direction' => $direction == 'rtl' ? 'right':'left',
 	'show_buttons' => $params->get('show_buttons',1), 'show_arrows' => $params->get('show_arrows',1), 'preload' => $preload, 'css3' => $params->get('css3', 0)
 ));
 
 $style = WsacarouselHelper::getStyles($params);
 $navigation = WsacarouselHelper::getNavigation($params,$mid);
-$show = (object) array('arr'=>$params->get('show_arrows'), 'btn'=>$params->get('show_buttons'), 'idx'=>$params->get('show_custom_nav'));
 
 require ModuleHelper::getLayoutPath('mod_wsacarousel', $params->get('layout','default'));

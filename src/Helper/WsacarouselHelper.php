@@ -401,10 +401,10 @@ class WsacarouselHelper
 		if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
 		if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
 		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
-		if(!is_numeric($count = $params->get('visible_images'))) $count = 2;
+		if(!is_numeric($vicnt = $params->get('visible_images'))) $vicnt = 2;
 		if(!is_numeric($spacing = $params->get('space_between_images'))) $spacing = 0;
-		if($count<1) $count = 1;
-		if($count>$max) $count = $max;
+		if($vicnt<1) $vicnt = 1;
+		if($vicnt>$max) $vicnt = $max;
 		
 		
 		$desc_width = $params->get('desc_width', $slide_width);
@@ -425,7 +425,7 @@ class WsacarouselHelper
 				break;
 			case 1:
 				$slider_width = $slide_width;
-				$slider_height = $slide_height * $count + $spacing * ($count - 1);
+				$slider_height = $slide_height * $vicnt + $spacing * ($vicnt - 1);
 				$image_width = 'width: auto';
 				$image_height = 'height: 100%';
 				$padding_right = 0;
@@ -433,7 +433,7 @@ class WsacarouselHelper
 				break;
 			case 0:
 			default:
-				$slider_width = $slide_width * $count + $spacing * ($count - 1);
+				$slider_width = $slide_width * $vicnt + $spacing * ($vicnt - 1);
 				$slider_height = $slide_height;
 				$image_width = 'width: 100%';
 				$image_height = 'height: auto';
