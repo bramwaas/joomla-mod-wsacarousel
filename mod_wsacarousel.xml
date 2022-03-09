@@ -17,7 +17,6 @@
 		<folder>assets</folder>
 		<folder>language</folder>
 		<folder>src</folder>
-		<folder>themes</folder>
 		<folder>tmpl</folder>
 	</files>
 	<media destination="wsacarousel" folder="media">
