@@ -175,7 +175,7 @@ if($vicnt>$max) $vicnt = $max;
 $image_centering = $params->get('image_centering', 0);
 if(!is_numeric($duration = $params->get('duration'))) $duration = 600;
 if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
-$interval = ($params->get('autoplay', 1)) ? 'false' : $delay + $duration;
+$interval = ($params->get('autoplay', 1)) ? $delay + $duration : 'false';
 $wrap = $params->get('looponce', 0) ? 'false': 'true';
 $show_buttons = $params->get('show_buttons',1);
 $show_arrows = $params->get('show_arrows',1);
