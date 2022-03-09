@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" method="upgrade">
 	<name>mod_wsacarousel</name>
-	<creationDate>8-3-2022</creationDate>	
+	<creationDate>9-3-2022</creationDate>	
 	<author>A.H.C. Waasdorp</author>
 	<copyright>Copyright (C) 2018 - 2022 A.H.C. Waasdorp, All rights reserved.</copyright>
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
@@ -13,7 +13,6 @@
 	<files>
 		<filename module="mod_wsacarousel">mod_wsacarousel.php</filename>
 		<filename>mod_wsacarousel.xml</filename>
-		<filename>helper.php</filename>
 		<filename>index.html</filename>
 		<folder>assets</folder>
 		<folder>language</folder>

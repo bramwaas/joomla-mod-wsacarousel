@@ -44,10 +44,15 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\ModuleHelper;
 use  Joomla\CMS\Filesystem\File;
-//use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper;
+use WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper;
 
-// Include the syndicate functions only once
-require_once (dirname(__FILE__).DS.'src'.DS.'Helper'.DS.'WsacarouselHelper.php');
+
+// Include the syndicate functions it thea are not autoloaded only once
+if (!class_exists('WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper')) {
+   echo '<!-- class WsacarouselHelper not autoloaded -->';  
+   require_once (dirname(__FILE__).DS.'src'.DS.'Helper'.DS.'WsacarouselHelper.php');
+   class_alias('WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper', 'WsacarouselHelper');
+}
 $app = Factory::getApplication();
 $document = Factory::getDocument();
 
