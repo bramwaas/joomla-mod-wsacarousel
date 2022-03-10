@@ -28,6 +28,7 @@
  * 1.0.7
  * 1.10.0 4-3-2022 using bootstrap css icons  as default navigation icons
  *        8-3-2022 copied from helper.php to comply with Joomla namespaced model
+ *        10-3-2022 added doc blocks.
  */
 namespace WaasdorpSoekhan\Module\Wsacarousel\Site\Helper;
 // no direct access
@@ -43,13 +44,23 @@ use Joomla\Component\Content\Site\Helper\RouteHelper as ContentHelperRoute;
 use Joomla\Filesystem\Path;
 use Joomla\Registry\Registry;
 
-
+/**
+ * Helper for mod_wsacarousel
+ *
+ * @since  1.1
+ */
 class WsacarouselHelper
 {
-    
-    static function getImagesFromFolder(&$params) {
-        $doc = Factory::getDocument ();
-        
+    /**
+     * Gets images from the folder
+     *
+     * @param   mixed  &$params  The parameters set in the administrator section
+     *
+     * @return  array  $slides  Array of slides sorted in the correct order 
+     *
+     * @since   1.1
+     */
+     static function getImagesFromFolder(&$params) {
     	if(!is_numeric($max = $params->get('max_images'))) $max = 20;
         $folder = $params->get('image_folder');
         if(!$dir = @opendir($folder)) return null;
@@ -93,10 +104,17 @@ class WsacarouselHelper
 		return $slides;
     }
 	
-        static function getImagesFromWsaCarousel(&$params) {
-            $doc = Factory::getDocument ();
-            
-		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
+    /**
+     * Gets images from the component
+     *
+     * @param   mixed  &$params  The parameters set in the administrator section
+     *
+     * @return  array  $slides  Array of slides sorted in the correct order
+     *
+     * @since   1.1
+     */
+    static function getImagesFromWsaCarousel(&$params) {
+	   if(!is_numeric($max = $params->get('max_images'))) $max = 20;
         $catid = $params->get('category',0);
 		
 		// build query to get slides
@@ -149,10 +167,16 @@ class WsacarouselHelper
 		
 		return $slides;
     }
-	
+    /**
+     * Gets link for slide
+     *
+     * @param   mixed  &$slide  The slide object
+     *
+     * @return  string  $link  String with url of the link
+     *
+     * @since   1.1
+     */
 	static function getSlideLink(&$slide) {
-	    $doc = Factory::getDocument ();
-	    
 		$link = '';
 		$db = Factory::getDbo();
 		$app = Factory::getApplication();
@@ -200,10 +224,17 @@ class WsacarouselHelper
 		
 		return $link;
 	}
-	
+	/**
+	 * Gets description for slide and truncate if necessary
+	 *
+	 * @param   mixed  $slide  The slide object
+	 * @param   int    $limit  Limit number of charcters for description.
+	 *
+	 * @return  string  $desc  String with description
+	 *
+	 * @since   1.1
+	 */
 	static function getSlideDescription($slide, $limit) {
-	    $doc = Factory::getDocument ();
-	    
 		$sparams = new Registry($slide->params);
 		if($sparams->get('link_type','')=='article' && empty($slide->description)){ // if article and no description then get introtext as description
 			if(isset($slide->introtext)) $slide->description = $slide->introtext;
@@ -228,15 +259,19 @@ class WsacarouselHelper
 
 		return $desc;
 	}
-
+	/**
+	 * Truncate text
+	 *
+	 * @param   string  $text  The slide object
+	 * @param   int    $limit  Limit number of charcters for description.
+	 *
+	 * @return  string  $link  String with description
+	 *
+	 * @since   1.1
+	 */
 	private function truncateDescription($text, $limit) {
-	    $doc = Factory::getDocument ();
-	    
-		
 		$text = preg_replace('/{djmedia\s*(\d*)}/i', '', $text);
-		
 		$desc = strip_tags($text);
-		
 		if($limit && $limit - strlen($desc) < 0) {
 			$desc = substr($desc, 0, $limit);
 			// don't cut in the middle of the word unless it's longer than 20 chars
@@ -253,7 +288,15 @@ class WsacarouselHelper
 
 		return $desc;
 	}
-	
+	/**
+	 * Gets animation options from the parameters
+	 *
+	 * @param   mixed  &$params  The parameters set in the administrator section
+	 *
+	 * @return  mixed  $options  JSON Array of carousel options
+	 *
+	 * @since   1.1
+	 */
 	static function getAnimationOptions(&$params) {
 	    $doc = Factory::getDocument ();
 	    
@@ -306,6 +349,16 @@ class WsacarouselHelper
 		return $options;
 	}
 	
+	/**
+	 * Gets css3 transition from transition name and easing
+	 *
+	 * @param   string  $transition  One of the transition names.
+	 * @param   string  $easing      The easing type
+	 *
+	 * @return  string  $options   css3 transition.
+	 *
+	 * @since   1.1
+	 */
 	
 	static function getCSS3Transition($transition, $easing) {
 	    $doc = Factory::getDocument ();
