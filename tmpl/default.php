@@ -385,14 +385,14 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
         	 src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> >
         </div>	 
     	<?php }  ?>
-        <?php if($show_idx && $idx_style) { ?>
-		<div id="cust-navigation<?php echo $mid; ?>" class=" navigation-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
-			<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
-			<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="load-button<?php if ($itemnr == 1) echo ' load-button-active'; ?>"<?php echo $wcag; ?>><?php if($params->get('idx_style')) echo ($itemnr); ?></span>
-			<?php } ?>
-        </div>
-        <?php } ?>
     </div>
+    <?php if($show_idx && (1 == $idx_style)) { ?>
+	<div id="cust-navigation<?php echo $mid; ?>" class=" navigation-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
+		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
+		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="load-button<?php if ($itemnr == 1) echo ' load-button-active'; ?>"<?php echo $wcag; ?>><?php if($params->get('idx_style')) echo ($itemnr); ?></span>
+		<?php } ?>
+    </div>
+    <?php } ?>
 </div>
 </div>
 <div class="wsa<?php echo $carousel_class; ?>-end" style="clear: both"<?php echo $wcag; ?>></div>
