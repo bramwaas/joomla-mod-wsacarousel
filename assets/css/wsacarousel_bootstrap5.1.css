@@ -7,7 +7,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * only carousel.css copied 11/2/2018 BW 
  */
-// Notes on the classes:
+/* Notes on the classes:
 //
 // 1. .carousel.pointer-event should ideally be pan-y (to allow for users to scroll vertically)
 //    even when their scroll action started on a carousel, but for compatibility (with Firefox)
@@ -19,7 +19,7 @@
 //    slide in its in-transition state. Only one of these occurs at a time.
 // 5. .carousel-item-next.carousel-item-start and .carousel-item-prev.carousel-item-end
 //    is the upcoming slide in transition.
- 
+*/ 
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -134,13 +134,6 @@
 .wsacarousel-item-next,
 .wsacarousel-item-prev {
   display: block;
-}
-.carousel-item-next,
-.carousel-item-prev,
-.wsacarousel-item-next,
-.wsacarousel-item-prev { //TODO copied from bs4 remove if not necessary.
-//  position: absolute;
-//  top: 0;
 }
 
 /* rtl:begin:ignore */
