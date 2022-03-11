@@ -369,6 +369,15 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
     				</div><!-- end slide-frame -->
                     <?php } ?>
             	</div>
+
+    <?php if($show_idx && (1 == $idx_style)) { ?>
+	<div id="wsacarouselbelow<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
+		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
+		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsaind-nr<?php if ($itemnr == 1) echo ' active'; ?>" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
+		<?php } ?>
+    </div>
+    <?php } ?>
+
             </div>
             <?php if($show_arrows ) { ?>
             <div id="navigation<?php echo $mid; ?>" class="navigation-container">
@@ -398,12 +407,5 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
         	<?php }  ?>
         </div>
     </div>
-    <?php if($show_idx && (1 == $idx_style)) { ?>
-	<div id="wsacarouselbelow<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
-		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
-		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsaind-nr<?php if ($itemnr == 1) echo ' active'; ?>" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
-		<?php } ?>
-    </div>
-    <?php } ?>
 </div>
 <div class="wsa<?php echo $carousel_class; ?>-end" style="clear: both"<?php echo $wcag; ?>></div>
