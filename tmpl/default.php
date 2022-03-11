@@ -92,12 +92,12 @@ max-width: 100%;
 #wsacarousel" . $mid . "
 {
 position: relative;
-width: " . $vicnt * 100 . "%;
-width: calc(" . $vicnt . " * (100% + " . $style['marginr'] . "));
+width: " . $style['vicnt'] * 100 . "%;
+width: calc(" . $style['vicnt'] . " * (100% + " . $style['marginr'] . "));
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner{
 position: relative;
-width: " . 100/$vicnt . "%;
+width: " . 100/$style['vicnt'] . "%;
 float: left;
 }
 #wsacarousel" . $mid . " .". $carousel_class ."-control{
@@ -106,10 +106,10 @@ float: left;
     display: flex;
     align-items: center;
     justify-content: center;
-	width: " . 15/$vicnt . "%;
+	width: " . 15/$style['vicnt'] . "%;
 	}
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
-	margin: 0 " . 15/$vicnt . "% 1rem;
+	margin: 0 " . 15/$style['vicnt'] . "% 1rem;
 right: 0;
 left: 0;
 width:auto;
@@ -120,7 +120,7 @@ padding-left: 0;
 }	
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
-right:  calc(100% - " . 100/$vicnt . "% + " . $style['marginr'] . ");
+right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 }
 #wsacarousel-loader" . $mid . " .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover {
@@ -137,8 +137,8 @@ right:  calc(100% - " . 100/$vicnt . "% + " . $style['marginr'] . ");
 }
 .play-pause {
 position: absolute;
-left: " . 50/$vicnt . "%;
-left: calc(" . 50/$vicnt . "% - 0.5*" . $style['marginr'] . ");  
+left: " . 50/$style['vicnt'] . "%;
+left: calc(" . 50/$style['vicnt'] . "% - 0.5*" . $style['marginr'] . ");  
 top: 50%;
 margin-top: -17.5px;
 margin-left: -17.5px;
@@ -199,9 +199,9 @@ width:  calc(100% - " . $style['marginr'] . ");
 float: left;
 width: 0;
 height: 0;
-padding: 0 0 " . $slide_heightprc . "% 0 ;
+padding: 0 0 " . $style['heightprc'] . "% 0 ;
 margin: 0;
-padding-bottom: calc(" . $slide_heightprc . "% - " . $slide_heightprc / 100 . "*" . $style['marginr'] . ");
+padding-bottom: calc(" . $style['heightprc'] . "% - " . $style['heightprc'] / 100 . "*" . $style['marginr'] . ");
 }
     
     
@@ -217,7 +217,7 @@ padding-bottom: calc(" . $slide_heightprc . "% - " . $slide_heightprc / 100 . "*
 }";
 
 
-if ($vicnt > 1) {
+if ($style['vicnt'] > 1) {
     
     $decl = $decl .
     "
@@ -227,11 +227,11 @@ if ($vicnt > 1) {
 
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_prev . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ".active {
-  transform: translateX(-" . 100/$vicnt . "%);
+  transform: translateX(-" . 100/$style['vicnt'] . "%);
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_next . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . ".active {
-  transform: translateX(" . 100/$vicnt . "%);
+  transform: translateX(" . 100/$style['vicnt'] . "%);
 }
 
       
@@ -299,7 +299,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 			 foreach ($slides as $slide) { /* frame per slide  */
 					$itemnr++; ?>
           			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo $bs_data .'interval="' . $slide->delay  . '" '; ?>>
-          		<?php for ($seq = 0; ($seq < $vicnt); $seq++) { /* slides in frame */
+          		<?php for ($seq = 0; ($seq < $style['vicnt']); $seq++) { /* slides in frame */
           		    $slide = $slides[($itemnr + $seq -1) % $slidecnt];
           		    $rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
           		    <div class="<?php echo $carousel_class; ?>-item-inner seq<?php echo $seq; ?>">

@@ -223,7 +223,7 @@
 				<field name="duration" type="text" default="600" size="10" label="MOD_WSACAROUSEL_SLIDE_DURATION" description="MOD_WSACAROUSEL_SLIDE_DURATION_DESC"  />
 				<field name="delay" type="text" default="3000" size="10" label="MOD_WSACAROUSEL_NEXT_SLIDE_DELAY" description="MOD_WSACAROUSEL_NEXT_SLIDE_DELAY_DESC" />
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
-				<field name="preload" type="text" default="800" size="10" label="MOD_WSACAROUSEL_PRELOAD_DELAY_TIME" description="MOD_WSACAROUSEL_PRELOAD_DELAY_TIME_DESC" />
+				<!-- field name="preload" type="text" default="800" size="10" label="MOD_WSACAROUSEL_PRELOAD_DELAY_TIME" description="MOD_WSACAROUSEL_PRELOAD_DELAY_TIME_DESC" / -->
 				
 			</fieldset>
 			

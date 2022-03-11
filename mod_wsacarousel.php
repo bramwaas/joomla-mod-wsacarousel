@@ -76,20 +76,8 @@ if($params->get('slider_source')==1) {
 	}
 }
 $slidecnt = count($slides);
-$slider_type = $params->get('slider_type',0);
-switch($slider_type){
-    case 2:
-        $slide_size = $width;
-        $vicnt = 1;
-        break;
-    case 1:
-        $slide_size = $height + $spacing;
-        break;
-    case 0:
-    default:
-        $slide_size = $width + $spacing;
-        break;
-}
+//TODO only used in Helper.
+//$slider_type = $params->get('slider_type',0);
 
 $css = $asset_dir.'css/wsacarousel.css'; // module css
 //$css = Uri::root(true).'/templates/'.$app->getTemplate().'/css/wsacarousel.css'; //TODO do we need template css ???
@@ -162,16 +150,15 @@ $link_desc = $params->get('link_desc', 0);
 // $fit_to = $params->get('fit_to', 0);
 // $sort_by = $params->get('sort_by', 1);
 // tricky but value of assignment == value of assigned variable.
-if(!is_numeric($width = $params->get('image_width'))) $width = 240;
-if(!is_numeric($height = $params->get('image_height'))) $height = 180;
-if(!is_numeric($max = $params->get('max_images'))) $max = 20;
-if(!is_numeric($vicnt = $params->get('visible_images'))) $vicnt = 3;
-if(!is_numeric($spacing = $params->get('space_between_images'))) $spacing = 10;
-if(!is_numeric($preload = $params->get('preload'))) $preload = 800;
-$slide_heightprc = ($width > 0 ) ?  100 * $height / $slide_width : 75;
-if($vicnt>$slidecnt) $vicnt = $slidecnt;
-if($vicnt<1) $vicnt = 1;
-if($vicnt>$max) $vicnt = $max;
+//if(!is_numeric($width = $params->get('image_width'))) $width = 240; // only used in helper
+//if(!is_numeric($height = $params->get('image_height'))) $height = 180;
+//if(!is_numeric($max = $params->get('max_images'))) $max = 20;
+//if(!is_numeric($vicnt = $params->get('visible_images'))) $vicnt = 3;
+//if(!is_numeric($spacing = $params->get('space_between_images'))) $spacing = 10;
+//if(!is_numeric($preload = $params->get('preload'))) $preload = 800;
+//if($vicnt>$slidecnt) $vicnt = $slidecnt;
+//if($vicnt<1) $vicnt = 1;
+//if($vicnt>$max) $vicnt = $max;
 $image_centering = $params->get('image_centering', 0);
 if(!is_numeric($duration = $params->get('duration'))) $duration = 600;
 if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
@@ -182,13 +169,8 @@ $show_arrows = $params->get('show_arrows',1);
 $show_idx = $params->get('show_custom_nav', 0);
 $idx_style = $params->get('idx_style', 0);
 
-
 $animationOptions = WsacarouselHelper::getAnimationOptions($params);
-$moduleSettings = json_encode(array('id' => $mid, 'slider_type' => $slider_type, 'slide_size' => $slide_size, 'visible_slides' => $vicnt, 'direction' => $direction == 'rtl' ? 'right':'left',
-	'show_buttons' => $params->get('show_buttons',1), 'show_arrows' => $params->get('show_arrows',1), 'preload' => $preload, 'css3' => $params->get('css3', 0)
-));
-
-$style = WsacarouselHelper::getStyles($params);
-$navigation = WsacarouselHelper::getNavigation($params,$mid);
+$style = WsacarouselHelper::getStyles($params, $slidecnt);
+$navigation = WsacarouselHelper::getNavigation($params, $mid);
 
 require ModuleHelper::getLayoutPath('mod_wsacarousel', $params->get('layout','default'));

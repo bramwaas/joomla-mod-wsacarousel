@@ -95,7 +95,7 @@ class WsacarouselHelper
         
 		$images = array_slice($files, 0, $max);
 		
-		$target = WsacarouselHelper::getSlideTarget($params->get('link'));
+		$target = $this::getSlideTarget($params->get('link'));
 		
 		foreach($images as $image) {
 			$slides[] = (object) array('title'=>'', 'description'=>'', 'image'=>$folder.'/'.$image, 'link'=>$params->get('link'), 'alt'=>$image, 'target'=>$target);
@@ -155,14 +155,14 @@ class WsacarouselHelper
 		
 		foreach($slides as $slide){
 			$slide->params = new Registry($slide->params);
-			$slide->link = WsacarouselHelper::getSlideLink($slide);
-			$slide->description = WsacarouselHelper::getSlideDescription($slide, $params->get('limit_desc'));
+			$slide->link = $this::getSlideLink($slide);
+			$slide->description = $this::getSlideDescription($slide, $params->get('limit_desc'));
 			$slide->alt = $slide->params->get('alt_attr', $slide->title);
 			$slide->img_title = $slide->params->get('title_attr');
 			$slide->target = $slide->params->get('link_target','');
 			$slide->rel = $slide->params->get('link_rel','');
 	
-			if(empty($slide->target)) $slide->target = WsacarouselHelper::getSlideTarget($slide->link);
+			if(empty($slide->target)) $slide->target = $this::getSlideTarget($slide->link);
 		}
 		
 		return $slides;
@@ -205,8 +205,6 @@ class WsacarouselHelper
 				break;
 			case 'article':
 				if ($artid = $slide->params->get('id',$slide->params->get('link_article',0))) {
-//					jimport('joomla.application.component.model');
-//					require_once(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
 					BaseDatabaseModel::addIncludePath(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'models');
 					$model = BaseDatabaseModel::getInstance('Articles', 'ContentModel', array('ignore_request'=>true));
 					$model->setState('params', $app->getParams());
@@ -298,8 +296,6 @@ class WsacarouselHelper
 	 * @since   1.1
 	 */
 	static function getAnimationOptions(&$params) {
-	    $doc = Factory::getDocument ();
-	    
 		$transition = $params->get('effect');
 		$easing = $params->get('effect_type');
 		if(!is_numeric($duration = $params->get('duration'))) $duration = 0;
@@ -334,7 +330,7 @@ class WsacarouselHelper
 		}
 		// add transition duration to delay
 		$delay = $delay + $duration;
-		$css3transition = $params->get('css3') ? WsacarouselHelper::getCSS3Transition($transition, $easing) : '';
+		$css3transition = $params->get('css3') ? $this::getCSS3Transition($transition, $easing) : '';
 		
         // Joomla 3 - jQuery
 		if($transition=='ease') {
@@ -405,11 +401,16 @@ class WsacarouselHelper
 			default: return 'ease';
 		}
 	}
-	
+	/**
+	 * Gets link target for slide
+	 *
+	 * @param   string  $link  The slide object
+	 *
+	 * @return  string  $target  String with deafault target for the link
+	 *
+	 * @since   1.1
+	 */
 	static function getSlideTarget($link) {
-	    $doc = Factory::getDocument ();
-	    
-		
 		if(preg_match("/^http/",$link) && !preg_match("/^".str_replace(array('/','.','-'), array('\/','\.','\-'),Uri::base())."/",$link)) {
 			$target = '_blank';
 		} else {
@@ -418,11 +419,18 @@ class WsacarouselHelper
 		
 		return $target;
 	}
-	
-	static function getNavigation(&$params, &$mid) {
+	/**
+	 * Gets navigation variables for carousel
+	 *
+     * @param   mixed  &$params  The parameters set in the administrator section
+	 * @param   int    $mid  The module id
+	 *
+	 * @return  array  $navi  Array with several navigation params
+	 *
+	 * @since   1.1
+	 */
+	static function getNavigation(&$params, $mid) {
 	    $doc = Factory::getDocument ();
-	    
-	    
 	    $theme = $params->get('theme', 'default');
 	    $nav_buttons_style = $params->get('nav_buttons_style');
 	    if ($nav_buttons_style == '1') {
@@ -447,15 +455,23 @@ class WsacarouselHelper
 		
 		return $navi;
 	}
-	
-	static function getStyles($params) {
-	    $doc = Factory::getDocument ();
-	    
+	/**
+	 * Gets styles for some carousel elements
+	 *
+	 * @param   mixed  &$params  The parameters set in the administrator section
+	 * @param   int    $slidecnt  The number of slides found mximize number to display
+	 *
+	 * @return  array  $navi  Array with several navigation params
+	 *
+	 * @since   1.1
+	 */
+	static function getStyles(&$params, $slidecnt) {
 		if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
-		if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
+		if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 180;
 		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
 		if(!is_numeric($vicnt = $params->get('visible_images'))) $vicnt = 2;
 		if(!is_numeric($spacing = $params->get('space_between_images'))) $spacing = 0;
+		if($vicnt>$slidecnt) $vicnt = $slidecnt;
 		if($vicnt<1) $vicnt = 1;
 		if($vicnt>$max) $vicnt = $max;
 		
@@ -510,10 +526,11 @@ class WsacarouselHelper
 		}
 		
 		$style = array();
-		$style['slider'] = 'height: '.$slider_height.'px; width: '.$slider_width.'px;';
-//		if(!$params->get('full_width', 0)) $style['slider'].= ' max-width: '.$slider_width.'px !important;';
-		if($params->get('full_width', 0) ) $style['slider'] = ' width: 100%; height: auto;';
-		$style['image'] = $image_width.'; '.$image_height.';';		
+		$style['slider'] = ($params->get('full_width', 0) )? ' width: 100%; height: auto;' : 'height: '.$slider_height.'px; width: '.$slider_width.'px;';
+		$style['image'] = $image_width.'; '.$image_height.';';
+		$style['heightprc'] = ($slide_width > 0 ) ?  100 * $slide_height / $slide_width : 75;
+		$style['vicnt'] = $vicnt;
+		
 		$style['navi'] = 'top: '.$arrows_top.'; margin: 0 '.$arrows_horizontal.';';
 		$style['desc'] = 'bottom: '.$desc_bottom.'; left: '.$desc_left.'; width: '.$desc_width.';';
 		if($params->get('direction') == 'rtl') {
