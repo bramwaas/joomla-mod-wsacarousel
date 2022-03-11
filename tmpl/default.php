@@ -123,7 +123,8 @@ padding-left: 0;
 right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 }
 #wsacarousel-loader" . $mid . " .showBothOnHover,
-#wsacarousel-loader" . $mid . " .showOnHover {
+#wsacarousel-loader" . $mid . " .showOnHover,
+#wsacarouselbelow" . $mid . " .showOnHover {
 	opacity: 0;
 	-webkit-transition: opacity 200ms ease 50ms;
 	transition: opacity 200ms ease 50ms;
@@ -131,6 +132,8 @@ right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 #wsacarousel-loader" . $mid . " .wsashow,
 #wsacarousel-loader" . $mid . ":hover .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover:hover,
+#wsacarouselbelow" . $mid . " .wsashow,
+#wsacarouselbelow" . $mid . " .showOnHover:hover,
 #wsacarousel-loader" . $mid . " .showOnHover.focused  {
 	outline: 0;
 	opacity: 0.9;
@@ -162,10 +165,10 @@ width: calc(100% + " . $style['marginr'] . ");
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 margin: 0 15% 1rem;
 }
-#wsacarousel" . $mid . " .".  $carousel_class ."-indicators indicator-numbers {
+#wsacarouselbelow" . $mid  ." {
 position relative;
 }
-#wsacarousel" . $mid . ".indicator-numbers .wsaind-nr {
+#wsacarouselbelow" . $mid . ".indicator-numbers .wsaind-nr {
 background: initial;
 text-indent: unset;
 text-align: center;
@@ -396,7 +399,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
         </div>
     </div>
     <?php if($show_idx && (1 == $idx_style)) { ?>
-	<div id="cust-indicators<?php echo $mid; ?>" class=" indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
+	<div id="wsacarouselbelow<?php echo $mid; ?>" class=" indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
 		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
 		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsaind-nr<?php if ($itemnr == 1) echo ' active'; ?>" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
 		<?php } ?>
