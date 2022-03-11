@@ -95,7 +95,7 @@ class WsacarouselHelper
         
 		$images = array_slice($files, 0, $max);
 		
-		$target = $this::getSlideTarget($params->get('link'));
+		$target = self::getSlideTarget($params->get('link'));
 		
 		foreach($images as $image) {
 			$slides[] = (object) array('title'=>'', 'description'=>'', 'image'=>$folder.'/'.$image, 'link'=>$params->get('link'), 'alt'=>$image, 'target'=>$target);
@@ -155,14 +155,14 @@ class WsacarouselHelper
 		
 		foreach($slides as $slide){
 			$slide->params = new Registry($slide->params);
-			$slide->link = $this::getSlideLink($slide);
-			$slide->description = $this::getSlideDescription($slide, $params->get('limit_desc'));
+			$slide->link = self::getSlideLink($slide);
+			$slide->description = self::getSlideDescription($slide, $params->get('limit_desc'));
 			$slide->alt = $slide->params->get('alt_attr', $slide->title);
 			$slide->img_title = $slide->params->get('title_attr');
 			$slide->target = $slide->params->get('link_target','');
 			$slide->rel = $slide->params->get('link_rel','');
 	
-			if(empty($slide->target)) $slide->target = $this::getSlideTarget($slide->link);
+			if(empty($slide->target)) $slide->target = self::getSlideTarget($slide->link);
 		}
 		
 		return $slides;
@@ -330,7 +330,7 @@ class WsacarouselHelper
 		}
 		// add transition duration to delay
 		$delay = $delay + $duration;
-		$css3transition = $params->get('css3') ? $this::getCSS3Transition($transition, $easing) : '';
+		$css3transition = $params->get('css3') ? self::getCSS3Transition($transition, $easing) : '';
 		
         // Joomla 3 - jQuery
 		if($transition=='ease') {
