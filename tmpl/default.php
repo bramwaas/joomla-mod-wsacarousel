@@ -118,6 +118,14 @@ width:auto;
 justify-content: center;
 padding-left: 0;
 }	
+#wsacarouselbelow" . $mid  ." {
+position: relative;
+}
+#wsacarouselbelow" . $mid . ".indicator-numbers .wsaind-nr {
+background: initial;
+text-indent: unset;
+text-align: center;
+}
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
@@ -164,14 +172,6 @@ width: calc(100% + " . $style['marginr'] . ");
 }
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 margin: 0 15% 1rem;
-}
-#wsacarouselbelow" . $mid  ." {
-position relative;
-}
-#wsacarouselbelow" . $mid . ".indicator-numbers .wsaind-nr {
-background: initial;
-text-indent: unset;
-text-align: center;
 }
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
@@ -399,7 +399,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
         </div>
     </div>
     <?php if($show_idx && (1 == $idx_style)) { ?>
-	<div id="wsacarouselbelow<?php echo $mid; ?>" class=" indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
+	<div id="wsacarouselbelow<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
 		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
 		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsaind-nr<?php if ($itemnr == 1) echo ' active'; ?>" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
 		<?php } ?>
