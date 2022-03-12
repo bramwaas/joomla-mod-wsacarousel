@@ -174,7 +174,7 @@ margin: 0 15% 1rem;
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(" . $style['marginr'] . ");
 }
-#wsacarouselbottom" . $mid  ." {
+#wsacarousel" . $mid . "#wsacarouselbottom" . $mid  ." {
 width: calc(100% - " . $style['marginr'] . ");
 }
 .play-pause {
