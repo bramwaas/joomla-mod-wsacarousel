@@ -175,7 +175,7 @@ margin: 0 15% 1rem;
 right:  calc(" . $style['marginr'] . ");
 }
 #wsacarousel" . $mid . " #wsacarouselbottom" . $mid  ." {
-width: calc(100% - " . $style['marginr'] . ");
+margin-right: calc(15% + " . $style['marginr'] . ");
 }
 .play-pause {
 position: absolute;
