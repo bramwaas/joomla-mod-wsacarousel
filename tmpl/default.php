@@ -121,7 +121,7 @@ padding-left: 0;
 #wsacarousel" . $mid . " #wsacarouselbottom" . $mid  ." {
 position: relative;
 margin-left: 0;
-margin-right:  calc(100% - " . $style['vicnt'] . "% + " . $style['marginr'] . ");
+margin-right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 z-index: 2;
 }
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-bs-target] {
