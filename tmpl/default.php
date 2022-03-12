@@ -170,8 +170,6 @@ width: calc(100% + " . $style['marginr'] . ");
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 margin: 0 15% 1rem;
 }
-
-
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(" . $style['marginr'] . ");
