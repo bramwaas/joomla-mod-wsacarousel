@@ -118,8 +118,9 @@ width:auto;
 justify-content: center;
 padding-left: 0;
 }	
-#wsacarouselbottom" . $mid  ." {
+#wsacarousel" . $mid . " #wsacarouselbottom" . $mid  ." {
 position: relative;
+margin-right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 }
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-bs-target] {
 background: initial;
