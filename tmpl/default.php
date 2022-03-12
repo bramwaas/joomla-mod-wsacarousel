@@ -296,7 +296,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
     		
     		<!-- Indicators -->
     		<?php if($show_idx && !$idx_style) { ?>
-             <ol class="<?php echo $carousel_class; ?>-indicators <?php echo ($show_idx==1)?' showOnHover':' wsashow';?>" >
+             <ol class="<?php echo $carousel_class; ?>-indicators <?php echo (1==$show_idx)?' showOnHover':' wsashow';?>" >
     		<?php $itemnr = 0; 
     			 foreach ($slides as $slide) { /* per slide */
     					$itemnr++;  ?>
@@ -370,7 +370,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
                     <?php } ?>
             	</div>
                <?php if($show_idx && (1 == $idx_style)) { ?>
-            	<div id="wsacarouselbottom<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
+            	<div id="wsacarouselbottom<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo (1==$show_idx) ? 'showOnHover':'wsashow' ?>">
             		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
             		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" <?php if ($itemnr == 1) echo 'class="active"'; ?> <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
             		<?php } ?>
@@ -379,14 +379,14 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
            </div>
             <?php if($show_arrows ) { ?>
             <div id="navigation<?php echo $mid; ?>" class="navigation-container">
-    			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo ($show_arrows==1) ? 'showOnHover':(($show_arrows==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="prev" >
+    			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo (1==$show_arrows) ? 'showOnHover':((3==$show_arrows) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="prev" >
             	<?php if($navigation->nav_buttons_style) { ?>
             	<img id="prev<?php echo $mid; ?>" class="prev-button " src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_NEXT') : Text::_('MOD_WSACAROUSEL_PREVIOUS'); ?>"<?php echo $wcag; ?> />
             	<?php } else { ?>
             	<span class="<?php echo $carousel_class; ?>-control-prev-icon" aria-hidden="true"></span>
     			<?php } ?>
     			</a>
-    			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo ($show_arrows==1) ? 'showOnHover':(($show_arrows==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="next" >			
+    			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo (1==$show_arrows) ? 'showOnHover':((3==$show_arrows) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="next" >			
             	<?php if($navigation->nav_buttons_style) { ?>
     			<img id="next<?php echo $mid; ?>" class="next-button " src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
             	<?php } else { ?>
@@ -396,7 +396,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
             </div>
             <?php } ?>
         	<?php  if($show_buttons) { ?>
-        	<div class="play-pause <?php echo ($show_buttons==1) ? 'showOnHover':(($show_buttons==3) ? 'showBothOnHover' : 'wsashow' ); ?>" >
+        	<div class="play-pause <?php echo (1==$show_buttons) ? 'showOnHover':((3==$show_buttons) ? 'showBothOnHover' : 'wsashow' ); ?>" >
             	<img id="play<?php echo $mid; ?>" class="play-button "  role="button"
             	  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> >
             	<img id="pause<?php echo $mid; ?>" class="pause-button "  role="button"
