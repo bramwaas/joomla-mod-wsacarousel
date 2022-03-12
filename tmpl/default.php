@@ -118,10 +118,10 @@ width:auto;
 justify-content: center;
 padding-left: 0;
 }	
-#wsacarouselbelow" . $mid  ." {
+#wsacarouselbottom" . $mid  ." {
 position: relative;
 }
-#wsacarouselbelow" . $mid . ".indicator-numbers .wsaind-nr {
+#wsacarouselbottom" . $mid . ".indicator-numbers  [data-bs-target] {
 background: initial;
 text-indent: unset;
 text-align: center;
@@ -131,8 +131,7 @@ text-align: center;
 right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 }
 #wsacarousel-loader" . $mid . " .showBothOnHover,
-#wsacarousel-loader" . $mid . " .showOnHover,
-#wsacarouselbelow" . $mid . " .showOnHover {
+#wsacarousel-loader" . $mid . " .showOnHover {
 	opacity: 0;
 	-webkit-transition: opacity 200ms ease 50ms;
 	transition: opacity 200ms ease 50ms;
@@ -140,8 +139,6 @@ right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 #wsacarousel-loader" . $mid . " .wsashow,
 #wsacarousel-loader" . $mid . ":hover .showBothOnHover,
 #wsacarousel-loader" . $mid . " .showOnHover:hover,
-#wsacarouselbelow" . $mid . " .wsashow,
-#wsacarouselbelow" . $mid . " .showOnHover:hover,
 #wsacarousel-loader" . $mid . " .showOnHover.focused  {
 	outline: 0;
 	opacity: 0.9;
@@ -173,10 +170,13 @@ width: calc(100% + " . $style['marginr'] . ");
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 margin: 0 15% 1rem;
 }
+
+#wsacarouselbottom" . $mid  .",
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(" . $style['marginr'] . ");
 }
+
 .play-pause {
 position: absolute;
 left: 50%;
@@ -369,16 +369,14 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
     				</div><!-- end slide-frame -->
                     <?php } ?>
             	</div>
-
-    <?php if($show_idx && (1 == $idx_style)) { ?>
-	<div id="wsacarouselbelow<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
-		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
-		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsaind-nr<?php if ($itemnr == 1) echo ' active'; ?>" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
-		<?php } ?>
-    </div>
-    <?php } ?>
-
-            </div>
+               <?php if($show_idx && (1 == $idx_style)) { ?>
+            	<div id="wsacarouselbottom<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo $show_idx==2 ? 'showOnHover':'wsashow' ?>">
+            		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
+            		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" <?php if ($itemnr == 1) echo 'class="active"'; ?> <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
+            		<?php } ?>
+                </div>
+                <?php } ?>
+           </div>
             <?php if($show_arrows ) { ?>
             <div id="navigation<?php echo $mid; ?>" class="navigation-container">
     			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo ($show_arrows==1) ? 'showOnHover':(($show_arrows==3) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="prev" >
