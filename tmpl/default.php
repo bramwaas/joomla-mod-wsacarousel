@@ -171,12 +171,14 @@ width: calc(100% + " . $style['marginr'] . ");
 margin: 0 15% 1rem;
 }
 
-#wsacarouselbottom" . $mid  .",
+
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 right:  calc(" . $style['marginr'] . ");
 }
-
+#wsacarouselbottom" . $mid  ." {
+width: calc(100% - " . $style['marginr'] . ");
+}
 .play-pause {
 position: absolute;
 left: 50%;
