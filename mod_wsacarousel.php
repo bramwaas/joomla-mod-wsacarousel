@@ -59,7 +59,7 @@ $mid = $module->id;
 $direction = $document->direction;
 $carousel_class = 'carousel';
 $asset_dir = Uri::root(true)."/modules/mod_wsacarousel/assets/";
-if ($joomlaverge4) {$wa  = $this->getWebAssetManager();}
+if ($joomlaverge4) {$wa  = $document->getWebAssetManager();}
 
 // taking the slides from the source
 if($params->get('slider_source')==1) {
