@@ -30,7 +30,8 @@
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.1.0 adjustments for bootstrap 5
  *   magnific popup 
- *   adjustments to comply with Joomla namespaced model: copied WsacarouselHelper.php from helper.php 
+ *   adjustments to comply with Joomla namespaced model: copied WsacarouselHelper.php from helper.php
+ *   use asset for stylesheets and javascript in Joomla 4 
  */
 
 // no direct access
@@ -51,11 +52,14 @@ if (!class_exists('WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHel
    require_once (dirname(__FILE__).DS.'src'.DS.'Helper'.DS.'WsacarouselHelper.php');
    class_alias('WaasdorpSoekhan\Module\Wsacarousel\Site\Helper\WsacarouselHelper', 'WsacarouselHelper');
 }
+$joomlaverge4 = (version_compare(JVERSION, '4.0', '>='));
 $app = Factory::getApplication();
 $document = Factory::getDocument();
 $mid = $module->id;
 $direction = $document->direction;
+$carousel_class = 'carousel';
 $asset_dir = Uri::root(true)."/modules/mod_wsacarousel/assets/";
+if ($joomlaverge4) {$wa  = $this->getWebAssetManager();}
 
 // taking the slides from the source
 if($params->get('slider_source')==1) {
@@ -76,11 +80,64 @@ if($params->get('slider_source')==1) {
 	}
 }
 $slidecnt = count($slides);
-//TODO only used in Helper.
-//$slider_type = $params->get('slider_type',0);
+$link_image = $params->get('link_image',1);
+
 
 $css = $asset_dir.'css/wsacarousel.css'; // module css
-//$css = Uri::root(true).'/templates/'.$app->getTemplate().'/css/wsacarousel.css'; //TODO do we need template css ???
+
+if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for J4 
+    
+    switch ($params->get('twbs_version',5)) {
+        case "3" : {
+            if ($params->get('include_twbs_css') == "1") {
+                $wa->registerAndUseStyle('wsacarousel_bootstrap3.css', $asset_dir . 'css/wsacarousel_bootstrap3.3.7.css', ['version'=>'3.3.7'],[]);
+            }
+            if ($params->get('include_twbs_js') == "1") {
+                HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
+                $wa->registerAndUseScript('wsacarousel_bootstrap3.js', $asset_dir . 'js/wsacarousel_bootstrap3.3.7.js', ['version'=>'3.3.7'],  ['defer' => TRUE],['jquery']);
+            }
+        }
+        break;
+        case "4" :{
+            if ($params->get('include_twbs_css') == "1") {
+                $wa->registerAndUseStyle('wsacarousel_bootstrap4.css', $asset_dir . 'css/wsacarousel_bootstrap4.0.css', ['version'=>'4.3.1'],[]);
+            }
+            if ($params->get('include_twbs_js') == "1") {
+                $carousel_class = 'wsacarousel';
+                HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
+                $wa->registerScript('popper.js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', ['version'=>'1.16.1'], ['integrity' => 'sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', 'crossorigin' => 'anonymous', 'defer' => TRUE],[])
+                   ->registerAndUseScript('wsacarousel_bootstrap4.js', $asset_dir . 'js/wsacarousel_bootstrap4.3.js', ['version'=>'4.3.1'],  ['defer' => TRUE],['jquery', 'popper.js']);
+            }
+        }
+        case "5" :
+        default  : {
+            if ($params->get('include_twbs_css') == "1") {
+                $wa->registerAndUseStyle('wsacarousel_bootstrap5.css', $asset_dir . 'css/wsacarousel_bootstrap5.1.css', ['version'=>'5.1.3'],[]);
+            }
+            if ($params->get('include_twbs_js') == "1") {
+                $carousel_class = 'wsacarousel';
+                $wa->registerAndUseScript('wsacarousel_bootstrap5.js', $asset_dir . 'js/wsacarousel_bootstrap5.1.js', ['version'=>'5.1.3'],  ['defer' => TRUE],[]);
+            }
+        }
+        break;
+    }
+    if($link_image > 1 && $params->get('include_magnific',0) == 1) {
+        $wa->registerAndUseStyle('MagnificPopupV1.1.0.css', $asset_dir . 'magnific/magnific.css', ['version'=>'1.1.0'],[])
+           ->registerAndUseScript('MagnificPopupV1.1.0.js', $asset_dir . 'magnific/magnificpopupv1-1-0.js', ['version'=>'1.1.0'],  ['defer' => TRUE],[])
+           ->registerAndUseScript('magnific-init.js', $asset_dir . 'js/magnific-init.js', ['version'=>'1.1.0'],  ['defer' => TRUE],['MagnificPopupV1.1.0.js']);
+    }
+    if( File::exists(JPATH_ROOT . DS . $css) ) {
+      $wa->registerAndUseStyle('wsacarousel_module.css', $css, ['version'=>'1.1.0'],[]);
+    }
+    if($direction == 'rtl') { // load rtl css if exists
+        $css_rtl = File::stripExt($css).'_rtl.css';
+        if(File::exists(JPATH_ROOT . DS . $css_rtl)) {
+            $wa->registerAndUseStyle('wsacarousel_module_rtl.css', $css_rtl, ['version'=>'1.1.0'],[]);
+        }
+    }
+}
+else { // J3 code stylesheets and javascript addStyleSheet etc for J3 
+
 if( File::exists(JPATH_ROOT . DS . $css) ) {
    $document->addStyleSheet($css);
 }
@@ -91,7 +148,6 @@ if($direction == 'rtl') { // load rtl css if exists
 	}
 }
 
-$carousel_class = 'carousel';
 switch ($params->get('twbs_version',4)) {
     case "3" : {
         if ($params->get('include_twbs_css') == "1") {
@@ -133,12 +189,14 @@ switch ($params->get('twbs_version',4)) {
             }
         }
 }
-$link_image = $params->get('link_image',1);
 if($link_image > 1 && $params->get('include_magnific',0) == 1) {
     $document->addScript($asset_dir.'magnific/magnificpopupv1-1-0.js' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.js' , 'defer'=>'defer'));
     $document->addStyleSheet($asset_dir.'magnific/magnific.css' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.css'));
     $document->addScript($asset_dir.'js/magnific-init.js', array('version'=>'1.1.0') ,  array('id'=>'magnific-init.js', 'defer'=>'defer'));
 }
+
+} // end J3 code
+
 $caption_overlay = ($params->get('caption_overlay', 1)  ? 'absolute':'relative');
 $show_desc = $params->get('show_desc', 1);
 $show_readmore = $params->get('show_readmore', 0);
