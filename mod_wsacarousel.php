@@ -86,8 +86,7 @@ $css = $asset_dir.'css/wsacarousel.css'; // module css
 
 if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for J4 
     $wa  = $document->getWebAssetManager();
-    
-    switch ($params->get('twbs_version',5)) {
+    switch ($params->get('twbs_version',9)) {
         case "3" : {
             if ($params->get('include_twbs_css') == "1") {
                 $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'mod_wsacarousel/wsacarousel_bootstrap3.3.7.css', ['version'=>'3.3.7'],[]);
@@ -134,22 +133,9 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
            ->registerAndUseScript('MagnificPopupV1.1.0.js', $asset_dir . 'magnific/magnificpopupv1-1-0.js', ['version'=>'1.1.0'],  ['defer' => TRUE],[])
            ->registerAndUseScript('magnific-init.js',  'mod_wsacarousel/magnific-init.js', ['version'=>'1.1.0'],  ['defer' => TRUE],['MagnificPopupV1.1.0.js']);
     }
-    if( File::exists(JPATH_ROOT . DS . $css) ) {
-        $wa->registerAndUseStyle('module.wsacarousel.css', JPATH_ROOT . DS .$css, [],['direction'=>'LTR' ]);
-    }
+        $wa->registerAndUseStyle('module.wsacarousel.css', 'mod_wsacarousel/wsacarousel.css', [],['direction'=>'LTR' ]);
     if($direction == 'rtl') { // load rtl css if exists
-        $css_rtl = File::stripExt($css).'_rtl.css';
-        if(File::exists(JPATH_ROOT . DS . $css_rtl)) {
-            $wa->registerAndUseStyle('wsacarousel_module_rtl.css', JPATH_ROOT . DS .$css_rtl, [],['direction'=>'rtl' ]);
-        }
-    }
-    $test = 'wsacarousel_bootstrap.css';
-    if ($wa->assetExists('script',$test ))
-    {
-        echo '<!-- webasset ', $test, ' exists! -->';
-    } else
-    {
-        echo '<!-- webasset ', $test, ' does NOT exists! -->';
+            $wa->registerAndUseStyle('wsacarousel_module_rtl.css', 'mod_wsacarousel/wsacarousel_rtl.css', [],['direction'=>'rtl' ]);
     }
 }
 else { // J3 code stylesheets and javascript addStyleSheet etc for J3 
