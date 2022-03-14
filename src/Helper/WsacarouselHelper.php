@@ -29,6 +29,7 @@
  * 1.10.0 4-3-2022 using bootstrap css icons  as default navigation icons
  *        8-3-2022 copied from helper.php to comply with Joomla namespaced model
  *        10-3-2022 added doc blocks.
+ *        14-3-2022 added svg as default images for navigatition
  */
 namespace WaasdorpSoekhan\Module\Wsacarousel\Site\Helper;
 // no direct access
@@ -436,21 +437,19 @@ class WsacarouselHelper
 	    if ($nav_buttons_style == '1') {
 		  $prev = $params->get('left_arrow');
 		  $next = $params->get('right_arrow');
-		  if($params->get('slider_type')==1) {
-		      if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/up.png';
-		      if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/down.png';
-		  } else {
-		      if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/prev.png';
-		      if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/next.png';
-		  }
+	      if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-chevron-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+</svg>');
+	      if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-chevron-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+</svg>');
 	    }
 	    
 		$play = $params->get('play_button');
 		$pause = $params->get('pause_button');
 		
-		if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-play-circle" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+		if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-play-fill" viewBox="0 0 16 16">
+  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
 </svg>');
 		if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-pause-fill" viewBox="0 0 16 16">
   <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>

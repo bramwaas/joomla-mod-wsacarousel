@@ -37,7 +37,6 @@
 				</field>
 				<field name="slider_type" type="list" default="0" label="MOD_WSACAROUSEL_SLIDER_TYPE" description="MOD_WSACAROUSEL_SLIDER_TYPE_DESC">
 					<option value="0">MOD_WSACAROUSEL_HORIZONTAL</option>
-					<!-- option value="1">MOD_WSACAROUSEL_VERTICAL</option -->
 					<!-- option value="2">MOD_WSACAROUSEL_FADE</option -->
 				</field>
 				<!-- field name="theme" type="wsafolderlist" default="default" label="MOD_WSACAROUSEL_THEME" description="MOD_WSACAROUSEL_THEME_DESC" directory="modules/mod_wsacarousel/themes" hide_none="true" hide_default="true">
