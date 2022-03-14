@@ -105,7 +105,7 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
             if ($params->get('include_twbs_js') == "1") {
                 $carousel_class = 'wsacarousel';
                 HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
-                $wa->registerScript('popper.js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', ['version'=>'1.16.1'], ['integrity' => 'sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', 'crossorigin' => 'anonymous', 'defer' => TRUE],[])
+                $wa->registerScript('wsapopper.js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', ['version'=>'1.16.1'], ['integrity' => 'sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', 'crossorigin' => 'anonymous', 'defer' => TRUE],[])
                    ->registerAndUseScript('wsacarousel_bootstrap4.js', $asset_dir . 'js/wsacarousel_bootstrap4.3.js', ['version'=>'4.3.1'],  ['defer' => TRUE],['jquery', 'popper.js']);
             }
         }
@@ -135,12 +135,13 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
             $wa->registerAndUseStyle('wsacarousel_module_rtl.css', $css_rtl, [],[]);
         }
     }
-    if ($wa->assetExists('style', 'wsacarousel_module.css'))
+    $test = 'wsapopper.js';
+    if ($wa->assetExists('script',$test ))
     {
-        echo '<!-- Style "wsacarousel_module.css" exists! -->';
+        echo '<!-- webasset ', $test, ' exists! -->';
     } else
     {
-        echo '<!-- Style "wsacarousel_module.css" does NOT exists! -->';
+        echo '<!-- webasset ', $test, ' does NOT exists! -->';
     }
 }
 else { // J3 code stylesheets and javascript addStyleSheet etc for J3 
