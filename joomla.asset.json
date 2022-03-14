@@ -2,59 +2,35 @@
   "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
   "name": "mod_wsacarousel",
   "version": "2.1.0",
-  "description": "This file contains details of the default assets used by mod_wsacarousel, a Joomla 3 and 4 site module.",
+  "description": "This file contains details of the default (bootstrap 5) assets used by mod_wsacarousel, a Joomla 3 and 4 site module.",
   "license": "GPL-2.0-or-later",
   "assets": [
     {
-      "name": "xtemplate.wsa_bootstrap",
+      "name": "wsacarousel_module.css",
       "description": "The css file to be used when there is no specific styleid known, will be overridden by template.min.<templatestyleid>.css.",
       "type": "style",
-      "uri": "xtemplate.css",
-      "version": "2.1.0",
-      "dependencies": [
-        "bootstrap.theme.css"
-      ]
-      },
+      "uri": "wsacarousel_module.css",
+      "version": "1.1.0"
+    },
     {
-      "name": "ybootstrap.css",
+      "name": "wsacarousel_bootstrap.css",
       "description": "The default css file to be used with bootstrap 5.1.3, (only) after it is used can be overridden in index.php by older versions",
       "type": "style",
-      "uri": "",
-      "version": "5.1.3",
-      "attributes" : {
-        "integrity": "sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3",
-        "crossorigin": "anonymous"
-      }
-      },
+      "uri": "wsacarousel_bootstrap5.1.css",
+      "version": "5.1.3"
+     },
     {
-      "name": "zbootstrap.js",
+      "name": "wsacarousel_bootstrap.js",
       "description": "The default file containing the javascript used with bootstrap 5.1.3, can be overridden by older versions",
       "type": "script",
-      "uri": "",
+      "uri": "wsacarousel_bootstrap5.1.js",
       "version": "5.1.3",
       "attributes" : {
-        "defer": true,
-        "integrity": "sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p",
-        "crossorigin": "anonymous"
-      }
-      
-    },
-    {
-      "name": "xtemplate.wsa_bootstrap",
-      "description": "The file containing the javascript for this template. bootstrap has to be registered before usinf this script.",
-      "type": "script",
-      "uri": "xtemplate.js",
-      "version": "2.1.0",
-      "attributes" : {
         "defer": true
-      },
-      "dependencies": [
-        "core",
-        "bootstrap.js"
-     ]
+      }
     },
     {
-      "name": "ymagnificpopup",
+      "name": "magnificpopup",
       "type": "script",
       "uri": "xmagnificpopup/MagnificPopupV1-1-0.js",
       "version": "1.1.0",
