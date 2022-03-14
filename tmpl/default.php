@@ -81,7 +81,7 @@ switch ($params->get('twbs_version',4)) {
     }
 }
     
-$decl =  "
+$decl ="
 #wsacarousel-loader" . $mid . "
 {
  " . $style['slider'] . "
