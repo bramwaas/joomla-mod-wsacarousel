@@ -447,12 +447,11 @@ class WsacarouselHelper
 	    
 		$play = $params->get('play_button');
 		$pause = $params->get('pause_button');
-		$pause = 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
-  <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-</svg>';
 		
 		if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'modules/mod_wsacarousel/themes/'.$theme.'/images/play.png';
-		if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'modules/mod_wsacarousel/themes/'.$theme.'/images/pause.png';
+		if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
+  <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+</svg>';
 		
 		$navi = (object) array('nav_buttons_style'=>$nav_buttons_style , 'prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
 		
