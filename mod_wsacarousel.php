@@ -90,16 +90,16 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
     switch ($params->get('twbs_version',5)) {
         case "3" : {
             if ($params->get('include_twbs_css') == "1") {
-                $wa->registerAndUseStyle('wsacarousel_bootstrap.css', $asset_dir . 'css/wsacarousel_bootstrap3.3.7.css', ['version'=>'3.3.7'],[]);
+                $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'mod_wsacarousel/wsacarousel_bootstrap3.3.7.css', ['version'=>'3.3.7'],[]);
             }
             if ($params->get('include_twbs_js') == "1") {
-                $wa->registerAndUseScript('wsacarousel_bootstrap.js', $asset_dir . 'js/wsacarousel_bootstrap3.3.7.js', ['version'=>'3.3.7'],  ['defer' => TRUE],['jquery']);
+                $wa->registerAndUseScript('wsacarousel_bootstrap.js', 'mod_wsacarousel/wsacarousel_bootstrap3.3.7.js', ['version'=>'3.3.7'],  ['defer' => TRUE],['jquery']);
             }
         }
         break;
         case "4" :{
             if ($params->get('include_twbs_css') == "1") {
-                $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'wsacarousel_bootstrap4.0.css', ['version'=>'4.3.1'],[]);
+                $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'mod_wsacarousel/wsacarousel_bootstrap4.0.css', ['version'=>'4.3.1'],[]);
             }
             if ($params->get('include_twbs_js') == "1") {
                 $carousel_class = 'wsacarousel';
@@ -107,13 +107,14 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
                    ->registerAndUseScript('wsacarousel_bootstrap.js', 'mod_wsacarousel/wsacarousel_bootstrap4.3.js', ['version'=>'4.3.1'],  ['defer' => TRUE],['jquery', 'popper.js']);
             }
         }
+        break;
         case "5" : {
             if ($params->get('include_twbs_css') == "1") {
-                $wa->registerAndUseStyle('wsacarousel_bootstrap.css', $asset_dir . 'css/wsacarousel_bootstrap5.1.css', ['version'=>'5.1.3'],[]);
+                $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'mod_wsacarousel/wsacarousel_bootstrap5.1.css', ['version'=>'5.1.3'],[]);
             }
             if ($params->get('include_twbs_js') == "1") {
                 $carousel_class = 'wsacarousel';
-                $wa->registerAndUseScript('wsacarousel_bootstrap.js', $asset_dir . 'js/wsacarousel_bootstrap5.1.js', ['version'=>'5.1.3'],  ['defer' => TRUE],[]);
+                $wa->registerAndUseScript('wsacarousel_bootstrap.js', 'mod_wsacarousel/wsacarousel_bootstrap5.1.js', ['version'=>'5.1.3'],  ['defer' => TRUE],[]);
             }
         }
         break;
@@ -131,15 +132,15 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
     if($link_image > 1 && $params->get('include_magnific',0) == 1) {
         $wa->registerAndUseStyle('MagnificPopupV1.1.0.css', $asset_dir . 'magnific/magnific.css', ['version'=>'1.1.0'],[])
            ->registerAndUseScript('MagnificPopupV1.1.0.js', $asset_dir . 'magnific/magnificpopupv1-1-0.js', ['version'=>'1.1.0'],  ['defer' => TRUE],[])
-           ->registerAndUseScript('magnific-init.js', $asset_dir . 'js/magnific-init.js', ['version'=>'1.1.0'],  ['defer' => TRUE],['MagnificPopupV1.1.0.js']);
+           ->registerAndUseScript('magnific-init.js',  'mod_wsacarousel/magnific-init.js', ['version'=>'1.1.0'],  ['defer' => TRUE],['MagnificPopupV1.1.0.js']);
     }
     if( File::exists(JPATH_ROOT . DS . $css) ) {
-        $wa->registerAndUseStyle('module.wsacarousel.css', $css, [],['direction'=>'LTR' ]);
+        $wa->registerAndUseStyle('module.wsacarousel.css', JPATH_ROOT . DS .$css, [],['direction'=>'LTR' ]);
     }
     if($direction == 'rtl') { // load rtl css if exists
         $css_rtl = File::stripExt($css).'_rtl.css';
         if(File::exists(JPATH_ROOT . DS . $css_rtl)) {
-            $wa->registerAndUseStyle('wsacarousel_module_rtl.css', $css_rtl, [],['direction'=>'rtl' ]);
+            $wa->registerAndUseStyle('wsacarousel_module_rtl.css', JPATH_ROOT . DS .$css_rtl, [],['direction'=>'rtl' ]);
         }
     }
     $test = 'wsacarousel_bootstrap.css';
