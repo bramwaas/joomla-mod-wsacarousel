@@ -6,7 +6,7 @@
   "license": "GPL-2.0-or-later",
   "assets": [
     {
-      "name": "wsacarousel_module.css",
+      "name": "module.wsacarousel.css",
       "description": "The css file to be used when there is no specific styleid known, will be overridden by template.min.<templatestyleid>.css.",
       "type": "style",
       "uri": "wsacarousel_module.css",
@@ -37,6 +37,17 @@
       "dependencies": [
       	"jquery"
       ]
-	}
+	},
+    {
+      "name": "module.mod_wsacarousel",
+      "description": "Default with bootstrap 5 override with older bootstrap versions in code after this is used",
+      "type": "preset",
+      "dependencies": [
+        "wsacarousel_bootstrap.css#style",
+        "module.wsacarousel.css#style",
+        "wsacarousel_bootstrap.js#script"
+      ]
+    }
+	
   ]
 }

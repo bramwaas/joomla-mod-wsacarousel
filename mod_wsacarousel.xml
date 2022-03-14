@@ -7,7 +7,7 @@
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
 	<authorEmail>contact@waasdorpsoekhan.nl</authorEmail>
 	<authorUrl>http://www.waasdorpsoekhan.nl</authorUrl>
-	<version>1.10.0</version>
+	<version>1.1.0</version>
 	<description>Slider / Carousel Module</description>
 	<namespace path="src">WaasdorpSoekhan\Module\Wsacarousel</namespace>
 	<files>
@@ -16,14 +16,20 @@
 		<filename>index.html</filename>
 		<filename>joomla.asset.json</filename>
 		<folder>assets</folder>
+		<folder>css</folder>
+		<folder>js</folder>
 		<folder>language</folder>
 		<folder>src</folder>
 		<folder>tmpl</folder>
 	</files>
-	<media destination="wsacarousel" folder="media">
+	<media destination="mod_wsacarousel" folder="media">
 		<folder>jquery-easing</folder>
 	</media>
-	
+	<media destination="mod_wsacarousel" folder="assets">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+	</media>	
 	<config>
 		<fields name="params" addfieldpath="/administrator/components/com_wsacarousel/models/fields"
 		   addfieldprefix="Joomla\Component\Wsacarousel\Administrator\Field" >
