@@ -128,6 +128,7 @@ z-index: 2;
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-bs-target], 
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
 background: initial;
+border: solid 10px transparent;
 text-indent: unset;
 text-align: center;
 }
@@ -377,7 +378,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
                <?php if($show_idx && (1 == $idx_style)) { ?>
             	<div id="wsacarouselbottom<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo (1==$show_idx) ? 'showOnHover':'wsashow' ?>">
             		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
-            		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" <?php if ($itemnr == 1) echo 'class="active"'; ?> <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
+            		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" <?php if ($itemnr == 1) echo 'class="active"'; ?> role="button" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
             		<?php } ?>
                 </div>
                 <?php } ?>
