@@ -128,9 +128,11 @@ z-index: 2;
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-bs-target], 
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
 background: initial;
-border: solid 10px transparent;
 text-indent: unset;
 text-align: center;
+}
+#wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
+border: solid 10px transparent;
 }
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
