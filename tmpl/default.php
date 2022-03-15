@@ -120,11 +120,13 @@ padding-left: 0;
 }	
 #wsacarousel" . $mid . " #wsacarouselbottom" . $mid  ." {
 position: relative;
+bottom:0;
 margin-left: 0;
 margin-right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 z-index: 2;
 }
-#wsacarouselbottom" . $mid . ".indicator-numbers  [data-bs-target] {
+#wsacarouselbottom" . $mid . ".indicator-numbers  [data-bs-target], 
+#wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
 background: initial;
 text-indent: unset;
 text-align: center;
