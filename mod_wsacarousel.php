@@ -125,7 +125,16 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
             if ($params->get('include_twbs_js') == "1") {
                 $carousel_class = 'carousel';
                 $wa->useScript('bootstrap.carousel');
+                if ($wa->assetExists('script', 'bootstrap.carousel'))
+                {
+                    echo '<!--  "bootstrap.carousel" exists! -->';
+                } else
+                {
+                    echo '<!--  "bootstrap.carousel" does NOT exists! -->';
+                }
+                
             }
+            
         }
         break;
     }
