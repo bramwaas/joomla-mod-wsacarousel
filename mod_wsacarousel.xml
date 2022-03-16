@@ -72,7 +72,7 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="twbs_version" type="radio" layout="joomla.form.field.radio.buttons"  class="switcher btn-group" default="3" label="MOD_WSACAROUSEL_TWBS_VERSION" description="MOD_WSACAROUSEL_TWBS_VERSION_DESC" showon="slider_source:1">
+				<field name="twbs_version" type="radio" layout="joomla.form.field.radio.buttons"  class="noswitcher btn-group" default="3" label="MOD_WSACAROUSEL_TWBS_VERSION" description="MOD_WSACAROUSEL_TWBS_VERSION_DESC" showon="slider_source:1">
 					<option value="3">3.3.7</option>
 					<option value="4">4.3.1</option>
 					<option value="5">5.1.3</option>
@@ -144,19 +144,19 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="show_buttons" type="radio" layout="joomla.form.field.radio.buttons"  class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE" description="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE_DESC">
+				<field name="show_buttons" type="radio" layout="joomla.form.field.radio.buttons"  class="noswitcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE" description="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
 					<option value="3">MOD_WSACAROUSEL_ON_MOUSE_OVER_SLIDER</option>
 				</field>
-				<field name="show_arrows" type="radio" layout="joomla.form.field.radio.buttons"  class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_NEXT_PREV" description="MOD_WSACAROUSEL_SHOW_NEXT_PREV_DESC">
+				<field name="show_arrows" type="radio" layout="joomla.form.field.radio.buttons"  class="noswitcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_NEXT_PREV" description="MOD_WSACAROUSEL_SHOW_NEXT_PREV_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
 					<option value="3">MOD_WSACAROUSEL_ON_MOUSE_OVER_SLIDER</option>
 				</field>
-				<field name="show_custom_nav" type="radio" layout="joomla.form.field.radio.buttons"  class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION" description="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION_DESC">
+				<field name="show_custom_nav" type="radio" layout="joomla.form.field.radio.buttons"  class="noswitcher btn-group" default="0" label="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION" description="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
