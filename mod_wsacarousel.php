@@ -118,6 +118,7 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
         }
         break;
         default  : {
+            $params->set('twbs_version',5);
             if ($params->get('include_twbs_css') == "1") {
                 $wa->useStyle('bootstrap.css');
             }
@@ -177,6 +178,8 @@ switch ($params->get('twbs_version',4)) {
     break; 
     case "4" :
     default  : {
+        $params->set('twbs_version',4);
+        
             if ($params->get('include_twbs_css') == "1") {
                 $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap4.0.css", array('version'=>'4.3.1'),
                     array('id'=>'wsacarousel_bootstrap.css',));
