@@ -35,16 +35,14 @@
  *       5-3-2022 choosing default navbuttons or image. Autoplay on/off
  *       6-3-2022 fill frame with php instead of javascript.  
  *       7-3-2022 looponce on off working.
- *       8-3-2022 magnificPopup       
+ *       8-3-2022 magnificPopup 
+ *       17-3-2022 set $carousel_class and $wcag in mod_wsacarousel.php and use here.      
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-$doc = Factory::getDocument ();
 
-if ($params->get('include_twbs_js') == "1") { $carousel_class = 'wsacarousel';} else {$carousel_class = 'carousel';}
-$wcag = $params->get('wcag', 1) ? ' tabindex="0"' : '';
 
 
 
@@ -260,7 +258,7 @@ if ($style['vicnt'] > 1) {
 }";
 }
 
-$doc->addStyleDeclaration($decl);
+$document->addStyleDeclaration($decl);
 /* //TODO work without jQuery in BS5
 if ($params->get('twbs_version',4) == 5 ) {
 	$decl = "
@@ -283,7 +281,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 })
 ";
 
-    $doc->addScriptDeclaration($decl);
+    $document->addScriptDeclaration($decl);
 
 
 

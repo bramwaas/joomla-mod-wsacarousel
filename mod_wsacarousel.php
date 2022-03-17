@@ -32,6 +32,7 @@
  *   magnific popup 
  *   adjustments to comply with Joomla namespaced model: copied WsacarouselHelper.php from helper.php
  *   use asset for stylesheets and javascript in Joomla 4 
+ *   set variables here and use in template (default.php) 
  */
 
 // no direct access
@@ -119,11 +120,11 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
         break;
         default  : {
             $params->set('twbs_version',5);
+            $carousel_class = 'carousel';
             if ($params->get('include_twbs_css') == "1") {
                 $wa->useStyle('bootstrap.css');
             }
             if ($params->get('include_twbs_js') == "1") {
-                $carousel_class = 'carousel';
                 $wa->useScript('bootstrap.carousel');
                 if ($wa->assetExists('script', 'bootstrap.carousel'))
                 {
@@ -241,6 +242,7 @@ $show_arrows = $params->get('show_arrows',1);
 $show_idx = $params->get('show_custom_nav', 0);
 $idx_style = $params->get('idx_style', 0);
 
+$wcag = $params->get('wcag', 1) ? ' tabindex="0"' : '';
 $animationOptions = WsacarouselHelper::getAnimationOptions($params);
 $style = WsacarouselHelper::getStyles($params, $slidecnt);
 $navigation = WsacarouselHelper::getNavigation($params, $mid);
