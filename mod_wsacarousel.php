@@ -144,9 +144,9 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
            ->registerAndUseScript('MagnificPopupV1.1.0.js', $asset_dir . 'magnific/magnificpopupv1-1-0.js', ['version'=>'1.1.0'],  ['defer' => TRUE],[])
            ->registerAndUseScript('magnific-init.js',  'mod_wsacarousel/magnific-init.js', ['version'=>'1.1.0'],  ['defer' => TRUE],['MagnificPopupV1.1.0.js']);
     }
-        $wa->registerAndUseStyle('module.wsacarousel.css', 'mod_wsacarousel/wsacarousel.css', [],['direction'=>'LTR' ]);
+        $wa->registerAndUseStyle('module.wsacarousel.css', 'mod_wsacarousel/wsacarousel.css', [],[]);
     if($direction == 'rtl') { // load rtl css if exists
-            $wa->registerAndUseStyle('wsacarousel_module_rtl.css', 'mod_wsacarousel/wsacarousel_rtl.css', [],['direction'=>'rtl' ]);
+            $wa->registerAndUseStyle('wsacarousel_module.css', 'mod_wsacarousel/wsacarousel_rtl.css', [],['direction'=>'rtl' ]);
     }
 }
 else { // J3 code stylesheets and javascript addStyleSheet etc for J3 
@@ -161,7 +161,7 @@ if($direction == 'rtl') { // load rtl css if exists
 	}
 }
 
-switch ($params->get('twbs_version',4)) {
+switch ($params->get('twbs_version',9)) {
     case "3" : {
         if ($params->get('include_twbs_css') == "1") {
             $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap3.3.7.css", array('version'=>'3.3.7'),
@@ -174,7 +174,25 @@ switch ($params->get('twbs_version',4)) {
         }
     }
     break;
-    case "5" : {
+    case "4" : {
+        
+        if ($params->get('include_twbs_css') == "1") {
+            $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap4.0.css", array('version'=>'4.3.1'),
+                array('id'=>'wsacarousel_bootstrap.css',));
+        }
+        if ($params->get('include_twbs_js') == "1") {
+            $carousel_class = 'wsacarousel';
+            HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
+            $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
+                array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
+            $document->addScript($asset_dir . "js/wsacarousel_bootstrap4.3.js", array('version'=>'4.3.1'),
+                array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
+        }
+    }
+    break;
+    case "5" :
+    default  :  {
+        $params->set('twbs_version',5);
         if ($params->get('include_twbs_css') == "1") {
             $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap5.1.css", array('version'=>'5.1.3'),
                 array('id'=>'wsacarousel_bootstrap.css',));
@@ -185,24 +203,6 @@ switch ($params->get('twbs_version',4)) {
                 array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
         }
     }
-    break; 
-    case "4" :
-    default  : {
-        $params->set('twbs_version',4);
-        
-            if ($params->get('include_twbs_css') == "1") {
-                $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap4.0.css", array('version'=>'4.3.1'),
-                    array('id'=>'wsacarousel_bootstrap.css',));
-            }
-            if ($params->get('include_twbs_js') == "1") {
-                $carousel_class = 'wsacarousel';
-                HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
-                $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
-                    array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
-                $document->addScript($asset_dir . "js/wsacarousel_bootstrap4.3.js", array('version'=>'4.3.1'),
-                    array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
-            }
-        }
 }
 if($link_image > 1 && $params->get('include_magnific',0) == 1) {
     $document->addScript($asset_dir.'magnific/magnificpopupv1-1-0.js' , array('version'=>'1.1.0'),  array('id'=>'MagnificPopupV1-1-0.js' , 'defer'=>'defer'));

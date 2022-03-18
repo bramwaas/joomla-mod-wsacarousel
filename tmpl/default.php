@@ -52,7 +52,7 @@ use Joomla\CMS\Language\Text;
  solved for BS4 no change needed anymore.
  */
 
-switch ($params->get('twbs_version',4)) {
+switch ($params->get('twbs_version',5)) {
     case "3": {
     $carousel_item_left = 'item.left';
     $carousel_item_right = 'item.right';
@@ -61,21 +61,21 @@ switch ($params->get('twbs_version',4)) {
     $bs_data = 'data-';
 	}
 	break;
-    case "5": {  
-    $carousel_item_left =  $carousel_class .'-item-start';
-    $carousel_item_right =  $carousel_class .'-item-end';
-    $carousel_item_next =  $carousel_class .'-item-next';
-    $carousel_item_prev =  $carousel_class .'-item-prev';
-    $bs_data = 'data-bs-';
-    }
-	break;
-    case "4":
-    default: {  /* twbs version = 4.3 */
+    case "4": {  /* twbs version = 4.3 */
         $carousel_item_left =  $carousel_class .'-item-left';
         $carousel_item_right =  $carousel_class .'-item-right';
         $carousel_item_next =  $carousel_class .'-item-next';
         $carousel_item_prev =  $carousel_class .'-item-prev';
         $bs_data = 'data-';
+    }
+    break;
+    case "5":
+    default:  {  
+    $carousel_item_left =  $carousel_class .'-item-start';
+    $carousel_item_right =  $carousel_class .'-item-end';
+    $carousel_item_next =  $carousel_class .'-item-next';
+    $carousel_item_prev =  $carousel_class .'-item-prev';
+    $bs_data = 'data-bs-';
     }
 }
     
@@ -257,8 +257,12 @@ if ($style['vicnt'] > 1) {
   transform: translateX(0);
 }";
 }
-
+if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for J4
+    $wa->addInlineStyle($decl, [], [],[]);
+}
+else {
 $document->addStyleDeclaration($decl);
+}
 /* //TODO work without jQuery in BS5
 if ($params->get('twbs_version',4) == 5 ) {
 	$decl = "
@@ -280,10 +284,12 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 });
 })
 ";
-
+if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for J4
+     $wa->addInlineScript($decl, [], [],['jquery']);
+}
+else {
     $document->addScriptDeclaration($decl);
-
-
+}
 
 ?>
 
