@@ -490,7 +490,7 @@ class WsacarouselHelper
 		$arrows_horizontal = $params->get('arrows_horizontal', 5);
 		
 		switch($params->get('slider_type')){
-			case 2:
+			case 2: // fade
 				$slider_width = $slide_width;
 				$slider_height = $slide_height;
 				$image_width = 'width: 100%';
@@ -498,7 +498,7 @@ class WsacarouselHelper
 				$padding_right = 0;
 				$padding_bottom = 0;
 				break;
-			case 1:
+			case 1: // vertical
 				$slider_width = $slide_width;
 				$slider_height = $slide_height * $vicnt + $spacing * ($vicnt - 1);
 				$image_width = 'width: auto';
@@ -506,7 +506,7 @@ class WsacarouselHelper
 				$padding_right = 0;
 				$padding_bottom = $spacing;
 				break;
-			case 0:
+			case 0: // horizontal
 			default:
 				$slider_width = $slide_width * $vicnt + $spacing * ($vicnt - 1);
 				$slider_height = $slide_height;
@@ -532,9 +532,8 @@ class WsacarouselHelper
 		}
 		
 		$style = array();
-		$style['width'] = $slider_width .'px';
-		$style['height'] = $slider_height + (($params->get('idx_style',0))?40:0) .'px';
-		$style['slider'] = ($params->get('full_width', 0) )? ' width: 100%; height: auto;' : 'width: '.$slider_width.'px; height: '. $style['height'] . ';';
+		$style['slrwidth'] = ($params->get('full_width', 0) )? '100%' : $slider_width .'px';
+		$style['sldwidth'] = ($params->get('full_width', 0) )? '100%' : $slide_width .'px';
 		$style['image'] = $image_width.'; '.$image_height.';';
 		$style['heightprc'] = ($slide_width > 0 ) ?  100 * $slide_height / $slide_width : 75;
 		$style['vicnt'] = $vicnt;

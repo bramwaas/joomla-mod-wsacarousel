@@ -82,10 +82,10 @@ switch ($params->get('twbs_version',5)) {
 $decl = "
 #wsacarousel-loader" . $mid . "
 {
- " . $style['slider'] . "
-height: auto;
+width:" . $style['sldwidth'] . ";
 max-width: 100%;
- overflow: hidden;
+height: auto;
+overflow: hidden;
 }
 #wsacarousel" . $mid . "
 {
@@ -160,36 +160,6 @@ margin-left: -17.5px;
 #play"  . $mid . " {
 display:none;
 }	
-@media (min-width: 768px) {
-#wsacarousel-loader" . $mid . "
-{
-" . $style['slider'] . "
-}
-#wsacarousel" . $mid . "
-{
-width: 100%;
-width: calc(100% + " . $style['marginr'] . ");
-}
-#wsacarousel" . $mid . " .". $carousel_class ."-control{
-	width: 15%;
-}
-#wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
-margin: 0 15% 1rem;
-}
-#wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
-#wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
-right:  calc(" . $style['marginr'] . ");
-}
-#wsacarousel" . $mid . " #wsacarouselbottom" . $mid  ." {
-margin-right: calc(" . $style['marginr'] . ");
-}
-.play-pause {
-position: absolute;
-left: 50%;
-left: calc(50% - 0.5*" . $style['marginr'] . ");  
-top: 50%;
-}
-}
 #wsacarousel-container" . $mid . "  .".  $carousel_class ."-inner .".  $carousel_class ."-caption{
 position: " .  $caption_overlay . ";
 bottom: 0;
@@ -231,7 +201,38 @@ padding-bottom: calc(" . $style['heightprc'] . "% - " . $style['heightprc'] / 10
     -moz-transition-duration: " . $duration/1000 . "s;
     -o-transition-duration: " . $duration/1000 . "s;
     transition-duration: " . $duration/1000 . "s;
-}";
+}
+@media (min-width: 768px) {
+#wsacarousel-loader" . $mid . "
+{
+width:" . $style['slrwidth'] . ";
+}
+#wsacarousel" . $mid . "
+{
+width: 100%;
+width: calc(100% + " . $style['marginr'] . ");
+}
+#wsacarousel" . $mid . " .". $carousel_class ."-control{
+	width: 15%;
+}
+#wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
+margin: 0 15% 1rem;
+}
+#wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
+#wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
+right:  calc(" . $style['marginr'] . ");
+}
+#wsacarousel" . $mid . " #wsacarouselbottom" . $mid  ." {
+margin-right: calc(" . $style['marginr'] . ");
+}
+.play-pause {
+position: absolute;
+left: 50%;
+left: calc(50% - 0.5*" . $style['marginr'] . ");  
+top: 50%;
+}
+}
+";
 
 
 if ($style['vicnt'] > 1) {
