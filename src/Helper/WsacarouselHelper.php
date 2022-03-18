@@ -532,7 +532,9 @@ class WsacarouselHelper
 		}
 		
 		$style = array();
-		$style['slider'] = ($params->get('full_width', 0) )? ' width: 100%; height: auto;' : 'height: '.$slider_height.'px; width: '.$slider_width.'px;';
+		$style['width'] = $slider_width .'px';
+		$style['height'] = $slider_height + ($params->get('idx_style',0))?40:0 .'px';
+		$style['slider'] = ($params->get('full_width', 0) )? ' width: 100%; height: auto;' : 'width: '.$slider_width.'px; height: '. $style['height'] . ';';
 		$style['image'] = $image_width.'; '.$image_height.';';
 		$style['heightprc'] = ($slide_width > 0 ) ?  100 * $slide_height / $slide_width : 75;
 		$style['vicnt'] = $vicnt;
