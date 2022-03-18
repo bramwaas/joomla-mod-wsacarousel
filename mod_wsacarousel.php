@@ -93,6 +93,7 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
                 $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'mod_wsacarousel/wsacarousel_bootstrap3.3.7.css', ['version'=>'3.3.7'],[]);
             }
             if ($params->get('include_twbs_js') == "1") {
+                $carousel_class = 'wsacarousel';
                 $wa->registerAndUseScript('wsacarousel_bootstrap.js', 'mod_wsacarousel/wsacarousel_bootstrap3.3.7.js', ['version'=>'3.3.7'],  ['defer' => TRUE],['jquery']);
             }
         }
@@ -168,6 +169,7 @@ switch ($params->get('twbs_version',9)) {
                 array('id'=>'wsacarousel_bootstrap.css',));
         }
         if ($params->get('include_twbs_js') == "1") {
+            $carousel_class = 'wsacarousel';
             HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
             $document->addScript($asset_dir . "js/wsacarousel_bootstrap3.3.7.js", array('version'=>'3.3.7'),
                 array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
