@@ -128,6 +128,7 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
                 $wa->useStyle('bootstrap.css');
             }
             if ($include_twbs_js ) {
+                $wa->useScript('bootstrap.carousel');
            }
         }
         break;
