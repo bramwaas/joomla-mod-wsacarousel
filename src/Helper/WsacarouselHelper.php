@@ -490,21 +490,13 @@ class WsacarouselHelper
 		$arrows_horizontal = $params->get('arrows_horizontal', 5);
 		
 		switch($params->get('slider_type')){
-			case 2: // fade
+			case 1: // fade
 				$slider_width = $slide_width;
 				$slider_height = $slide_height;
 				$image_width = 'width: 100%';
 				$image_height = 'height: auto';
 				$padding_right = 0;
 				$padding_bottom = 0;
-				break;
-			case 1: // vertical
-				$slider_width = $slide_width;
-				$slider_height = $slide_height * $vicnt + $spacing * ($vicnt - 1);
-				$image_width = 'width: auto';
-				$image_height = 'height: 100%';
-				$padding_right = 0;
-				$padding_bottom = $spacing;
 				break;
 			case 0: // horizontal
 			default:

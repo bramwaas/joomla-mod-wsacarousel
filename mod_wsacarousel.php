@@ -58,7 +58,6 @@ $app = Factory::getApplication();
 $document = Factory::getDocument();
 $mid = $module->id;
 $direction = $document->direction;
-$carousel_class = 'carousel';
 $asset_dir = Uri::root(true)."/modules/mod_wsacarousel/assets/";
 
 // taking the slides from the source
@@ -81,6 +80,9 @@ if($params->get('slider_source')==1) {
 }
 $slidecnt = count($slides);
 $link_image = $params->get('link_image',1);
+$include_twbs_js = $params->get('include_twbs_js',1);
+$include_twbs_css = $params->get('include_twbs_css',1);
+$carousel_class =  ($include_twbs_js) ?  'wsacarousel' : 'carousel';
 
 
 $css = $asset_dir.'css/wsacarousel.css'; // module css
@@ -89,32 +91,32 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
     $wa  = $document->getWebAssetManager();
     switch ($params->get('twbs_version',9)) {
         case "3" : {
-            if ($params->get('include_twbs_css') == "1") {
+            if ($include_twbs_css ) {
                 $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'mod_wsacarousel/wsacarousel_bootstrap3.3.7.css', ['version'=>'3.3.7'],[]);
             }
-            if ($params->get('include_twbs_js') == "1") {
-                $carousel_class = 'wsacarousel';
+            if ($include_twbs_js ) {
+                 
                 $wa->registerAndUseScript('wsacarousel_bootstrap.js', 'mod_wsacarousel/wsacarousel_bootstrap3.3.7.js', ['version'=>'3.3.7'],  ['defer' => TRUE],['jquery']);
             }
         }
         break;
         case "4" :{
-            if ($params->get('include_twbs_css') == "1") {
+            if ($include_twbs_css ) {
                 $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'mod_wsacarousel/wsacarousel_bootstrap4.0.css', ['version'=>'4.3.1'],[]);
             }
-            if ($params->get('include_twbs_js') == "1") {
-                $carousel_class = 'wsacarousel';
+            if ($include_twbs_js ) {
+                 
                 $wa->registerScript('popper.js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', ['version'=>'1.16.1'], ['integrity' => 'sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', 'crossorigin' => 'anonymous', 'defer' => TRUE],[])
                    ->registerAndUseScript('wsacarousel_bootstrap.js', 'mod_wsacarousel/wsacarousel_bootstrap4.3.js', ['version'=>'4.3.1'],  ['defer' => TRUE],['jquery', 'popper.js']);
             }
         }
         break;
         case "5" : {
-            if ($params->get('include_twbs_css') == "1") {
+            if ($include_twbs_css ) {
                 $wa->registerAndUseStyle('wsacarousel_bootstrap.css',  'mod_wsacarousel/wsacarousel_bootstrap5.1.css', ['version'=>'5.1.3'],[]);
             }
-            if ($params->get('include_twbs_js') == "1") {
-                $carousel_class = 'wsacarousel';
+            if ($include_twbs_js ) {
+                 
                 $wa->registerAndUseScript('wsacarousel_bootstrap.js', 'mod_wsacarousel/wsacarousel_bootstrap5.1.js', ['version'=>'5.1.3'],  ['defer' => TRUE],[]);
             }
         }
@@ -122,21 +124,11 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
         default  : {
             $params->set('twbs_version',5);
             $carousel_class = 'carousel';
-            if ($params->get('include_twbs_css') == "1") {
+            if ($include_twbs_css ) {
                 $wa->useStyle('bootstrap.css');
             }
-            if ($params->get('include_twbs_js') == "1") {
-                $wa->useScript('bootstrap.carousel');
-                if ($wa->assetExists('script', 'bootstrap.carousel'))
-                {
-                    echo '<!--  "bootstrap.carousel" exists! -->';
-                } else
-                {
-                    echo '<!--  "bootstrap.carousel" does NOT exists! -->';
-                }
-                
-            }
-            
+            if ($include_twbs_js ) {
+           }
         }
         break;
     }
@@ -164,12 +156,12 @@ if($direction == 'rtl') { // load rtl css if exists
 
 switch ($params->get('twbs_version',9)) {
     case "3" : {
-        if ($params->get('include_twbs_css') == "1") {
+        if ($include_twbs_css ) {
             $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap3.3.7.css", array('version'=>'3.3.7'),
                 array('id'=>'wsacarousel_bootstrap.css',));
         }
-        if ($params->get('include_twbs_js') == "1") {
-            $carousel_class = 'wsacarousel';
+        if ($include_twbs_js ) {
+             
             HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
             $document->addScript($asset_dir . "js/wsacarousel_bootstrap3.3.7.js", array('version'=>'3.3.7'),
                 array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
@@ -178,12 +170,12 @@ switch ($params->get('twbs_version',9)) {
     break;
     case "4" : {
         
-        if ($params->get('include_twbs_css') == "1") {
+        if ($include_twbs_css ) {
             $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap4.0.css", array('version'=>'4.3.1'),
                 array('id'=>'wsacarousel_bootstrap.css',));
         }
-        if ($params->get('include_twbs_js') == "1") {
-            $carousel_class = 'wsacarousel';
+        if ($include_twbs_js ) {
+             
             HTMLHelper::_('jquery.framework');  // to be sure that jquery is loaded before dependent javascripts
             $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', array('version'=>'1.14.6'),
                 array('id'=>'popper.js', 'integrity' => 'sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut',   'crossorigin' => 'anonymous'));
@@ -195,12 +187,12 @@ switch ($params->get('twbs_version',9)) {
     case "5" :
     default  :  {
         $params->set('twbs_version',5);
-        if ($params->get('include_twbs_css') == "1") {
+        if ($include_twbs_css ) {
             $document->addStyleSheet($asset_dir . "css/wsacarousel_bootstrap5.1.css", array('version'=>'5.1.3'),
                 array('id'=>'wsacarousel_bootstrap.css',));
         }
-        if ($params->get('include_twbs_js') == "1") {
-            $carousel_class = 'wsacarousel';
+        if ($include_twbs_js ) {
+             
             $document->addScript($asset_dir . "js/wsacarousel_bootstrap5.1.js", array('version'=>'5.1.3'),
                 array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
         }

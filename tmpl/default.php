@@ -43,9 +43,6 @@ defined('_JEXEC') or die ('Restricted access');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 
-
-
-
 /* change duration of transformation
  needs a change in  .emulateTransitionEnd(600) in Carousel.prototype.slide = function (type, next)
  otherwise the slide disappears afte 0.6 sec.
