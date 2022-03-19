@@ -283,7 +283,7 @@ jQuery('#wsacarousel-container"  . $mid . "').".  $carousel_class ."('cycle');
 })
 ";
 if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for J4
-     $wa->addInlineScript($decl, [], [],['jquery']);
+    $wa->addInlineScript($decl, [], [],['jquery']);
 }
 else {
     $document->addScriptDeclaration($decl);
