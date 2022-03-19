@@ -58,7 +58,7 @@ $app = Factory::getApplication();
 $document = Factory::getDocument();
 $mid = $module->id;
 $direction = $document->direction;
-$asset_dir = Uri::root(true)."/modules/mod_wsacarousel/assets/";
+$asset_dir = Uri::root(true)."/media/mod_wsacarousel/";
 
 // taking the slides from the source
 if($params->get('slider_source')==1) {
