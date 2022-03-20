@@ -155,7 +155,7 @@ margin-top: -17.5px;
 margin-left: -17.5px;
 background-image : url('data:image/svg+xml;charset=UTF-8," . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"  viewBox="0 0 16 16">
 		<circle   fill="#010101" fill-opacity="0.1"  cx="16" cy="16"  r="16" />
-		</svg>') ."); 
+		</svg>') ."'); 
 }  
 #play"  . $mid . " {
 display:none;
