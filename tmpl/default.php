@@ -153,6 +153,9 @@ left: calc(" . 50/$style['vicnt'] . "% - 0.5*" . $style['marginr'] . ");
 top: 50%;
 margin-top: -17.5px;
 margin-left: -17.5px;
+background-image : url('data:image/svg+xml;charset=UTF-8,'" . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#d8d8d8"  viewBox="0 0 16 16">
+		<circle   cx="16" cy="16"  r="16" />
+		</svg>') ."); 
 }  
 #play"  . $mid . " {
 display:none;
