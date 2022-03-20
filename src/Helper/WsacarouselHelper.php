@@ -439,10 +439,10 @@ class WsacarouselHelper
 	    if ($nav_buttons_style == '1') {
 	        $prev = $params->get('left_arrow');
 	        $next = $params->get('right_arrow');
-	        if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-chevron-left" viewBox="0 0 320 512">
+	        if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-opacity="0.1"  class="bi bi-chevron-left" viewBox="0 0 320 512">
 		  <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/>
           </svg>');
-	        if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-chevron-right" viewBox="0 0 320 512">
+	        if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-opacity="0.1"  class="bi bi-chevron-right" viewBox="0 0 320 512">
 		  <path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/>
 		  </svg>');
 	    }
@@ -450,10 +450,10 @@ class WsacarouselHelper
 	    $play = $params->get('play_button');
 	    $pause = $params->get('pause_button');
 	    
-	    if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-play-fill" viewBox="0 0 384 512">
+	    if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-opacity="0.1"  class="bi bi-play-fill" viewBox="0 0 384 512">
 		<path d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/>
 		</svg>');
-	    if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-play-fill" viewBox="0 0 320 512">
+	    if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-opacity="0.1" class="bi bi-play-fill" viewBox="0 0 320 512">
 		<path d="M272 63.1l-32 0c-26.51 0-48 21.49-48 47.1v288c0 26.51 21.49 48 48 48L272 448c26.51 0 48-21.49 48-48v-288C320 85.49 298.5 63.1 272 63.1zM80 63.1l-32 0c-26.51 0-48 21.49-48 48v288C0 426.5 21.49 448 48 448l32 0c26.51 0 48-21.49 48-48v-288C128 85.49 106.5 63.1 80 63.1z"/>
 		</svg>');
 	    
