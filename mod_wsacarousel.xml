@@ -22,10 +22,12 @@
 	</files>
 	<media destination="mod_wsacarousel" folder="assets">
 		<folder>css</folder>
-		<folder>images</folder>
 		<folder>js</folder>
 		<folder>magnific</folder>
 	</media>	
+	<images destination="mod_wsacarousel" folder="assets">
+		<folder>images</folder>
+	</images>		
 	<config>
 		<fields name="params" addfieldpath="/administrator/components/com_wsacarousel/models/fields"
 		   addfieldprefix="Joomla\Component\Wsacarousel\Administrator\Field" >
