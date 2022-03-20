@@ -151,8 +151,8 @@ position: absolute;
 left: " . 50/$style['vicnt'] . "%;
 left: calc(" . 50/$style['vicnt'] . "% - 0.5*" . $style['marginr'] . ");  
 top: 50%;
-margin-top: -2.5px;
-margin-left: -2.5px;
+margin-top: -20px;
+margin-left: -20px;
 padding: 2px;
 background-image : url('data:image/svg+xml;charset=UTF-8," . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"  viewBox="0 0 32 32">
 		<circle   fill="#010101" fill-opacity="0.1"  cx="16" cy="16"  r="16" />
