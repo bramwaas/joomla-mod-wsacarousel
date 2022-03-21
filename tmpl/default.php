@@ -272,16 +272,19 @@ document.addEventListener('DOMContentLoaded', function() {
     var playbtn = document.getElementById('play" . $mid ."');
     var pausebtn = document.getElementById('pause" . $mid ."');
     var celement = document.getElementById('wsacarousel-container". $mid ."');
-    var cycling = true;
     pausebtn.addEventListener('click', function() {
         var myCarousel = bootstrap.Carousel.getInstance(celement);
-        if (cycling === true) {
-           myCarousel.pause();
-           cycling = false;
-        } else {
-           myCarousel.cycle();
-           cycling = true;
+        myCarousel.pause();
+        playbtn.style.display = 'inline';
+        pausebtn.style.display = 'none';
         }
+
+    });
+    playbtn.addEventListener('click', function() {
+        var myCarousel = bootstrap.Carousel.getInstance(celement);
+        myCarousel.cycle();
+        playbtn.style.display = 'none';
+        pausebtn.style.display = 'inline';
     });
 });	
 ";
