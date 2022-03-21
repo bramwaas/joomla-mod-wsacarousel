@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" method="upgrade">
 	<name>mod_wsacarousel</name>
-	<creationDate>19-3-2022</creationDate>	
+	<creationDate>21-3-2022</creationDate>	
 	<author>A.H.C. Waasdorp</author>
 	<copyright>Copyright (C) 2018 - 2022 A.H.C. Waasdorp, All rights reserved.</copyright>
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
@@ -24,10 +24,8 @@
 		<folder>css</folder>
 		<folder>js</folder>
 		<folder>magnific</folder>
-	</media>	
-	<images destination="mod_wsacarousel" folder="assets">
-		<folder>images</folder>
-	</images>		
+	</media>
+	<scriptfile>mod_wsacarousel.script.php</scriptfile>
 	<config>
 		<fields name="params" addfieldpath="/administrator/components/com_wsacarousel/models/fields"
 		   addfieldprefix="Joomla\Component\Wsacarousel\Administrator\Field" >
@@ -40,9 +38,6 @@
 					<option value="0">MOD_WSACAROUSEL_HORIZONTAL</option>
 					<!-- option value="1">MOD_WSACAROUSEL_FADE</option -->
 				</field>
-				<!-- field name="theme" type="wsafolderlist" default="default" label="MOD_WSACAROUSEL_THEME" description="MOD_WSACAROUSEL_THEME_DESC" directory="modules/mod_wsacarousel/themes" hide_none="true" hide_default="true">
-					<option value="_override">MOD_WSACAROUSEL_THEME_OVERRIDE</option>
-				</field -->
 				<field name="link_image" type="list" default="1" label="MOD_WSACAROUSEL_LINK_IMAGE" description="MOD_WSACAROUSEL_LINK_IMAGE_DESC">
 					<option value="0">MOD_WSACAROUSEL_DONT_LINK</option>
 					<option value="1">MOD_WSACAROUSEL_HYPERLINK</option>
@@ -73,7 +68,7 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="twbs_version" type="radio" class="noswitcher btn-group" default="3" label="MOD_WSACAROUSEL_TWBS_VERSION" description="MOD_WSACAROUSEL_TWBS_VERSION_DESC" showon="slider_source:1">
+				<field name="twbs_version" type="radio" class="btn-group" default="3" label="MOD_WSACAROUSEL_TWBS_VERSION" description="MOD_WSACAROUSEL_TWBS_VERSION_DESC" showon="slider_source:1">
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>
@@ -138,19 +133,19 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="show_buttons" type="radio" class="noswitcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE" description="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE_DESC">
+				<field name="show_buttons" type="radio" class="btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE" description="MOD_WSACAROUSEL_SHOW_PLAY_PAUSE_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
 					<option value="3">MOD_WSACAROUSEL_ON_MOUSE_OVER_SLIDER</option>
 				</field>
-				<field name="show_arrows" type="radio" class="noswitcher btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_NEXT_PREV" description="MOD_WSACAROUSEL_SHOW_NEXT_PREV_DESC">
+				<field name="show_arrows" type="radio" class="btn-group" default="1" label="MOD_WSACAROUSEL_SHOW_NEXT_PREV" description="MOD_WSACAROUSEL_SHOW_NEXT_PREV_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
 					<option value="3">MOD_WSACAROUSEL_ON_MOUSE_OVER_SLIDER</option>
 				</field>
-				<field name="show_custom_nav" type="radio" class="noswitcher btn-group" default="0" label="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION" description="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION_DESC">
+				<field name="show_custom_nav" type="radio" class="btn-group" default="0" label="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION" description="MOD_WSACAROUSEL_SHOW_CUSTOM_NAVIGATION_DESC">
 					<option value="0">JNO</option>
 					<option value="2">JYES</option>
 					<option value="1">MOD_WSACAROUSEL_ON_MOUSE_OVER</option>
