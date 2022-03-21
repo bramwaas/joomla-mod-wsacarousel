@@ -27,7 +27,9 @@ class mod_wsacarouselInstallerScript
      */
     public function preflight($route, InstallerAdapter $adapter)
     {
-        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->get('manifest')->version) . '</p>';
+//        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->get('manifest')->version) . '</p>';
+        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->getManifest()->attributes()->version) . '</p>';
+        
         return true;
     }
     
@@ -66,7 +68,7 @@ class mod_wsacarouselInstallerScript
     public function update(InstallerAdapter $adapter)
     {
         
-        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT', $adapter->get('manifest')->version) . '</p>';
+        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT', $adapter->getManifest()->attributes()->version) . '</p>';
          
         
         return true;
