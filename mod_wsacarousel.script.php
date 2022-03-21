@@ -28,7 +28,7 @@ class mod_wsacarouselInstallerScript
     public function preflight($route, InstallerAdapter $adapter)
     {
         echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->getManifest()->xpath('/extension/version')) . '</p>';
-        echo Path::clean('/media/wsacarousel');
+        echo Path::clean(JPATH_ROOT . '/media/wsacarousel');
         /*
          if (Folder::exists('/media/wsacarousel')) {
          Folder::delete('/media/wsacarousel');
