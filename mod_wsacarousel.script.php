@@ -28,12 +28,16 @@ class mod_wsacarouselInstallerScript
     public function preflight($route, InstallerAdapter $adapter)
     {
         echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->getManifest()->xpath('/extension/version')) . '</p>';
+        $paths ['/media/wsacarousel'];
+        foreach($paths as $path) {
         echo Path::clean(JPATH_ROOT . '/media/wsacarousel');
-        /*
-         if (Folder::exists('/media/wsacarousel')) {
-         Folder::delete('/media/wsacarousel');
-         } else echo '/media/wsacarousel niet gevonden';
-         */
+
+         if (Folder::exists(JPATH_ROOT . $path)) {
+//         Folder::delete('/media/wsacarousel');
+         echo $path, ' bestaat';
+         } else echo $path, ' niet gevonden'; 
+
+        }
         return true;
     }
     
