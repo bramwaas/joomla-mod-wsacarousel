@@ -8,6 +8,7 @@
  * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
  * @developer AHC Waasdorp
+ * 2022-01-21 remove unused files and maps.
  */
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Folder;
