@@ -36,11 +36,15 @@ class mod_wsacarouselInstallerScript
      */
     public function preflight($route, InstallerAdapter $adapter)
     {
-        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT') . '</p>';
+        $first_message = false;
         $paths = ['/media/wsacarousel', '/modules/mod_wsacarousel/css', '/modules/mod_wsacarousel/js', '/modules/mod_wsacarousel/themes'];
         foreach($paths as $path) {
 
             if (Folder::exists(JPATH_ROOT . $path) && Folder::delete(JPATH_ROOT . $path)) {
+                if ($first_message) {
+                    echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT') . '</p>';
+                    $first_message = true;
+                }
         echo '<p>', $path, ' removed </p>';
          }  
 
@@ -48,6 +52,10 @@ class mod_wsacarouselInstallerScript
         $paths = ['/modules/mod_wsacarousel/helper.php'];
         foreach($paths as $path) {
             if (File::exists(JPATH_ROOT . $path) && File::delete(JPATH_ROOT . $path)) {
+                if ($first_message) {
+                    echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT') . '</p>';
+                    $first_message = true;
+                }
                 echo '<p>', $path, ' removed </p>';
             } 
             
@@ -91,7 +99,7 @@ class mod_wsacarouselInstallerScript
     public function update(InstallerAdapter $adapter)
     {
         
-        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT') . '</p>';
+   //     echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT') . '</p>';
         
         
         
