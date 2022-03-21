@@ -30,14 +30,20 @@ class mod_wsacarouselInstallerScript
         echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->getManifest()->xpath('/extension/version')) . '</p>';
         $paths = ['/media/wsacarousel', '/modules/mod_wsacarousel/css', '/modules/mod_wsacarousel/js', '/modules/mod_wsacarousel/themes'];
         foreach($paths as $path) {
-        echo Path::clean(JPATH_ROOT . '/media/wsacarousel');
 
-         if (Folder::exists(JPATH_ROOT . $path)) {
-//         Folder::delete('/media/wsacarousel');
-         echo '<p>', $path, ' bestaat </p>';
-         } else echo '<p>', $path, ' niet gevonden </p>'; 
+        if (Folder::delete(JPATH_ROOT . $path)) {
+        echo '<p>', $path, ' removed </p>';
+         }  
 
         }
+        $paths = ['/modules/mod_wsacarousel/helper.php'];
+        foreach($paths as $path) {
+            if (File::delete(JPATH_ROOT . $path)) {
+                echo '<p>', $path, ' removed </p>';
+            } 
+            
+        }
+        
         return true;
     }
     
