@@ -178,7 +178,6 @@ text-align: center;
 }
     
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-content{
-position:relative;
 float: left;
 margin-bottom: " . $style['marginb'] . ";
 width: 100%;
