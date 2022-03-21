@@ -37,14 +37,14 @@ class mod_wsacarouselInstallerScript
      */
     public function preflight($route, InstallerAdapter $adapter)
     {
-        $first_message = false;
+        $first_message = true;
         $paths = ['/media/wsacarousel', '/modules/mod_wsacarousel/css', '/modules/mod_wsacarousel/js', '/modules/mod_wsacarousel/themes'];
         foreach($paths as $path) {
 
             if (Folder::exists(JPATH_ROOT . $path) && Folder::delete(JPATH_ROOT . $path)) {
                 if ($first_message) {
                     echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT') . '</p>';
-                    $first_message = true;
+                    $first_message = false;
                 }
         echo '<p>', $path, ' removed </p>';
          }  
@@ -55,7 +55,7 @@ class mod_wsacarouselInstallerScript
             if (File::exists(JPATH_ROOT . $path) && File::delete(JPATH_ROOT . $path)) {
                 if ($first_message) {
                     echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT') . '</p>';
-                    $first_message = true;
+                    $first_message = false;
                 }
                 echo '<p>', $path, ' removed </p>';
             } 
