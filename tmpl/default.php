@@ -265,14 +265,28 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
 else {
 $document->addStyleDeclaration($decl);
 }
-/* //TODO work without jQuery in BS5
+/* //TODO work without jQuery in BS5 */
 if ($params->get('twbs_version',4) == 5 ) {
 	$decl = "
-var wsaCarousel"  . $mid . " = document.querySelector('#wsacarousel-container"  . $mid . "')
-var carousel = new bootstrap.Carousel(wsaCarousel"  . $mid . ")	
+document.addEventListener('DOMContentLoaded', function() {
+    var playbtn = document.getElementById('play" . $mid ."');
+    var pausebtn = document.getElementById('pause" . $mid ."');
+    var celement = document.getElementById('wsacarousel-container". $mid ."');
+    var cycling = true;
+    pausebtn.addEventListener('click', function() {
+        var myCarousel = bootstrap.Carousel.getInstance(celement);
+        if (cycling === true) {
+           carousel.pause();
+           cycling = false;
+        } else {
+           carousel.cycle();
+           cycling = true;
+        }
+    });
+});	
 ";
 } else 
-*/	
+	
     $decl = 
     "
 jQuery(document).ready(function() {
