@@ -27,8 +27,7 @@ class mod_wsacarouselInstallerScript
      */
     public function preflight($route, InstallerAdapter $adapter)
     {
-//        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->get('manifest')->version) . '</p>';
-        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->getManifest()->attributes()->version) . '</p>';
+        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->getManifest()->xpath('/extension/version')) . '</p>';
         
         return true;
     }
