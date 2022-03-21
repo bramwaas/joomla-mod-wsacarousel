@@ -28,6 +28,9 @@ class mod_wsacarouselInstallerScript
     public function preflight($route, InstallerAdapter $adapter)
     {
         echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->getManifest()->xpath('/extension/version')) . '</p>';
+        if (Folder::exists('media/wsacarousel')) {
+            Folder::delete('media/wsacarousel');
+        } else echo 'media/wsacarousel niet gevonden';
         
         return true;
     }
@@ -69,6 +72,7 @@ class mod_wsacarouselInstallerScript
         
 //        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT', $adapter->getManifest()->attributes()->type) . '</p>';
         echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT', (string) $adapter->getManifest()) . '</p>';
+        
         
         
         return true;
