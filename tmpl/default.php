@@ -277,8 +277,6 @@ document.addEventListener('DOMContentLoaded', function() {
         myCarousel.pause();
         playbtn.style.display = 'inline';
         pausebtn.style.display = 'none';
-        }
-
     });
     playbtn.addEventListener('click', function() {
         var myCarousel = bootstrap.Carousel.getInstance(celement);
