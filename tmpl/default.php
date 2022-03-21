@@ -269,20 +269,20 @@ $document->addStyleDeclaration($decl);
 if ($params->get('twbs_version',4) == 5 ) {
 	$decl = "
 document.addEventListener('DOMContentLoaded', function() {
-    var playbtn = document.getElementById('play" . $mid ."');
-    var pausebtn = document.getElementById('pause" . $mid ."');
-    var celement = document.getElementById('wsacarousel-container". $mid ."');
+    var playbtn" . $mid ." = document.getElementById('play" . $mid ."');
+    var pausebtn" . $mid ." = document.getElementById('pause" . $mid ."');
+    var element" . $mid ." = document.getElementById('wsacarousel-container". $mid ."');
     pausebtn.addEventListener('click', function() {
-        var myCarousel = bootstrap.Carousel.getInstance(celement);
-        myCarousel.pause();
-        playbtn.style.display = 'inline';
-        pausebtn.style.display = 'none';
+        var myCarousel" . $mid ." = bootstrap.Carousel.getInstance(element" . $mid .");
+        myCarousel" . $mid .".pause();
+        playbtn" . $mid .".style.display = 'inline';
+        pausebtn" . $mid .".style.display = 'none';
     });
     playbtn.addEventListener('click', function() {
-        var myCarousel = bootstrap.Carousel.getInstance(celement);
-        myCarousel.cycle();
-        playbtn.style.display = 'none';
-        pausebtn.style.display = 'inline';
+        var myCarousel" . $mid ." = bootstrap.Carousel.getInstance(element" . $mid .");
+        myCarousel" . $mid .".cycle();
+        playbtn" . $mid .".style.display = 'none';
+        pausebtn" . $mid .".style.display = 'inline';
     });
 });	
 ";
