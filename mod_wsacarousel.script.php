@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * @version $Id: mod_wsacarousel.script.php
+ * @package wsacarousel
+ * @subpackage wsacarousel Module
+ * @copyright Copyright (C) 2018 - 2022 AHC Waasdorp, All rights reserved.
+ * @license http://www.gnu.org/licenses GNU/GPL
+ * @author url: https://www.waasdorpsoekhan.nl
+ * @author email contact@waasdorpsoekhan.nl
+ * @developer AHC Waasdorp
+ */
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Filesystem\Path;
@@ -27,18 +36,18 @@ class mod_wsacarouselInstallerScript
      */
     public function preflight($route, InstallerAdapter $adapter)
     {
-        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT', $adapter->getManifest()->xpath('/extension/version')) . '</p>';
+        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_PREFLIGHT_TEXT') . '</p>';
         $paths = ['/media/wsacarousel', '/modules/mod_wsacarousel/css', '/modules/mod_wsacarousel/js', '/modules/mod_wsacarousel/themes'];
         foreach($paths as $path) {
 
-        if (Folder::delete(JPATH_ROOT . $path)) {
+            if (Folder::exists(JPATH_ROOT . $path) && Folder::delete(JPATH_ROOT . $path)) {
         echo '<p>', $path, ' removed </p>';
          }  
 
         }
         $paths = ['/modules/mod_wsacarousel/helper.php'];
         foreach($paths as $path) {
-            if (File::delete(JPATH_ROOT . $path)) {
+            if (File::exists(JPATH_ROOT . $path) && File::delete(JPATH_ROOT . $path)) {
                 echo '<p>', $path, ' removed </p>';
             } 
             
@@ -82,8 +91,7 @@ class mod_wsacarouselInstallerScript
     public function update(InstallerAdapter $adapter)
     {
         
-//        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT', $adapter->getManifest()->attributes()->type) . '</p>';
-        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT', (string) $adapter->getManifest()) . '</p>';
+        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT') . '</p>';
         
         
         
