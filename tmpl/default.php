@@ -272,13 +272,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var playbtn" . $mid ." = document.getElementById('play" . $mid ."');
     var pausebtn" . $mid ." = document.getElementById('pause" . $mid ."');
     var element" . $mid ." = document.getElementById('wsacarousel-container". $mid ."');
-    pausebtn.addEventListener('click', function() {
+    pausebtn" . $mid .".addEventListener('click', function() {
         var myCarousel" . $mid ." = bootstrap.Carousel.getInstance(element" . $mid .");
         myCarousel" . $mid .".pause();
         playbtn" . $mid .".style.display = 'inline';
         pausebtn" . $mid .".style.display = 'none';
     });
-    playbtn.addEventListener('click', function() {
+    playbtn" . $mid .".addEventListener('click', function() {
         var myCarousel" . $mid ." = bootstrap.Carousel.getInstance(element" . $mid .");
         myCarousel" . $mid .".cycle();
         playbtn" . $mid .".style.display = 'none';
