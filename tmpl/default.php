@@ -276,10 +276,10 @@ document.addEventListener('DOMContentLoaded', function() {
     pausebtn.addEventListener('click', function() {
         var myCarousel = bootstrap.Carousel.getInstance(celement);
         if (cycling === true) {
-           carousel.pause();
+           myCarousel.pause();
            cycling = false;
         } else {
-           carousel.cycle();
+           myCarousel.cycle();
            cycling = true;
         }
     });
