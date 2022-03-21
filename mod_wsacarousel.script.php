@@ -67,7 +67,7 @@ class mod_wsacarouselInstallerScript
     public function update(InstallerAdapter $adapter)
     {
         
-        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT', $adapter->getManifest()->attributes()->version) . '</p>';
+        echo '<p>' . Text::sprintf('MOD_WSACAROUSEL_UPDATE_TEXT', $adapter->getManifest()->attributes()->type) . '</p>';
          
         
         return true;
