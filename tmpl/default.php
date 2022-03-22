@@ -182,6 +182,7 @@ float: left;
 margin-bottom: " . $style['marginb'] . ";
 width: 100%;
 width:  calc(100% - " . $style['marginr'] . ");
+height: " . $style['sldheight'] . "; 
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-height{
 float: left;

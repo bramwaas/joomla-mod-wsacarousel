@@ -526,7 +526,8 @@ class WsacarouselHelper
 		$style = array();
 		$style['slrwidth'] = ($params->get('full_width', 0) )? '100%' : $slider_width .'px';
 		$style['sldwidth'] = ($params->get('full_width', 0) )? '100%' : $slide_width .'px';
-		$style['image'] = $image_width.'; '.$image_height.'; ';
+		$style['sldheight'] = ($params->get('full_width', 0) )? 'auto' :$slide_height . 'px';
+		$style['image'] = $image_width.'; '.$image_height.'; object-fit: scale-down;';
 		$style['heightprc'] = ($slide_width > 0 ) ?  100 * $slide_height / $slide_width : 75;
 		$style['vicnt'] = $vicnt;
 		
