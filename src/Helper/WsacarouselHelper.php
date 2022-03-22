@@ -503,7 +503,7 @@ class WsacarouselHelper
 				$slider_width = $slide_width * $vicnt + $spacing * ($vicnt - 1);
 				$slider_height = $slide_height;
 				$image_width = 'width: 100%';
-				$image_height = 'height: auto';
+				$image_height = 'height: 100%';
 				$padding_right = $spacing;
 				$padding_bottom = 0;
 				break;
@@ -527,7 +527,7 @@ class WsacarouselHelper
 		$style['slrwidth'] = ($params->get('full_width', 0) )? '100%' : $slider_width .'px';
 		$style['sldwidth'] = ($params->get('full_width', 0) )? '100%' : $slide_width .'px';
 		$style['sldheight'] = ($params->get('full_width', 0) )? 'auto' :$slide_height . 'px';
-		$style['image'] = $image_width.'; '.$image_height.'; object-fit: scale-down;';
+		$style['image'] = $image_width.'; '.$image_height.'; object-fit: scale-down; object-position: 50% ' . ($params->get('image_centering', 0))? '50%' :'top' .';';
 		$style['heightprc'] = ($slide_width > 0 ) ?  100 * $slide_height / $slide_width : 75;
 		$style['vicnt'] = $vicnt;
 		

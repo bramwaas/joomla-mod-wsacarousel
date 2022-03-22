@@ -227,7 +227,7 @@ $link_desc = $params->get('link_desc', 0);
 //if($vicnt>$slidecnt) $vicnt = $slidecnt;
 //if($vicnt<1) $vicnt = 1;
 //if($vicnt>$max) $vicnt = $max;
-$image_centering = $params->get('image_centering', 0);
+//$image_centering = $params->get('image_centering', 0);
 if(!is_numeric($duration = $params->get('duration'))) $duration = 600;
 if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 $interval = ($params->get('autoplay', 1)) ? $delay + $duration : 'false';

@@ -313,7 +313,7 @@ else {
 
 <div class="wsacarousel<?php echo $params->get('moduleclass_sfx') ?>" style="border: 0px !important;">
     <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
-    	<div id="wsacarousel<?php echo $mid; ?>" class=" wsacarousel-<?php  echo ($image_centering) ? ' img-vcenter':'' ?>">
+    	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel-box">
     		<!-- Container with data-options (animation and wsa-carousel only for info) -->
             <div id="wsacarousel-container<?php echo $mid; ?>" class="<?php echo $carousel_class; ?> slide " 
             <?php echo $bs_data; ?>ride="<?php echo $carousel_class; ?>"
