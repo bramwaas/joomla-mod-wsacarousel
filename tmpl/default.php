@@ -362,37 +362,37 @@ else {
     								</a>
     							<?php } ?>
     						<?php } ?>
+    						<?php if ($params->get('slider_source') && ($params->get('show_title') || $show_desc && !empty($slide->description) || $show_readmore && $slide->link)) { ?>
+        						<!-- Slide description area: START -->
+        						<div class="<?php echo $carousel_class; ?>-caption" >
+        							<?php if($params->get('show_title')) { ?>
+        							<div class="slide-title">
+        							<?php if ($link_title && $slide->link) { ?><a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>><?php } ?>
+        										<?php echo $slide->title; ?>
+        									<?php if($link_title && $slide->link) { ?></a><?php } ?>
+        							</div>
+        							<?php } ?>
+        							
+        							<?php if ($show_desc) { ?>
+        							<div class="slide-text">
+        									<?php if ($link_desc && $slide->link) { ?>
+        									<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>>
+        										<?php echo strip_tags($slide->description,"<br><span><em><i><b><strong><small><big>"); ?>
+        									</a>
+        									<?php } else { ?>
+        										<?php echo $slide->description; ?>
+        									<?php } ?>
+        							</div>
+        							<?php } ?>
+        							
+        							<?php if($show_readmore && $slide->link) { ?>
+        								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo $readmore_text ; ?></a>
+        							<?php } ?>
+        						</div>
+        						<!-- Slide description area: END -->
+    						<?php } ?>						
     						</div>
     						<div class="<?php echo $carousel_class; ?>-item-height"></div>
-    						<?php if ($params->get('slider_source') && ($params->get('show_title') || $show_desc && !empty($slide->description) || $show_readmore && $slide->link)) { ?>
-    						<!-- Slide description area: START -->
-    						<div class="<?php echo $carousel_class; ?>-caption" >
-    							<?php if($params->get('show_title')) { ?>
-    							<div class="slide-title">
-    							<?php if ($link_title && $slide->link) { ?><a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>><?php } ?>
-    										<?php echo $slide->title; ?>
-    									<?php if($link_title && $slide->link) { ?></a><?php } ?>
-    							</div>
-    							<?php } ?>
-    							
-    							<?php if ($show_desc) { ?>
-    							<div class="slide-text">
-    									<?php if ($link_desc && $slide->link) { ?>
-    									<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>>
-    										<?php echo strip_tags($slide->description,"<br><span><em><i><b><strong><small><big>"); ?>
-    									</a>
-    									<?php } else { ?>
-    										<?php echo $slide->description; ?>
-    									<?php } ?>
-    							</div>
-    							<?php } ?>
-    							
-    							<?php if($show_readmore && $slide->link) { ?>
-    								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo $readmore_text ; ?></a>
-    							<?php } ?>
-    						</div>
-    						<!-- Slide description area: END -->
-    						<?php } ?>						
     						
     					</div>
     					<?php } ?>
