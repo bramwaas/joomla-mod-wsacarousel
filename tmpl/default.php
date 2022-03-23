@@ -36,7 +36,10 @@
  *       6-3-2022 fill frame with php instead of javascript.  
  *       7-3-2022 looponce on off working.
  *       8-3-2022 magnificPopup 
- *       17-3-2022 set $carousel_class and $wcag in mod_wsacarousel.php and use here.      
+ *       17-3-2022 set $carousel_class and $wcag in mod_wsacarousel.php and use here.
+ *       23-3-2022 aspect-ratio and overflow hidden added to -item-content to clip avoid higher slides with pictures with to low aspect-ratio.
+ *                 Particular for full-width because the solution with fixed slide-height doesn't work there. Slide-heigt left for non full-width for older 
+ *                 browsers that don't support aspect ratio.       
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
