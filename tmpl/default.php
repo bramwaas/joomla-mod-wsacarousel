@@ -186,16 +186,16 @@ margin-bottom: " . $style['marginb'] . ";
 width: 100%;
 width:  calc(100% - " . $style['marginr'] . ");
 height: " . $style['sldheight'] . "; 
-aspect-ratio: " . $style['sldwidth'] . " / " . $style['sldheight'] . ";
+aspect-ratio: " . $style['aspectratio']  . ";
 overflow: hidden;
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-height{
 float: left;
 width: 0;
 height: 0;
-padding: 0 0 " . $style['heightprc'] . "% 0 ;
+padding: 0 0 " . 100 / $style['aspectratio'] . "% 0 ;
 margin: 0;
-padding-bottom: calc(" . $style['heightprc'] . "% - " . $style['heightprc'] / 100 . "*" . $style['marginr'] . ");
+padding-bottom: calc(" . 100 / $style['aspectratio'] . "% - " . (1 / $style['aspectratio'])  . "*" . $style['marginr'] . ");
 }
     
     
