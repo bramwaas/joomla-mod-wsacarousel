@@ -183,6 +183,8 @@ margin-bottom: " . $style['marginb'] . ";
 width: 100%;
 width:  calc(100% - " . $style['marginr'] . ");
 height: " . $style['sldheight'] . "; 
+aspect-ratio: " . $style['sldwidth'] . " / " . $style['sldheight'] . ";
+overflow: hidden;
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-height{
 float: left;
