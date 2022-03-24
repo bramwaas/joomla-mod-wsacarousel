@@ -166,11 +166,6 @@ left: calc(" . 50/$style['vicnt'] . "% - 0.5*" . $style['marginr'] . ");
 top: 50%;
 margin-top: -25px;
 margin-left: -25px;
-padding: 7.5px;
-height: 50px;
-width: 50px;
-background: RGBA(1,1,1,0.1); 
-border-radius: 25px;
 }  
 #play"  . $mid . " {
 display:none;
