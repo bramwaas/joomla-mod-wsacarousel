@@ -435,16 +435,16 @@ class WsacarouselHelper
 	     images */
 	    $doc = Factory::getDocument ();
 	    $theme = $params->get('theme', 'default');
-	    $nav_buttons_style = $params->get('nav_buttons_style');
-	    switch ($nav_buttons_style == '1')
+	    $nav_buttons_style = $params->get('nav_buttons_style',1);
+	    switch ($nav_buttons_style)
 	    {
 	        case 0:
 	        break; 
 	        case 2: {
-	            $prev= '/media/mod_wsacarousel/images/prev.png';
-	            $next= '/media/mod_wsacarousel/images/next.png';
-	            $pause= '/media/mod_wsacarousel/images/pause.png';
-	            $play= '/media/mod_wsacarousel/images/play.png';
+	            $prev= Uri::base() . '/media/mod_wsacarousel/images/prev.png';
+	            $next= Uri::base() .'/media/mod_wsacarousel/images/next.png';
+	            $pause= Uri::base() .'/media/mod_wsacarousel/images/pause.png';
+	            $play= Uri::base() .'/media/mod_wsacarousel/images/play.png';
 	        }
 	        break;
 	        case 1: {
