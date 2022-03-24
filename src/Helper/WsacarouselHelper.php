@@ -433,7 +433,8 @@ class WsacarouselHelper
 	static function getNavigation(&$params, $mid) {
 	    /* default <!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
 	     images */
-	    switch ($params->get('nav_buttons_style',1))
+	    $nav_buttons_style = $params->get('nav_buttons_style',1);
+	    switch ($nav_buttons_style)
 	    {
 	        case 0:
 	        break; 
@@ -464,7 +465,8 @@ class WsacarouselHelper
 	    if(empty($pause) ) $pause = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-width="2" stroke-opacity="0.5" class="bi bi-play-fill" viewBox="0 0 320 512">
 		<path d="M272 63.1l-32 0c-26.51 0-48 21.49-48 47.1v288c0 26.51 21.49 48 48 48L272 448c26.51 0 48-21.49 48-48v-288C320 85.49 298.5 63.1 272 63.1zM80 63.1l-32 0c-26.51 0-48 21.49-48 48v288C0 426.5 21.49 448 48 448l32 0c26.51 0 48-21.49 48-48v-288C128 85.49 106.5 63.1 80 63.1z"/>
 		</svg>');
-	    $navi = (object) array('prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
+	    
+	    $navi = (object) array('nav_buttons_style'=>$nav_buttons_style , 'prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
 	    
 	    return $navi;
 	}
