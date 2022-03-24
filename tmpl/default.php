@@ -149,12 +149,12 @@ right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 	outline: 0;
 	opacity: 0.9;
 }
-.carousel-control-prev {
+.".  $carousel_class ."-control-prev {
   background-image:         linear-gradient(to right, rgba(0, 0, 0, .2) 0%, rgba(0, 0, 0, .0001) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
   background-repeat: repeat-x;
 }
-.carousel-control-next {
+.".  $carousel_class ."-control-next {
   background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .2) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
   background-repeat: repeat-x;
