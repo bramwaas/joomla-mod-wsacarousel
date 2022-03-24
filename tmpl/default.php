@@ -164,9 +164,15 @@ position: absolute;
 left: " . 50/$style['vicnt'] . "%;
 left: calc(" . 50/$style['vicnt'] . "% - 0.5*" . $style['marginr'] . ");  
 top: 50%;
-margin-top: -25px;
-margin-left: -25px;
-}  
+margin-top: -20px;
+margin-left: -20px;
+height: 40px;
+width: 40px;
+} 
+.play-pause img{
+width: 100%;
+height: 100%; 
+}
 #play"  . $mid . " {
 display:none;
 }	

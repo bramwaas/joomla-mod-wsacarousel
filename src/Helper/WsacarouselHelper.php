@@ -459,13 +459,13 @@ class WsacarouselHelper
 	        }
 	       break;  
 	    }
-	    if(empty($play) ) $play = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-play-fill" >
-        <circle fill="#010101" fill-opacity="0.5" cx="25" cy="25" r="25"/> 
-		<path viewBox="0 0 384 512" fill="white" d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/>
+	    if(empty($play) ) $play = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-160 -64 640 640" class="bi bi-play-fill" >
+        <circle fill="#010101" fill-opacity="0.1" cx="160" cy="256" r="320"/>
+		<path  fill="white" d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/>
 		</svg>');
-	    if(empty($pause) ) $pause = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-play-fill" >
-        <circle fill="#010101" fill-opacity="0.5" cx="25" cy="25" r="25"/> 
-		<path viewBox="0 0 320 512" fill="white"  d="M272 63.1l-32 0c-26.51 0-48 21.49-48 47.1v288c0 26.51 21.49 48 48 48L272 448c26.51 0 48-21.49 48-48v-288C320 85.49 298.5 63.1 272 63.1zM80 63.1l-32 0c-26.51 0-48 21.49-48 48v288C0 426.5 21.49 448 48 448l32 0c26.51 0 48-21.49 48-48v-288C128 85.49 106.5 63.1 80 63.1z"/>
+	    if(empty($pause) ) $pause = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-160 -64 640 640" class="bi bi-play-fill" >
+        <circle fill="#010101" fill-opacity="0.1" cx="160" cy="256" r="320"/>
+		<path fill="white"  d="M272 63.1l-32 0c-26.51 0-48 21.49-48 47.1v288c0 26.51 21.49 48 48 48L272 448c26.51 0 48-21.49 48-48v-288C320 85.49 298.5 63.1 272 63.1zM80 63.1l-32 0c-26.51 0-48 21.49-48 48v288C0 426.5 21.49 448 48 448l32 0c26.51 0 48-21.49 48-48v-288C128 85.49 106.5 63.1 80 63.1z"/>
 		</svg>');
 	    
 	    $navi = (object) array('nav_buttons_style'=>$nav_buttons_style , 'prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
