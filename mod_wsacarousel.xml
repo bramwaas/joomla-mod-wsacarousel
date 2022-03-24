@@ -150,8 +150,8 @@
 
 				<field name="left_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_PREV_BUTTON" description="MOD_WSACAROUSEL_PREV_BUTTON_DESC"  showon="nav_buttons_style:1" />
 				<field name="right_arrow" type="media" default="" size="50" label="MOD_WSACAROUSEL_NEXT_BUTTON" description="MOD_WSACAROUSEL_NEXT_BUTTON_DESC"  showon="nav_buttons_style:1" />
-				<field name="play_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PLAY_BUTTON" description="MOD_WSACAROUSEL_PLAY_BUTTON_DESC" />
-				<field name="pause_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PAUSE_BUTTON" description="MOD_WSACAROUSEL_PAUSE_BUTTON_DESC" />
+				<field name="play_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PLAY_BUTTON" description="MOD_WSACAROUSEL_PLAY_BUTTON_DESC" showon="nav_buttons_style:1" />
+				<field name="pause_button" type="media" default="" size="50" label="MOD_WSACAROUSEL_PAUSE_BUTTON" description="MOD_WSACAROUSEL_PAUSE_BUTTON_DESC" showon="nav_buttons_style:1" />
 				<field name="arrows_top" type="text" default="40" size="10" label="MOD_WSACAROUSEL_NAV_BAR_VERTICAL_POSITION" description="MOD_WSACAROUSEL_NAV_BAR_VERTICAL_POSITION_DESC" />
 				<field name="arrows_horizontal" type="text" default="10" size="10" label="MOD_WSACAROUSEL_NAV_BAR_HORIZONTAL_POSITION" description="MOD_WSACAROUSEL_NAV_BAR_HORIZONTAL_POSITION_DESC" />
 				<field name="idx_style" type="radio" layout="joomla.form.field.radio.switcher"  class="switcher btn-group" default="0" label="MOD_WSACAROUSEL_CUSTOM_NAVIGATION_STYLE">

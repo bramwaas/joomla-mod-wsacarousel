@@ -105,6 +105,9 @@ float: left;
     align-items: center;
     justify-content: center;
 	width: " . 15/$style['vicnt'] . "%;
+    background-color: rgba(0, 0, 0, 0);
+    filter: alpha(opacity=50);
+    opacity: .5;
 	}
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 	margin: 0 " . 15/$style['vicnt'] . "% 1rem;
@@ -149,17 +152,29 @@ right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 	outline: 0;
 	opacity: 0.9;
 }
+". $carousel_class ."-control.left {
+  background-image:         linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+  background-repeat: repeat-x;
+}
+". $carousel_class ."-control.right {
+  background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+  background-repeat: repeat-x;
+}
 .play-pause {
 position: absolute;
 left: " . 50/$style['vicnt'] . "%;
 left: calc(" . 50/$style['vicnt'] . "% - 0.5*" . $style['marginr'] . ");  
 top: 50%;
-margin-top: -20px;
-margin-left: -20px;
-padding: 2.5px;
-background-image : url('data:image/svg+xml;charset=UTF-8," . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"  viewBox="0 0 32 32">
-		<circle   fill="#010101" fill-opacity="0.1"  cx="16" cy="16"  r="16" />
-		</svg>') ."');
+margin-top: -25px;
+margin-left: -25px;
+padding: 7.5px;
+height: 50px;
+width: 50px;
+background: #010101; 
+opacity: 0.1;
+border-radius: 25px;
 }  
 #play"  . $mid . " {
 display:none;
@@ -173,7 +188,7 @@ right: 0;
 right:  calc(" . $style['marginr'] . ");
 font-size: 12px;
 line-height: 15.6px;
-background: RGBA(0,0,0,0.65)
+background: RGBA(0,0,0,0.65);
 }
 .".  $carousel_class ."-caption {
 color: #fff;
