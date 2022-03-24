@@ -489,25 +489,14 @@ class WsacarouselHelper
 		$arrows_top = $params->get('arrows_top', '50%');
 		$arrows_horizontal = $params->get('arrows_horizontal', 5);
 		
-		switch($params->get('slider_type')){
-			case 1: // fade
-				$slider_width = $slide_width;
-				$slider_height = $slide_height;
-				$image_width = 'width: 100%';
-				$image_height = 'height: auto';
-				$padding_right = 0;
-				$padding_bottom = 0;
-				break;
-			case 0: // horizontal
-			default:
+//		switch($params->get('slider_type',0)){ always horizontal 
 				$slider_width = $slide_width * $vicnt + $spacing * ($vicnt - 1);
 				$slider_height = $slide_height;
 				$image_width = 'width: 100%';
 				$image_height = 'height: 100%';
 				$padding_right = $spacing;
 				$padding_bottom = 0;
-				break;
-		}
+
 		
 		if(strstr($desc_width, '%') == false) $desc_width = (($desc_width / $slide_width) * 100) .'%';
 		if(strstr($desc_left, '%') == false) $desc_left = (($desc_left / $slide_width) * 100) .'%';
@@ -527,7 +516,8 @@ class WsacarouselHelper
 		$style['slrwidth'] = ($params->get('full_width', 0) )? '100%' : $slider_width .'px';
 		$style['sldwidth'] = ($params->get('full_width', 0) )? '100%' : $slide_width .'px';
 		$style['sldheight'] = ($params->get('full_width', 0) )? 'auto' :$slide_height . 'px';
-		$style['image'] = $image_width.'; '.$image_height.'; object-fit: scale-down; object-position: 50% ' . (($params->get('image_centering', 0))? '50%' :'top') .';';
+		$style['image'] = $image_width.'; '.$image_height.'; object-fit: contain; ' . 
+		                  (($params->get('image_centering', 0))? 'margin-top: auto;' :'object-position: 50% top; margin-top: 0;') .'margin-bottom: auto;';
 		$style['aspectratio'] =  $slide_width  /  $slide_height; 
 		$style['vicnt'] = $vicnt;
 		
