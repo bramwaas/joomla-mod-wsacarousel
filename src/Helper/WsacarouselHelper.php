@@ -441,10 +441,10 @@ class WsacarouselHelper
 	        case 0:
 	        break; 
 	        case 2: {
-	            $prev= JPATH_ROOT . '/media/mod_wsacarousel/images/prev.png';
-	            $next= JPATH_ROOT . '/media/mod_wsacarousel/images/next.png';
-	            $pause= JPATH_ROOT . '/media/mod_wsacarousel/images/pause.png';
-	            $play= JPATH_ROOT . '/media/mod_wsacarousel/images/play.png';
+	            $prev= '/media/mod_wsacarousel/images/prev.png';
+	            $next= '/media/mod_wsacarousel/images/next.png';
+	            $pause= '/media/mod_wsacarousel/images/pause.png';
+	            $play= '/media/mod_wsacarousel/images/play.png';
 	        }
 	        break;
 	        case 1: {
