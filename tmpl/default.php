@@ -105,9 +105,7 @@ float: left;
     align-items: center;
     justify-content: center;
 	width: " . 15/$style['vicnt'] . "%;
-    background-color: rgba(0, 0, 0, 0);
-    filter: alpha(opacity=50);
-    opacity: .5;
+    background-color: rgba(0, 0, 0, 0.1);
 	}
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
 	margin: 0 " . 15/$style['vicnt'] . "% 1rem;
@@ -152,12 +150,12 @@ right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 	outline: 0;
 	opacity: 0.9;
 }
-". $carousel_class ."-control.left {
+". $carousel_class ."-control-prev {
   background-image:         linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
   background-repeat: repeat-x;
 }
-". $carousel_class ."-control.right {
+". $carousel_class ."-control-next {
   background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
   background-repeat: repeat-x;
@@ -172,8 +170,7 @@ margin-left: -25px;
 padding: 7.5px;
 height: 50px;
 width: 50px;
-background: #010101; 
-opacity: 0.1;
+background: RGBA(1,1,1,0.1); 
 border-radius: 25px;
 }  
 #play"  . $mid . " {
