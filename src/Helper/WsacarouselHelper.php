@@ -446,6 +446,7 @@ class WsacarouselHelper
 	            $pause= JPATH_ROOT . '/media/mod_wsacarousel/images/pause.png';
 	            $play= JPATH_ROOT . '/media/mod_wsacarousel/images/play.png';
 	        }
+	        break;
 	        case 1: {
 	        $prev = $params->get('left_arrow');
 	        $next = $params->get('right_arrow');
