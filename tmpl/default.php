@@ -103,6 +103,7 @@ float: left;
     display: -ms-flexbox;
     display: flex;
     align-items: center;
+    -ms-flex-pack: center;
     justify-content: center;
 	width: " . 15/$style['vicnt'] . "%;
 	}
@@ -123,10 +124,9 @@ margin-left: 0;
 margin-right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
 z-index: 2;
 }
-#wsacarouselbottom" . $mid . ".indicator-numbers  [data-bs-target], 
-#wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
-background: initial;
-text-indent: unset;
+.indicator-numbers .wsanr". $mid . " {
+background: transparent;
+text-indent: 0px;
 text-align: center;
 }
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
@@ -191,7 +191,6 @@ background: RGBA(0,0,0,0.65);
 color: #fff;
 text-align: center;
 }
-    
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-content{
 float: left;
 margin-bottom: " . $style['marginb'] . ";
@@ -209,8 +208,6 @@ padding: 0 0 " . 100 / $style['aspectratio'] . "% 0 ;
 margin: 0;
 padding-bottom: calc(" . 100 / $style['aspectratio'] . "% - " . (1 / $style['aspectratio'])  . "*" . $style['marginr'] . ");
 }
-    
-    
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-img{
 " . $style['image'] . "
 }
@@ -252,16 +249,12 @@ top: 50%;
 }
 }
 ";
-
-
 if ($style['vicnt'] > 1) {
     
     $decl = $decl .
     "
-        
 /* override position and transform in 3.3.x and 4.3.x and 5.1.x
 */
-
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_prev . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ".active {
   transform: translateX(-" . 100/$style['vicnt'] . "%);
@@ -270,8 +263,6 @@ if ($style['vicnt'] > 1) {
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . ".active {
   transform: translateX(" . 100/$style['vicnt'] . "%);
 }
-
-      
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_left . ",
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-inner ." . $carousel_item_right . " {
   transform: translateX(0);
@@ -283,7 +274,7 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
 else {
 $document->addStyleDeclaration($decl);
 }
-/* //TODO work without jQuery in BS5 */
+/* work without jQuery in BS5 */
 if ($params->get('twbs_version',4) == 5 ) {
 	$decl = "
 document.addEventListener('DOMContentLoaded', function() {
@@ -419,7 +410,7 @@ else {
                <?php if($show_idx && (1 == $idx_style)) { ?>
             	<div id="wsacarouselbottom<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo (1==$show_idx) ? 'showOnHover':'wsashow' ?>">
             		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
-            		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsanr<?php if ($itemnr == 1) echo ' active'; ?>" role="button" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
+            		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsanr<?php echo $mid; if ($itemnr == 1) echo ' active'; ?>" role="button" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
             		<?php } ?>
                 </div>
                 <?php } ?>
