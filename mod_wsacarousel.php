@@ -84,7 +84,7 @@ $link_image = $params->get('link_image',1);
 $include_twbs_js = $params->get('include_twbs_js',1);
 $include_twbs_css = $params->get('include_twbs_css',1);
 $carousel_class =  ($include_twbs_js) ?  'wsacarousel' : 'carousel';
-$js_mainobject = ($include_twbs_js) ?  'bootstrap' : 'wsabs' . $params->get('twbs_version',5) ;            
+$js_mainobject = ($include_twbs_js) ?   'wsabs' . $params->get('twbs_version',5) : 'bootstrap'  ;            
 $css = $asset_dir.'css/wsacarousel.css'; // module css
 
 if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for J4 
