@@ -39,7 +39,8 @@
  *       17-3-2022 set $carousel_class and $wcag in mod_wsacarousel.php and use here.
  *       23-3-2022 aspect-ratio and overflow hidden added to -item-content to clip avoid higher slides with pictures with to low aspect-ratio.
  *                 Particular for full-width because the solution with fixed slide-height doesn't work there. Slide-heigt left for non full-width for older 
- *                 browsers that don't support aspect ratio.       
+ *                 browsers that don't support aspect ratio.   
+ *       26-3-2022 renamed main object bootstrap to wsabs5 to avoid collision in inlinescript.            
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
@@ -282,13 +283,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var pausebtn" . $mid ." = document.getElementById('pause" . $mid ."');
     var element" . $mid ." = document.getElementById('wsacarousel-container". $mid ."');
     pausebtn" . $mid .".addEventListener('click', function() {
-        var myCarousel" . $mid ." = bootstrap.Carousel.getInstance(element" . $mid .");
+        var myCarousel" . $mid ." = ". $js_mainobject . ".Carousel.getInstance(element" . $mid .");
         myCarousel" . $mid .".pause();
         playbtn" . $mid .".style.display = 'inline';
         pausebtn" . $mid .".style.display = 'none';
     });
     playbtn" . $mid .".addEventListener('click', function() {
-        var myCarousel" . $mid ." = bootstrap.Carousel.getInstance(element" . $mid .");
+        var myCarousel" . $mid ." = ". $js_mainobject . ".Carousel.getInstance(element" . $mid .");
         myCarousel" . $mid .".cycle();
         playbtn" . $mid .".style.display = 'none';
         pausebtn" . $mid .".style.display = 'inline';

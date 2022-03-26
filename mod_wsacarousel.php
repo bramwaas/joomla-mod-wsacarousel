@@ -33,6 +33,7 @@
  *   adjustments to comply with Joomla namespaced model: copied WsacarouselHelper.php from helper.php
  *   use asset for stylesheets and javascript in Joomla 4 
  *   set variables here and use in template (default.php) 
+ *   26-3-2022 renamed main object bootstrap to wsabs<version> to avoid collision in inlinescript.            
  */
 
 // no direct access
@@ -83,8 +84,7 @@ $link_image = $params->get('link_image',1);
 $include_twbs_js = $params->get('include_twbs_js',1);
 $include_twbs_css = $params->get('include_twbs_css',1);
 $carousel_class =  ($include_twbs_js) ?  'wsacarousel' : 'carousel';
-
-
+$js_mainobject = ($include_twbs_js) ?  'bootstrap' : 'wsabs' . $params->get('twbs_version',5) ;            
 $css = $asset_dir.'css/wsacarousel.css'; // module css
 
 if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for J4 
@@ -121,9 +121,10 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
             }
         }
         break;
-        default  : {
+        case "9" : {
             $params->set('twbs_version',5);
             $carousel_class = 'carousel';
+            $js_mainobject =  'bootstrap';
             if ($include_twbs_css ) {
                 $wa->useStyle('bootstrap.css');
             }

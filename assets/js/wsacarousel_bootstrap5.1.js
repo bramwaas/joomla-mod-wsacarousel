@@ -8,12 +8,13 @@
  * 1.0.8 02-03-2022 copied from twbs/bootstrap repository. Replaced carousel by wsacarousel in data-ride, classnames etc. to to avoid
  * conflict with default bootstrap .js. Replaced imported code by inline code.
  * 03-03-2022 restarted with bootstrap.js and remod unused parts.
+ * 26-3-2022 replaced main object bootstrap by wsabs5 and return it via index_umd to avoid collision in inlinescript.
  * --------------------------------------------------------------------------
  */
  (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@popperjs/core')) :
   typeof define === 'function' && define.amd ? define(['@popperjs/core'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory(global.Popper));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.wsabs5 = factory(global.Popper));
 })(this, (function (Popper) { 'use strict';
 
   function _interopNamespace(e) {
@@ -1472,5 +1473,14 @@
    */
 
   defineJQueryPlugin(Carousel);
-
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap (v5.1.3): index.umd.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+  const index_umd = {
+   	Carousel
+  };
+  return index_umd;
 }));
