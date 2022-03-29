@@ -98,6 +98,7 @@ width: calc(" . $style['vicnt'] . " * (100% + " . $style['marginr'] . "));
 position: relative;
 width: " . 100/$style['vicnt'] . "%;
 float: left;
+background-color: " . $ii_bgc . "; 
 }
 #wsacarousel" . $mid . " .". $carousel_class ."-control{
     display: -webkit-box;

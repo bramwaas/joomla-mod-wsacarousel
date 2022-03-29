@@ -76,6 +76,8 @@
 				</field>
 				<field name="limit_desc" type="text" default="" size="10" label="MOD_WSACAROUSEL_DESCRIPTION_LIMIT" description="MOD_WSACAROUSEL_DESCRIPTION_LIMIT_DESC" showon="slider_source:1" />
 				
+				<field name ="ii_bgc" type="color" default="" label="MOD_WSACAROUSEL_SLIDE_BGC" description="MOD_WSACAROUSEL_SLIDE_BGC_DESC"                                                                                                        
+				/>
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				
 				<field type="wsaspacer" label="MOD_WSACAROUSEL_BASIC_SLIDER_SETTINGS" description="MOD_WSACAROUSEL_SLIDER_DIMENSIONS" />
