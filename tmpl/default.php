@@ -127,6 +127,7 @@ z-index: 2;
 }
 .indicator-numbers .wsanr". $mid . " {
 background-color: rgba(255,255,255, 0.5);
+width: 30px;
 height: auto;
 text-indent: 0px;
 text-align: center;
@@ -138,7 +139,6 @@ transition: opacity 0.6s ease;
 }
 .indicator-numbers .wsanr". $mid . ".active {
 opacity: 1;
-font-weight: bold;
 }
 
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
