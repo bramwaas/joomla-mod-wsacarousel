@@ -39,7 +39,8 @@
 }
 
 
-.carousel {
+.carousel,
+.wsacarousel {
   position: relative;
 }
 
@@ -140,7 +141,7 @@
 }
 
 .carousel-fade .carousel-item,
-.wsacarousel-fade .carousel-item {
+.wsacarousel-fade .wsacarousel-item {
   opacity: 0;
   transition-duration: .6s;
   transition-property: opacity;

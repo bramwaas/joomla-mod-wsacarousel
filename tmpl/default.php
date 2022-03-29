@@ -126,12 +126,23 @@ margin-right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] 
 z-index: 2;
 }
 .indicator-numbers .wsanr". $mid . " {
-background: transparent;
+background-color: rgba(255,255,255, 0.5);
+height: auto;
 text-indent: 0px;
 text-align: center;
+border: 0;
+border-top: solid 10px transparent;
+border-bottom: solid 10px transparent;
+opacity: 0.5;
+transition: opacity 0.6s ease;
 }
+.indicator-numbers .wsanr". $mid . ".active {
+opacity: 1;
+font-weight: bold;
+}
+
 #wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
-border: solid 10px transparent;
+
 }
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {

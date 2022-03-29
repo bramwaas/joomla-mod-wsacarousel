@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" method="upgrade">
 	<name>mod_wsacarousel</name>
-	<creationDate>21-3-2022</creationDate>	
+	<creationDate>29-3-2022</creationDate>	
 	<author>A.H.C. Waasdorp</author>
 	<copyright>Copyright (C) 2018 - 2022 A.H.C. Waasdorp, All rights reserved.</copyright>
 	<license> http://www.gnu.org/licenses GNU/GPL</license>
@@ -127,6 +127,25 @@
 				</field>
 			
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
+				<field type="wsaspacer" label="MOD_WSACAROUSEL_CUSTOMISE_CAROUSEL" />
+				
+				<field name="include_twbs_css" type="radio" layout="joomla.form.field.radio.switcher"  class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_INCLUDE_TWBS_CSS" description="MOD_WSACAROUSEL_INCLUDE_TWBS_CSS_DESC" showon="slider_source:1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="include_twbs_js" type="radio" layout="joomla.form.field.radio.switcher"  class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_INCLUDE_TWBS_JS" description="MOD_WSACAROUSEL_INCLUDE_TWBS_JS_DESC" showon="slider_source:1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="twbs_version" type="radio" class="btn-group" default="3" label="MOD_WSACAROUSEL_TWBS_VERSION" description="MOD_WSACAROUSEL_TWBS_VERSION_DESC" showon="slider_source:1">
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="9">5 (Joomla 4)</option>
+				</field>
+
+
+				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				<field name="wcag" type="list" default="1" label="MOD_WSACAROUSEL_KEYBOARD_ACCESS" description="MOD_WSACAROUSEL_KEYBOARD_ACCESS_DESC">
 					<option value="1">JENABLED</option>
 					<option value="0">JDISABLED</option>
@@ -159,24 +178,6 @@
 					<option value="1">MOD_WSACAROUSEL_CUSTOM_NAVIGATION_NUMBERS</option>
 				</field>
 				
-				<field type="spacer" label="&lt;hr &#47;&gt;" />
-				<field type="wsaspacer" label="MOD_WSACAROUSEL_CUSTOMISE_CAROUSEL" />
-				
-				<field name="include_twbs_css" type="radio" layout="joomla.form.field.radio.switcher"  class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_INCLUDE_TWBS_CSS" description="MOD_WSACAROUSEL_INCLUDE_TWBS_CSS_DESC" showon="slider_source:1">
-					<option value="0">JNO</option>
-					<option value="1">JYES</option>
-				</field>
-				<field name="include_twbs_js" type="radio" layout="joomla.form.field.radio.switcher"  class="switcher btn-group" default="1" label="MOD_WSACAROUSEL_INCLUDE_TWBS_JS" description="MOD_WSACAROUSEL_INCLUDE_TWBS_JS_DESC" showon="slider_source:1">
-					<option value="0">JNO</option>
-					<option value="1">JYES</option>
-				</field>
-				<field name="twbs_version" type="radio" class="btn-group" default="3" label="MOD_WSACAROUSEL_TWBS_VERSION" description="MOD_WSACAROUSEL_TWBS_VERSION_DESC" showon="slider_source:1">
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="9">5 (Joomla 4)</option>
-				</field>
-
 				<field type="spacer" label="&lt;hr &#47;&gt;" />
 				<field type="wsaspacer" label="MOD_WSACAROUSEL_SLIDE_EFFECT_OPTIONS" description="MOD_WSACAROUSEL_SLIDE_EFFECT_LINK" />
 				<field name="duration" type="text" default="600" size="10" label="MOD_WSACAROUSEL_SLIDE_DURATION" description="MOD_WSACAROUSEL_SLIDE_DURATION_DESC"  />
