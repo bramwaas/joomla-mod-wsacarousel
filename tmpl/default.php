@@ -128,7 +128,9 @@ z-index: 2;
 }
 .indicator-numbers .wsanr". $mid . " {
 background-color: transparent;
+width: 30px;
 height: auto;
+margin: 0 3px;
 text-indent: 0px;
 text-align: center;
 }
