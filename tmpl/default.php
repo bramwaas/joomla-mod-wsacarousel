@@ -197,7 +197,9 @@ right: 0;
 right:  calc(" . $style['marginr'] . ");
 font-size: 12px;
 line-height: 15.6px;
-background: RGBA(0,0,0,0.65);
+background-color: " . $caption_bgc .";
+opacity: " . ($caption_opc / 100) .";
+background-color: " . $caption_fgc .";
 }
 .".  $carousel_class ."-caption {
 color: #fff;
