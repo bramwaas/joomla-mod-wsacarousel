@@ -199,7 +199,7 @@ font-size: 12px;
 line-height: 15.6px;
 background-color: " . $caption_bgc .";
 opacity: " . ($caption_opc / 100) .";
-background-color: " . $caption_fgc .";
+color: " . $caption_fgc .";
 }
 .".  $carousel_class ."-caption {
 color: #fff;
