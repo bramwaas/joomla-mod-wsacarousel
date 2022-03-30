@@ -135,9 +135,12 @@ text-align: center;
 .indicator-numbers .wsanr". $mid . ".active {
 opacity: 1;
 }
-
-#wsacarouselbottom" . $mid . ".indicator-numbers  [data-target] {
-
+#wsacarouselbottom" . $mid . ".indicator-numbers  li[data-target] {
+border: 0;
+border-top: 10px solid transparent;
+border-bottom: 10px solid transparent;
+opacity: 0.5;
+transition: opacity 0.6s ease;
 }
 #wsacarousel" . $mid . " .".  $carousel_class ."-control-next,
 #wsacarousel" . $mid . " .".  $carousel_class ."-indicators {
