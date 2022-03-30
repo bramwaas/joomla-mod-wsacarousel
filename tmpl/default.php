@@ -127,16 +127,10 @@ margin-right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] 
 z-index: 2;
 }
 .indicator-numbers .wsanr". $mid . " {
-background-color: rgba(255,255,255, 0.5);
-width: 30px;
+background-color: transparent;
 height: auto;
 text-indent: 0px;
 text-align: center;
-border: 0;
-border-top: solid 10px transparent;
-border-bottom: solid 10px transparent;
-opacity: 0.5;
-transition: opacity 0.6s ease;
 }
 .indicator-numbers .wsanr". $mid . ".active {
 opacity: 1;
@@ -421,11 +415,11 @@ else {
                     <?php } ?>
             	</div>
                <?php if($show_idx && (1 == $idx_style)) { ?>
-            	<div id="wsacarouselbottom<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo (1==$show_idx) ? 'showOnHover':'wsashow' ?>">
+            	<ol id="wsacarouselbottom<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo (1==$show_idx) ? 'showOnHover':'wsashow' ?>">
             		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
-            		<span <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsanr<?php echo $mid; if ($itemnr == 1) echo ' active'; ?>" role="button" <?php echo $wcag; ?>><?php  echo $itemnr; ?></span>
+            		<li <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsanr<?php echo $mid; if ($itemnr == 1) echo ' active'; ?>" role="button" <?php echo $wcag; ?>><?php  echo $itemnr; ?></li>
             		<?php } ?>
-                </div>
+                </ol>
                 <?php } ?>
            </div>
             <?php if($show_arrows ) { ?>
