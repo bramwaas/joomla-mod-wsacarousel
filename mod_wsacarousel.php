@@ -210,8 +210,7 @@ if($link_image > 1 && $params->get('include_magnific',0) == 1) {
 
 $caption_overlay = ($params->get('caption_overlay', 1)  ? 'absolute':'relative');
 $ii_bgc = $params->get('ii_bgc', 'transparent');
-$caption_bgc = $params->get('caption_bgc', '#000');
-$caption_opc = $params->get('caption_opc', 50);
+$caption_rgba = implode(',', WsacarouselHelper::hexToRgb($params->get('caption_bgc', '#000'), $params->get('caption_opc', '50')/100 ));
 $caption_fgc = $params->get('caption_fgc', '#fff');
 $show_desc = $params->get('show_desc', 1);
 $show_readmore = $params->get('show_readmore', 0);

@@ -549,5 +549,25 @@ class WsacarouselHelper
 		
 		return $style;
 	}
-
+	/**
+	 * Gets styles for some carousel elements
+	 *
+	 * $hex     String  The hex color value #rrggbb  
+	 * $alpha   decimal The decimal opacity value (0 - 1)
+	 *
+	 * @return  $rgb  Array   The rgba color and alpha values 
+	 *
+	 * @since   1.1
+	 */
+	static function hexToRgb($hex, $alpha = false) {
+	    $hex      = str_replace('#', '', $hex);
+	    $split_hex_color = str_split( $hex, 2 );
+	    $rgb['r'] = hexdec( $split_hex_color[0] );
+	    $rgb['g'] = hexdec( $split_hex_color[1] );
+	    $rgb['b'] = hexdec( $split_hex_color[2] );
+	    if ( $alpha ) {
+	        $rgb['a'] = $alpha;
+	    }
+	    return $rgb;
+	}
 }
