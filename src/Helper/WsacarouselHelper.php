@@ -565,7 +565,7 @@ class WsacarouselHelper
 	    $rgb['r'] = hexdec( $split_hex_color[0] );
 	    $rgb['g'] = hexdec( $split_hex_color[1] );
 	    $rgb['b'] = hexdec( $split_hex_color[2] );
-	    if ( $alpha ) {
+	    if ( $alpha === false ) {
 	        $rgb['a'] = $alpha;
 	    }
 	    return $rgb;
