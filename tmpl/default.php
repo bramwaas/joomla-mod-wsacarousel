@@ -132,7 +132,7 @@ height: auto;
 text-indent: 0px;
 text-align: center;
 }
-.indicator-numbers .wsanr". $mid . ".active {
+#wsacarouselbottom" . $mid . ".indicator-numbers .wsanr". $mid . ".active {
 opacity: 1;
 }
 #wsacarouselbottom" . $mid . ".indicator-numbers  li[data-target] {
