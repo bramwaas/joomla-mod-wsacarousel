@@ -334,7 +334,7 @@ else {
 ?>
 
 <div class="wsacarousel<?php echo $params->get('moduleclass_sfx') ?>" style="border: 0px !important;">
-    <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"   tabindex="0">
+    <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader"  tabindex="0">
     	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel-box">
     		<!-- Container with data-options (animation and wsa-carousel only for info) -->
             <div id="wsacarousel-container<?php echo $mid; ?>" class="<?php echo $carousel_class; ?> slide " 
@@ -345,7 +345,6 @@ else {
     		<?php echo $bs_data; ?>keyboard="true"
     		<?php echo $bs_data; ?>duration="<?php echo $duration; ?>"
     		>
-    		
     		<!-- Indicators -->
     		<?php if($show_idx && !$idx_style) { ?>
              <ol class="<?php echo $carousel_class; ?>-indicators <?php echo (1==$show_idx)?' showOnHover':' wsashow';?>" >
