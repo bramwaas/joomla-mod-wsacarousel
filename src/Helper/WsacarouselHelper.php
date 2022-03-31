@@ -1,9 +1,9 @@
 <?php
 /**
- * @version $Id: helper.php 
+ * @version $Id: WsaCarousel.php 
  * @package wsacarousel
  * @subpackage wsacarousel Module
- * @copyright Copyright (C) 2018 A.H.C. Waasdorp, All rights reserved.
+ * @copyright Copyright (C) 2018 -2022 A.H.C. Waasdorp, All rights reserved.
  * @license http://www.gnu.org/licenses GNU/GPL
  * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
@@ -26,8 +26,12 @@
  * 0.2.0 slide delay added.
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.0.7
+ * 1.10.0 4-3-2022 using bootstrap css icons  as default navigation icons
+ *        8-3-2022 copied from helper.php to comply with Joomla namespaced model
+ *        10-3-2022 added doc blocks.
+ *        14-3-2022 added svg as default images for navigatition
  */
- 
+namespace WaasdorpSoekhan\Module\Wsacarousel\Site\Helper;
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
 
@@ -40,13 +44,24 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\Component\Content\Site\Helper\RouteHelper as ContentHelperRoute;
 use Joomla\Filesystem\Path;
 use Joomla\Registry\Registry;
-$doc = Factory::getDocument ();
 
-
-class modWsaCarouselHelper
+/**
+ * Helper for mod_wsacarousel
+ *
+ * @since  1.1
+ */
+class WsacarouselHelper
 {
-    static function getImagesFromFolder(&$params) {
-    	
+    /**
+     * Gets images from the folder
+     *
+     * @param   mixed  &$params  The parameters set in the administrator section
+     *
+     * @return  array  $slides  Array of slides sorted in the correct order 
+     *
+     * @since   1.1
+     */
+     static function getImagesFromFolder(&$params) {
     	if(!is_numeric($max = $params->get('max_images'))) $max = 20;
         $folder = $params->get('image_folder');
         if(!$dir = @opendir($folder)) return null;
@@ -81,7 +96,7 @@ class modWsaCarouselHelper
         
 		$images = array_slice($files, 0, $max);
 		
-		$target = modWsaCarouselHelper::getSlideTarget($params->get('link'));
+		$target = self::getSlideTarget($params->get('link'));
 		
 		foreach($images as $image) {
 			$slides[] = (object) array('title'=>'', 'description'=>'', 'image'=>$folder.'/'.$image, 'link'=>$params->get('link'), 'alt'=>$image, 'target'=>$target);
@@ -90,9 +105,17 @@ class modWsaCarouselHelper
 		return $slides;
     }
 	
-        static function getImagesFromWsaCarousel(&$params) {
-        
-		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
+    /**
+     * Gets images from the component
+     *
+     * @param   mixed  &$params  The parameters set in the administrator section
+     *
+     * @return  array  $slides  Array of slides sorted in the correct order
+     *
+     * @since   1.1
+     */
+    static function getImagesFromWsaCarousel(&$params) {
+	   if(!is_numeric($max = $params->get('max_images'))) $max = 20;
         $catid = $params->get('category',0);
 		
 		// build query to get slides
@@ -133,19 +156,27 @@ class modWsaCarouselHelper
 		
 		foreach($slides as $slide){
 			$slide->params = new Registry($slide->params);
-			$slide->link = modWsaCarouselHelper::getSlideLink($slide);
-			$slide->description = modWsaCarouselHelper::getSlideDescription($slide, $params->get('limit_desc'));
+			$slide->link = self::getSlideLink($slide);
+			$slide->description = self::getSlideDescription($slide, $params->get('limit_desc'));
 			$slide->alt = $slide->params->get('alt_attr', $slide->title);
 			$slide->img_title = $slide->params->get('title_attr');
 			$slide->target = $slide->params->get('link_target','');
 			$slide->rel = $slide->params->get('link_rel','');
 	
-			if(empty($slide->target)) $slide->target = modWsaCarouselHelper::getSlideTarget($slide->link);
+			if(empty($slide->target)) $slide->target = self::getSlideTarget($slide->link);
 		}
 		
 		return $slides;
     }
-	
+    /**
+     * Gets link for slide
+     *
+     * @param   mixed  &$slide  The slide object
+     *
+     * @return  string  $link  String with url of the link
+     *
+     * @since   1.1
+     */
 	static function getSlideLink(&$slide) {
 		$link = '';
 		$db = Factory::getDbo();
@@ -175,8 +206,6 @@ class modWsaCarouselHelper
 				break;
 			case 'article':
 				if ($artid = $slide->params->get('id',$slide->params->get('link_article',0))) {
-//					jimport('joomla.application.component.model');
-//					require_once(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
 					BaseDatabaseModel::addIncludePath(JPATH_BASE.DS.'components'.DS.'com_content'.DS.'models');
 					$model = BaseDatabaseModel::getInstance('Articles', 'ContentModel', array('ignore_request'=>true));
 					$model->setState('params', $app->getParams());
@@ -194,7 +223,16 @@ class modWsaCarouselHelper
 		
 		return $link;
 	}
-	
+	/**
+	 * Gets description for slide and truncate if necessary
+	 *
+	 * @param   mixed  $slide  The slide object
+	 * @param   int    $limit  Limit number of charcters for description.
+	 *
+	 * @return  string  $desc  String with description
+	 *
+	 * @since   1.1
+	 */
 	static function getSlideDescription($slide, $limit) {
 		$sparams = new Registry($slide->params);
 		if($sparams->get('link_type','')=='article' && empty($slide->description)){ // if article and no description then get introtext as description
@@ -220,13 +258,19 @@ class modWsaCarouselHelper
 
 		return $desc;
 	}
-
+	/**
+	 * Truncate text
+	 *
+	 * @param   string  $text  The slide object
+	 * @param   int    $limit  Limit number of charcters for description.
+	 *
+	 * @return  string  $link  String with description
+	 *
+	 * @since   1.1
+	 */
 	private function truncateDescription($text, $limit) {
-		
 		$text = preg_replace('/{djmedia\s*(\d*)}/i', '', $text);
-		
 		$desc = strip_tags($text);
-		
 		if($limit && $limit - strlen($desc) < 0) {
 			$desc = substr($desc, 0, $limit);
 			// don't cut in the middle of the word unless it's longer than 20 chars
@@ -243,7 +287,15 @@ class modWsaCarouselHelper
 
 		return $desc;
 	}
-	
+	/**
+	 * Gets animation options from the parameters
+	 *
+	 * @param   mixed  &$params  The parameters set in the administrator section
+	 *
+	 * @return  mixed  $options  JSON Array of carousel options
+	 *
+	 * @since   1.1
+	 */
 	static function getAnimationOptions(&$params) {
 		$transition = $params->get('effect');
 		$easing = $params->get('effect_type');
@@ -279,7 +331,7 @@ class modWsaCarouselHelper
 		}
 		// add transition duration to delay
 		$delay = $delay + $duration;
-		$css3transition = $params->get('css3') ? modWsaCarouselHelper::getCSS3Transition($transition, $easing) : '';
+		$css3transition = $params->get('css3') ? self::getCSS3Transition($transition, $easing) : '';
 		
         // Joomla 3 - jQuery
 		if($transition=='ease') {
@@ -294,9 +346,20 @@ class modWsaCarouselHelper
 		return $options;
 	}
 	
+	/**
+	 * Gets css3 transition from transition name and easing
+	 *
+	 * @param   string  $transition  One of the transition names.
+	 * @param   string  $easing      The easing type
+	 *
+	 * @return  string  $options   css3 transition.
+	 *
+	 * @since   1.1
+	 */
 	
 	static function getCSS3Transition($transition, $easing) {
-		
+	    $doc = Factory::getDocument ();
+	    
 		switch($easing) {
 			
 			case '': return 'linear';
@@ -339,9 +402,16 @@ class modWsaCarouselHelper
 			default: return 'ease';
 		}
 	}
-	
+	/**
+	 * Gets link target for slide
+	 *
+	 * @param   string  $link  The slide object
+	 *
+	 * @return  string  $target  String with deafault target for the link
+	 *
+	 * @since   1.1
+	 */
 	static function getSlideTarget($link) {
-		
 		if(preg_match("/^http/",$link) && !preg_match("/^".str_replace(array('/','.','-'), array('\/','\.','\-'),Uri::base())."/",$link)) {
 			$target = '_blank';
 		} else {
@@ -350,39 +420,77 @@ class modWsaCarouselHelper
 		
 		return $target;
 	}
-	
-	static function getNavigation(&$params, &$mid) {
-		
-		$prev = $params->get('left_arrow');
-		$next = $params->get('right_arrow');
-		$play = $params->get('play_button');
-		$pause = $params->get('pause_button');
-		
-		$theme = $params->get('theme', 'default');
-		
-		if($params->get('slider_type')==1) {			
-			if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/up.png';			
-			if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/down.png';
-		} else {			
-			if(empty($prev) || !file_exists(JPATH_ROOT.DS.$prev)) $prev = 'modules/mod_wsacarousel/themes/'.$theme.'/images/prev.png';			
-			if(empty($next) || !file_exists(JPATH_ROOT.DS.$next)) $next = 'modules/mod_wsacarousel/themes/'.$theme.'/images/next.png';
-		}
-		if(empty($play) || !file_exists(JPATH_ROOT.DS.$play)) $play = 'modules/mod_wsacarousel/themes/'.$theme.'/images/play.png';
-		if(empty($pause) || !file_exists(JPATH_ROOT.DS.$pause)) $pause = 'modules/mod_wsacarousel/themes/'.$theme.'/images/pause.png';
-		
-		$navi = (object) array('prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
-		
-		return $navi;
+	/**
+	 * Gets navigation variables for carousel
+	 *
+     * @param   mixed  &$params  The parameters set in the administrator section
+	 * @param   int    $mid  The module id
+	 *
+	 * @return  array  $navi  Array with several navigation params
+	 *
+	 * @since   1.1
+	 */
+	static function getNavigation(&$params, $mid) {
+	    /* default <!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+	     images */
+	    $nav_buttons_style = $params->get('nav_buttons_style',1);
+	    switch ($nav_buttons_style)
+	    {
+	        case 0:
+	        break; 
+	        case 2: {
+	            $prev= Uri::base() . '/media/mod_wsacarousel/images/prev.png';
+	            $next= Uri::base() .'/media/mod_wsacarousel/images/next.png';
+	            $pause= Uri::base() .'/media/mod_wsacarousel/images/pause.png';
+	            $play= Uri::base() .'/media/mod_wsacarousel/images/play.png';
+	        }
+	        break;
+	        case 1: {
+	        $prev = $params->get('left_arrow');
+	        $next = $params->get('right_arrow');
+	        $play = $params->get('play_button');
+	        $pause = $params->get('pause_button');
+	        if(empty($prev) ) $prev = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-width="2" stroke-opacity="0.5"  class="bi bi-chevron-left" viewBox="0 0 320 512">
+		  <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/>
+          </svg>');
+	        if(empty($next) ) $next = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-width="2" stroke-opacity="0.5"  class="bi bi-chevron-right" viewBox="0 0 320 512">
+		  <path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/>
+		  </svg>');
+	        }
+	       break;  
+	    }
+	    if(empty($play) ) $play = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-160 -64 640 640" class="bi bi-play-fill" >
+        <circle fill="#010101" fill-opacity="0.1" cx="160" cy="256" r="320"/>
+		<path  fill="white" d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/>
+		</svg>');
+	    if(empty($pause) ) $pause = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-160 -64 640 640" class="bi bi-play-fill" >
+        <circle fill="#010101" fill-opacity="0.1" cx="160" cy="256" r="320"/>
+		<path fill="white"  d="M272 63.1l-32 0c-26.51 0-48 21.49-48 47.1v288c0 26.51 21.49 48 48 48L272 448c26.51 0 48-21.49 48-48v-288C320 85.49 298.5 63.1 272 63.1zM80 63.1l-32 0c-26.51 0-48 21.49-48 48v288C0 426.5 21.49 448 48 448l32 0c26.51 0 48-21.49 48-48v-288C128 85.49 106.5 63.1 80 63.1z"/>
+		</svg>');
+	    
+	    $navi = (object) array('nav_buttons_style'=>$nav_buttons_style , 'prev'=>$prev,'next'=>$next,'play'=>$play,'pause'=>$pause);
+	    
+	    return $navi;
 	}
-	
-	static function getStyles($params) {
+	/**
+	 * Gets styles for some carousel elements
+	 *
+	 * @param   mixed  &$params  The parameters set in the administrator section
+	 * @param   int    $slidecnt  The number of slides found mximize number to display
+	 *
+	 * @return  array  $navi  Array with several navigation params
+	 *
+	 * @since   1.1
+	 */
+	static function getStyles(&$params, $slidecnt) {
 		if(!is_numeric($slide_width = $params->get('image_width'))) $slide_width = 240;
-		if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 160;
+		if(!is_numeric($slide_height = $params->get('image_height'))) $slide_height = 180;
 		if(!is_numeric($max = $params->get('max_images'))) $max = 20;
-		if(!is_numeric($count = $params->get('visible_images'))) $count = 2;
+		if(!is_numeric($vicnt = $params->get('visible_images'))) $vicnt = 2;
 		if(!is_numeric($spacing = $params->get('space_between_images'))) $spacing = 0;
-		if($count<1) $count = 1;
-		if($count>$max) $count = $max;
+		if($vicnt>$slidecnt) $vicnt = $slidecnt;
+		if($vicnt<1) $vicnt = 1;
+		if($vicnt>$max) $vicnt = $max;
 		
 		
 		$desc_width = $params->get('desc_width', $slide_width);
@@ -392,33 +500,14 @@ class modWsaCarouselHelper
 		$arrows_top = $params->get('arrows_top', '50%');
 		$arrows_horizontal = $params->get('arrows_horizontal', 5);
 		
-		switch($params->get('slider_type')){
-			case 2:
-				$slider_width = $slide_width;
+//		switch($params->get('slider_type',0)){ always horizontal 
+				$slider_width = $slide_width * $vicnt + $spacing * ($vicnt - 1);
 				$slider_height = $slide_height;
 				$image_width = 'width: 100%';
-				$image_height = 'height: auto';
-				$padding_right = 0;
-				$padding_bottom = 0;
-				break;
-			case 1:
-				$slider_width = $slide_width;
-				$slider_height = $slide_height * $count + $spacing * ($count - 1);
-				$image_width = 'width: auto';
 				$image_height = 'height: 100%';
-				$padding_right = 0;
-				$padding_bottom = $spacing;
-				break;
-			case 0:
-			default:
-				$slider_width = $slide_width * $count + $spacing * ($count - 1);
-				$slider_height = $slide_height;
-				$image_width = 'width: 100%';
-				$image_height = 'height: auto';
 				$padding_right = $spacing;
 				$padding_bottom = 0;
-				break;
-		}
+
 		
 		if(strstr($desc_width, '%') == false) $desc_width = (($desc_width / $slide_width) * 100) .'%';
 		if(strstr($desc_left, '%') == false) $desc_left = (($desc_left / $slide_width) * 100) .'%';
@@ -435,10 +524,14 @@ class modWsaCarouselHelper
 		}
 		
 		$style = array();
-		$style['slider'] = 'height: '.$slider_height.'px; width: '.$slider_width.'px;';
-//		if(!$params->get('full_width', 0)) $style['slider'].= ' max-width: '.$slider_width.'px !important;';
-		if($params->get('full_width', 0) ) $style['slider'] = ' width: 100%; height: auto;';
-		$style['image'] = $image_width.'; '.$image_height.';';		
+		$style['slrwidth'] = ($params->get('full_width', 0) )? '100%' : $slider_width .'px';
+		$style['sldwidth'] = ($params->get('full_width', 0) )? '100%' : $slide_width .'px';
+		$style['sldheight'] = ($params->get('full_width', 0) )? 'auto' :$slide_height . 'px';
+		$style['image'] = $image_width.'; '.$image_height.'; object-fit: contain; ' . 
+		                  (($params->get('image_centering', 0))? '' :'object-position: 50% top;');
+		$style['aspectratio'] =  $slide_width  /  $slide_height; 
+		$style['vicnt'] = $vicnt;
+		
 		$style['navi'] = 'top: '.$arrows_top.'; margin: 0 '.$arrows_horizontal.';';
 		$style['desc'] = 'bottom: '.$desc_bottom.'; left: '.$desc_left.'; width: '.$desc_width.';';
 		if($params->get('direction') == 'rtl') {
@@ -456,5 +549,25 @@ class modWsaCarouselHelper
 		
 		return $style;
 	}
-
+	/**
+	 * Gets styles for some carousel elements
+	 *
+	 * $hex     String  The hex color value #rrggbb  
+	 * $alpha   decimal The decimal opacity value (0 - 1)
+	 *
+	 * @return  $rgb  Array   The rgba color and alpha values 
+	 *
+	 * @since   1.1
+	 */
+	static function hexToRgb($hex, $alpha = false) {
+	    $hex      = str_replace('#', '', $hex);
+	    $split_hex_color = str_split( $hex, 2 );
+	    $rgb['r'] = hexdec( $split_hex_color[0] );
+	    $rgb['g'] = hexdec( $split_hex_color[1] );
+	    $rgb['b'] = hexdec( $split_hex_color[2] );
+	    if ( $alpha !== false ) {
+	        $rgb['a'] = $alpha;
+	    }
+	    return $rgb;
+	}
 }
