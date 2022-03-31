@@ -16,7 +16,8 @@ Added support for more than one visual slide in bootstrap carousel by adding Jav
 * Fit size of image in available width or height or both (contain)
 
 ## Installation
-* Do the usual setup procedure you know downloading unpacking uploading activating. 
+* Do the usual setup procedure you know downloading unpacking uploading activating.
+* or install from url using the download source code url of the release in github. 
 * ..
 * Fill out all the necessary configuration fields.
 * You're done!
