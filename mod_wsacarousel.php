@@ -124,11 +124,11 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
         case "9" : {
             $params->set('twbs_version',5);
             $carousel_class = 'carousel';
-            $js_mainobject =  'bootstrap';
             if ($include_twbs_css ) {
                 $wa->useStyle('bootstrap.css');
             }
             if ($include_twbs_js ) {
+                $js_mainobject =  'bootstrap';
                 $wa->useScript('bootstrap.carousel');
            }
         }
@@ -194,7 +194,7 @@ switch ($params->get('twbs_version',9)) {
                 array('id'=>'wsacarousel_bootstrap.css',));
         }
         if ($include_twbs_js ) {
-             
+            $js_mainobject = 'wsabs5';
             $document->addScript($asset_dir . "js/wsacarousel_bootstrap5.1.js", array('version'=>'5.1.3'),
                 array('id'=>'wsacarousel_bootstrap.js', 'defer'=>'defer')); // defer .
         }
@@ -217,21 +217,6 @@ $show_readmore = $params->get('show_readmore', 0);
 $readmore_text = ($params->get('readmore_text', 0) ? $params->get('readmore_text') : Text::_('MOD_WSACAROUSEL_READMORE'));
 $link_title = $params->get('link_title', 1);
 $link_desc = $params->get('link_desc', 0);
-// $limit_desc = $params->get('limit_desc'); //only used in Helper.
-// $full_width = $params->get('full_width', 0)
-// $fit_to = $params->get('fit_to', 0);
-// $sort_by = $params->get('sort_by', 1);
-// tricky but value of assignment == value of assigned variable.
-//if(!is_numeric($width = $params->get('image_width'))) $width = 240; // only used in helper
-//if(!is_numeric($height = $params->get('image_height'))) $height = 180;
-//if(!is_numeric($max = $params->get('max_images'))) $max = 20;
-//if(!is_numeric($vicnt = $params->get('visible_images'))) $vicnt = 3;
-//if(!is_numeric($spacing = $params->get('space_between_images'))) $spacing = 10;
-//if(!is_numeric($preload = $params->get('preload'))) $preload = 800;
-//if($vicnt>$slidecnt) $vicnt = $slidecnt;
-//if($vicnt<1) $vicnt = 1;
-//if($vicnt>$max) $vicnt = $max;
-//$image_centering = $params->get('image_centering', 0);
 if(!is_numeric($duration = $params->get('duration'))) $duration = 600;
 if(!is_numeric($delay = $params->get('delay'))) $delay = 3000;
 $interval = ($params->get('autoplay', 1)) ? $delay + $duration : 'false';
@@ -241,7 +226,6 @@ $show_arrows = $params->get('show_arrows',1);
 $show_idx = $params->get('show_custom_nav', 0);
 $idx_style = $params->get('idx_style', 0);
 
-$wcag = $params->get('wcag', 1) ? ' tabindex="0"' : '';
 $animationOptions = WsacarouselHelper::getAnimationOptions($params);
 $style = WsacarouselHelper::getStyles($params, $slidecnt);
 $navigation = WsacarouselHelper::getNavigation($params, $mid);

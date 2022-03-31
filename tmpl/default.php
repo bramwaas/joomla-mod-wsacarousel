@@ -40,7 +40,8 @@
  *       23-3-2022 aspect-ratio and overflow hidden added to -item-content to clip avoid higher slides with pictures with to low aspect-ratio.
  *                 Particular for full-width because the solution with fixed slide-height doesn't work there. Slide-heigt left for non full-width for older 
  *                 browsers that don't support aspect ratio.   
- *       26-3-2022 renamed main object bootstrap to wsabs5 to avoid collision in inlinescript.            
+ *       26-3-2022 renamed main object bootstrap to wsabs5 to avoid collision in inlinescript. 
+ *       31-3-2022 wcag removed keyboard acces always on (tabindex="0")           
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
@@ -333,7 +334,7 @@ else {
 ?>
 
 <div class="wsacarousel<?php echo $params->get('moduleclass_sfx') ?>" style="border: 0px !important;">
-    <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"  <?php echo $wcag; ?>>
+    <div id="wsacarousel-loader<?php echo $mid; ?>" class="wsacarousel-loader wsacarousel-loader-<?php echo $theme ?>"   tabindex="0">
     	<div id="wsacarousel<?php echo $mid; ?>" class="wsacarousel-box">
     		<!-- Container with data-options (animation and wsa-carousel only for info) -->
             <div id="wsacarousel-container<?php echo $mid; ?>" class="<?php echo $carousel_class; ?> slide " 
@@ -423,7 +424,7 @@ else {
                <?php if($show_idx && (1 == $idx_style)) { ?>
             	<ol id="wsacarouselbottom<?php echo $mid; ?>" class="<?php echo $carousel_class; ?>-indicators indicator-numbers <?php echo (1==$show_idx) ? 'showOnHover':'wsashow' ?>">
             		<?php $itemnr = 0; foreach ($slides as $slide) { $itemnr++; ?>
-            		<li <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsanr<?php echo $mid; if ($itemnr == 1) echo ' active'; ?>" role="button" <?php echo $wcag; ?>><?php  echo $itemnr; ?></li>
+            		<li <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>slide-to="<?php echo $itemnr - 1;?>" class="wsanr<?php echo $mid; if ($itemnr == 1) echo ' active'; ?>" role="button"  tabindex="0"><?php  echo $itemnr; ?></li>
             		<?php } ?>
                 </ol>
                 <?php } ?>
@@ -432,14 +433,14 @@ else {
             <div id="navigation<?php echo $mid; ?>" class="navigation-container">
     			<a class="left <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-prev <?php echo (1==$show_arrows) ? 'showOnHover':((3==$show_arrows) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="prev" >
             	<?php if($navigation->nav_buttons_style) { ?>
-            	<img id="prev<?php echo $mid; ?>" class="prev-button " src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_NEXT') : Text::_('MOD_WSACAROUSEL_PREVIOUS'); ?>"<?php echo $wcag; ?> />
+            	<img id="prev<?php echo $mid; ?>" class="prev-button " src="<?php echo $navigation->prev; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_NEXT') : Text::_('MOD_WSACAROUSEL_PREVIOUS'); ?>" tabindex="0" />
             	<?php } else { ?>
             	<span class="<?php echo $carousel_class; ?>-control-prev-icon" aria-hidden="true"></span>
     			<?php } ?>
     			</a>
     			<a class="right <?php echo $carousel_class; ?>-control <?php echo $carousel_class; ?>-control-next <?php echo (1==$show_arrows) ? 'showOnHover':((3==$show_arrows) ? 'showBothOnHover' : 'wsashow' ) ?>" href="#wsacarousel-container<?php echo $mid; ?>" <?php echo $bs_data; ?>target="#wsacarousel-container<?php echo $mid; ?>"  role="button" <?php echo $bs_data; ?>slide="next" >			
             	<?php if($navigation->nav_buttons_style) { ?>
-    			<img id="next<?php echo $mid; ?>" class="next-button " src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>"<?php echo $wcag; ?> />
+    			<img id="next<?php echo $mid; ?>" class="next-button " src="<?php echo $navigation->next; ?>" alt="<?php echo $direction == 'rtl' ? Text::_('MOD_WSACAROUSEL_PREVIOUS') : Text::_('MOD_WSACAROUSEL_NEXT'); ?>" tabindex="0" />
             	<?php } else { ?>
             	<span class="<?php echo $carousel_class; ?>-control-next-icon" aria-hidden="true"></span>
     			<?php } ?>
@@ -449,12 +450,12 @@ else {
         	<?php  if($show_buttons) { ?>
         	<div class="play-pause <?php echo (1==$show_buttons) ? 'showOnHover':((3==$show_buttons) ? 'showBothOnHover' : 'wsashow' ); ?>" >
             	<img id="play<?php echo $mid; ?>" class="play-button "  role="button"
-            	  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>"<?php echo $wcag; ?> >
+            	  src="<?php echo $navigation->play; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PLAY'); ?>" tabindex="0" >
             	<img id="pause<?php echo $mid; ?>" class="pause-button "  role="button"
-            	 src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>"<?php echo $wcag; ?> >
+            	 src="<?php echo $navigation->pause; ?>" alt="<?php echo Text::_('MOD_WSACAROUSEL_PAUSE'); ?>" tabindex="0" >
             </div>	 
         	<?php }  ?>
         </div>
     </div>
 </div>
-<div class="wsa<?php echo $carousel_class; ?>-end" style="clear: both"<?php echo $wcag; ?>></div>
+<div class="wsa<?php echo $carousel_class; ?>-end" style="clear: both" tabindex="0"></div>
