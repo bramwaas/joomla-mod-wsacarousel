@@ -50,8 +50,8 @@ From version 1.1.0 we use the aspect-ratio css property to limit the overflow he
 In IE and bootstrap 3 the old frame seems to be removed to fast I have not found the reason. So if you want maximum quality also on IE I would suggest using bootstrap 4.  
 
 **Other issues.**  
-A user mentioned big distortions of slides when fast clicking on navigation arrows when using chrome.
-I could not reproduce that bug entirely so I am afraid that it will still be present on some configurations.
+A user mentioned big distortions of slides when fast clicking on navigation arrows when using chrome. I could not reproduce that bug entirely so I am afraid that it will still be present on some configurations.   
+When a slide is partially transparent you can see the old frame through the new frame during the transition. In places where the opacity is less than 100%, the opacity increases. (caption) texts can also fade because the frames do not shift completely synchronously. To prevent this, you can set a color for the slide background. For example the color of the carousel background.
 
 **Dependencies.**    
 Bootstrap carousel 3 uses javascript and jquery.js  
