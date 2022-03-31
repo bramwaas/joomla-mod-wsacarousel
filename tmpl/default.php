@@ -41,8 +41,7 @@
  *                 Particular for full-width because the solution with fixed slide-height doesn't work there. Slide-heigt left for non full-width for older 
  *                 browsers that don't support aspect ratio.   
  *       26-3-2022 renamed main object bootstrap to wsabs5 to avoid collision in inlinescript. 
- *       31-3-2022 wcag removed keyboard acces always on (tabindex="0")           
-r
+ *       31-3-2022 wcag removed keyboard acces always on (tabindex="0")
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
