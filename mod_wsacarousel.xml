@@ -174,14 +174,7 @@
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>
-					<option value="9">5 (Joomla 4)</option>
-				</field>
-
-
-				<field type="spacer" label="&lt;hr &#47;&gt;" />
-				<field name="wcag" type="list" default="1" label="MOD_WSACAROUSEL_KEYBOARD_ACCESS" description="MOD_WSACAROUSEL_KEYBOARD_ACCESS_DESC">
-					<option value="1">JENABLED</option>
-					<option value="0">JDISABLED</option>
+<!-- 					<option value="9">5 (Joomla 4)</option> -->
 				</field>
 				<field name="duration" type="text" default="600" size="10" label="MOD_WSACAROUSEL_SLIDE_DURATION" description="MOD_WSACAROUSEL_SLIDE_DURATION_DESC"  />
 				<field name="delay" type="text" default="3000" size="10" label="MOD_WSACAROUSEL_NEXT_SLIDE_DELAY" description="MOD_WSACAROUSEL_NEXT_SLIDE_DELAY_DESC" />
