@@ -13,7 +13,7 @@ Added support for more than one visual slide in bootstrap carousel by adding Jav
 * Stretch slider to full width (of parent container) wile keeping aspect ratio's from width and height, or fix width and height.
 * Set number of visual slides. (fall back to 1 on small browser windows)
 * Choose bootstrap version 3, 4 or 5. Add module javascript and CSS or use bootstrap javascript and css that is already available.
-* Fit size of image in avalable width or height or both (contain)
+* Fit size of image in available width or height or both (contain)
 
 ## Installation
 * Do the usual setup procedure you know downloading unpacking uploading activating. 
