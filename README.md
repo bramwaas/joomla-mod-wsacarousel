@@ -51,11 +51,11 @@ In IE and bootstrap 3 the old frame seems to be removed to fast I have not found
 A user mentioned big distortions of slides when fast clicking on navigation arrows when using chrome.
 I could not reproduce that bug entirely so I am afraid that it will still be present on some configurations.
 
-**Dependencies.**  
-Bootstrap carousel 3 uses javascript and jquery.js
-Bootstrap carousel 4 uses javascript and jquery.js and popper.js
-Bootstrap carousel 5 only uses javascript but not the version IE provides.
-Magnific popup uses javascript and jquery.js
+**Dependencies.**    
+Bootstrap carousel 3 uses javascript and jquery.js  
+Bootstrap carousel 4 uses javascript and jquery.js and popper.js   
+Bootstrap carousel 5 only uses javascript but not the version IE provides.   
+Magnific popup uses javascript and jquery.js   
 
 (This module is a Fork of version 3.2.3 of DJ-ImageSlider by DJ-Extensions,
 https://extensions.joomla.org/extension/dj-imageslider/)
