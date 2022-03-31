@@ -288,6 +288,7 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
 else {
 $document->addStyleDeclaration($decl);
 }
+if($show_buttons) { // javascript for play_pause
 /* work without jQuery in BS5 */
 if ($params->get('twbs_version',4) == 5 ) {
 	$decl = "
@@ -330,7 +331,7 @@ if ($joomlaverge4) { // J4 code stylesheets and javascript addStyleSheet etc for
 else {
     $document->addScriptDeclaration($decl);
 }
-
+} // end javascript for play_pause.
 ?>
 
 <div class="wsacarousel<?php echo $params->get('moduleclass_sfx') ?>" style="border: 0px !important;">
