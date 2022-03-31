@@ -8,8 +8,9 @@ Added support for more than one visual slide in bootstrap carousel by adding Jav
 ## Module Features
 
 * Get images from a directory or from WsaCarousel component as source.
-* Loop continuously automatic or manually. Optional buttons for play/pause or navigation by next/previous arrows or indicators. 
-* Set caption with title and short description slides from component.
+* Loop continuously automatic or manually. Optional buttons for play/pause or navigation by next/previous arrows or indicators.
+* Set transition time and delay between transitions. 
+* When using slides from component.Set caption with title and short description. Set interval (= transition time + delay) for individual slide (works only in bootstrap 4 and 5).   
 * Stretch slider to full width (of parent container) wile keeping aspect ratio's from width and height, or fix width and height.
 * Set number of visual slides. (fall back to 1 on small browser windows)
 * Choose bootstrap version 3, 4 or 5. Add module javascript and CSS or use bootstrap javascript and css that is already available.
