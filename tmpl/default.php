@@ -104,7 +104,7 @@ background-color: " . $ii_bgc . ";
   height: 0;
   overflow: hidden;
   padding: 0 0 " . (100 /$style['vicnt'])/ $style['aspectratio'] . "% 0 ;
-padding-bottom: calc(" . (100 /$style['vicnt'])/ $style['aspectratio'] . "% - " . (1/$style['vicnt'])/ $style['aspectratio']  . "*" . $style['marginr'] . ");
+padding-bottom: calc(" . (100 /$style['vicnt'])/ $style['aspectratio'] . "% - " . 1/ $style['aspectratio']  . "*" . $style['marginr'] . ");
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner .aspect-ratio-box-inside{ 
   position: absolute;
@@ -136,8 +136,8 @@ padding-left: 0;
 #wsacarousel" . $mid . " #wsacarouselbottom" . $mid  ." {
 position: relative;
 bottom:0;
-margin-left: 0;
-margin-right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
+margin:0 calc(100% - " . 100/$style['vicnt'] . "%) 0 0;
+margin:0 calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ") 0 0;
 z-index: 2;
 }
 .indicator-numbers .wsanr". $mid . " {
@@ -226,14 +226,6 @@ width:  calc(100% - " . $style['marginr'] . ");
 height: " . $style['sldheight'] . "; 
 aspect-ratio: " . $style['aspectratio']  . ";
 overflow: hidden;
-}
-#wsacarousel-container" . $mid . " .".  $carousel_class ."-item-height{
-float: left;
-width: 0;
-height: 0;
-padding: 0 0 " . 100 / $style['aspectratio'] . "% 0 ;
-margin: 0;
-padding-bottom: calc(" . 100 / $style['aspectratio'] . "% - " . (1 / $style['aspectratio'])  . "*" . $style['marginr'] . ");
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-img{
 " . $style['image'] . "
