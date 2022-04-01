@@ -420,7 +420,6 @@ else {
             						<!-- Slide description area: END -->
         						<?php } ?>						
         						</div>
-        						<div class="<?php echo $carousel_class; ?>-item-height"></div>
     						</div>
     					</div>
     					<?php } ?>
