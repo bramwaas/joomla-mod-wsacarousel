@@ -504,7 +504,7 @@ class WsacarouselHelper
 				$slider_width = $slide_width * $vicnt + $spacing * ($vicnt - 1);
 				$slider_height = $slide_height;
 				$image_width = 'width: 100%';
-				$image_height = 'height: 100%';
+				$image_height = 'height: auto; max-height: 100%';
 				$padding_right = $spacing;
 				$padding_bottom = 0;
 
