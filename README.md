@@ -46,7 +46,7 @@ There is also inline css used for other functionalities.
 
 **Browser compatibility issues.**  
 Bootstrap 5 is not compatible with IE10 and IE11 and maybe some other older browsers due to the use of more modern javascript.
-From version 1.1.0 we use the aspect-ratio css property to limit the overflow height of pictures that are too high (have a smaller aspect-ratio than the slide) when fit size to width or auto in full width slider. This is not supporterd in IE and some older (mobile phone) browsers. So for support of those you should not use pictures that are too high in full width slider. (In older versions we did not limit that overflow at all in full width).
+From version 1.1.0 With option: Fit a size of image to: auto; we use "object-fit: contain" css property to fit the complete image as good as possible in the slide. This is not supporterd in IE and some older (mobile phone) browsers. In those cases too high images are stretched. 
 In IE and bootstrap 3 the old frame seems to be removed to fast I have not found the reason. So if you want maximum quality also on IE I would suggest using bootstrap 4.  
 
 **Other issues.**  
@@ -78,5 +78,5 @@ see: https://getbootstrap.com/docs/4.3/components/carousel/
 * 1.0.6 tested with Joomla 4
 * 1.0.7 24-28 -2-2022 solved some bugs with dimensions and navigation and added an extra option (showBoth on mouse over) added standard indicators and  play/pauze buttons.
 * 1.0.8 6-3-2022 small patch to enable autoplay off
-* 1.1.0 31-03-2022 added support for bootstrap 5. Reviewed and tested options. Removed unused options and made the other options work. Made adjustments in file-structure and used functions to comply better with Joomla 4 namespaced classes and new functions to add Css and Javascript. Added script to delete files that are become unnecessary.
+* 1.1.0 1-4-2022 added support for bootstrap 5. Reviewed and tested options. Removed unused options and made the other options work. Made adjustments in file-structure and used functions to comply better with Joomla 4 namespaced classes and new functions to add Css and Javascript. Added script to delete files that are become unnecessary.
 
