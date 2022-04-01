@@ -42,6 +42,7 @@
  *                 browsers that don't support aspect ratio.   
  *       26-3-2022 renamed main object bootstrap to wsabs5 to avoid collision in inlinescript. 
  *       31-3-2022 wcag removed keyboard acces always on (tabindex="0")
+ *       1-4-2022  added old padding box trick to keep aspect-ratio in IE and other older browsers.
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
@@ -95,12 +96,24 @@ position: relative;
 width: " . $style['vicnt'] * 100 . "%;
 width: calc(" . $style['vicnt'] . " * (100% + " . $style['marginr'] . "));
 }
-#wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner{
+#wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner { 
 position: relative;
 width: " . 100/$style['vicnt'] . "%;
 float: left;
 background-color: " . $ii_bgc . "; 
+  height: 0;
+  overflow: hidden;
+  padding: 0 0 " . (100 /$style['vicnt'])/ $style['aspectratio'] . "% 0 ;
+padding-bottom: calc(" . (100 /$style['vicnt'])/ $style['aspectratio'] . "% - " . 1/ $style['aspectratio']  . "*" . $style['marginr'] . ");
 }
+#wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner .aspect-ratio-box-inside{ 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #wsacarousel" . $mid . " .". $carousel_class ."-control{
     display: -webkit-box;
     display: -ms-flexbox;
@@ -123,8 +136,8 @@ padding-left: 0;
 #wsacarousel" . $mid . " #wsacarouselbottom" . $mid  ." {
 position: relative;
 bottom:0;
-margin-left: 0;
-margin-right:  calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ");
+margin:0 calc(100% - " . 100/$style['vicnt'] . "%) 0 0;
+margin:0 calc(100% - " . 100/$style['vicnt'] . "% + " . $style['marginr'] . ") 0 0;
 z-index: 2;
 }
 .indicator-numbers .wsanr". $mid . " {
@@ -213,14 +226,6 @@ width:  calc(100% - " . $style['marginr'] . ");
 height: " . $style['sldheight'] . "; 
 aspect-ratio: " . $style['aspectratio']  . ";
 overflow: hidden;
-}
-#wsacarousel-container" . $mid . " .".  $carousel_class ."-item-height{
-float: left;
-width: 0;
-height: 0;
-padding: 0 0 " . 100 / $style['aspectratio'] . "% 0 ;
-margin: 0;
-padding-bottom: calc(" . 100 / $style['aspectratio'] . "% - " . (1 / $style['aspectratio'])  . "*" . $style['marginr'] . ");
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-img{
 " . $style['image'] . "
@@ -366,56 +371,56 @@ else {
               		    $slide = $slides[($itemnr + $seq -1) % $slidecnt];
               		    $rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
               		    <div class="<?php echo $carousel_class; ?>-item-inner seq<?php echo $seq; ?>">
-              			    <div class="<?php echo $carousel_class; ?>-item-content">
-              				<?php if($slide->image) { 
-              					$action = $link_image;
-              					if($action > 1) {
-    								$desc = ($show_desc) ? 'title="'.(!empty($slide->title) ? htmlspecialchars($slide->title.' ') : '').(!empty($slide->description) ? htmlspecialchars('<small>'.strip_tags($slide->description,"<p><a><b><strong><em><i><u>").'</small>') : '').'"':'';
-    	          						$attr = 'class="image-link" data-wsmodal="true" data-'.$desc;
-    							} else {
-    								$attr = $rel;
-    							}
-              					?>
-    	            			<?php if (($slide->link && $action==1) || $action>1) { ?>
-    								<a <?php echo $attr; ?> href="<?php echo ($action>1 ? $slide->image : $slide->link); ?>" target="<?php echo $slide->target; ?>">
-    							<?php } ?>
-    								<img class="<?php echo $carousel_class; ?>-item-img" src="<?php echo $slide->image; ?>" alt="<?php echo $slide->alt; ?>" <?php echo (!empty($slide->img_title) ? ' title="'.$slide->img_title.'"':''); ?>"/>
-    							<?php if (($slide->link && $action==1) || $action>1) { ?>
-    								</a>
-    							<?php } ?>
-    						<?php } ?>
-    						<?php if ($params->get('slider_source') && ($params->get('show_title') || $show_desc && !empty($slide->description) || $show_readmore && $slide->link)) { ?>
-        						<!-- Slide description area: START -->
-        						<div class="<?php echo $carousel_class; ?>-caption" >
-        							<?php if($params->get('show_title')) { ?>
-        							<div class="slide-title">
-        							<?php if ($link_title && $slide->link) { ?><a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>><?php } ?>
-        										<?php echo $slide->title; ?>
-        									<?php if($link_title && $slide->link) { ?></a><?php } ?>
-        							</div>
+              		        <div class="aspect-ratio-box-inside" > 
+                  			    <div class="<?php echo $carousel_class; ?>-item-content">
+                  				<?php if($slide->image) { 
+                  					$action = $link_image;
+                  					if($action > 1) {
+        								$desc = ($show_desc) ? 'title="'.(!empty($slide->title) ? htmlspecialchars($slide->title.' ') : '').(!empty($slide->description) ? htmlspecialchars('<small>'.strip_tags($slide->description,"<p><a><b><strong><em><i><u>").'</small>') : '').'"':'';
+        	          						$attr = 'class="image-link" data-wsmodal="true" data-'.$desc;
+        							} else {
+        								$attr = $rel;
+        							}
+                  					?>
+        	            			<?php if (($slide->link && $action==1) || $action>1) { ?>
+        								<a <?php echo $attr; ?> href="<?php echo ($action>1 ? $slide->image : $slide->link); ?>" target="<?php echo $slide->target; ?>">
         							<?php } ?>
-        							
-        							<?php if ($show_desc) { ?>
-        							<div class="slide-text">
-        									<?php if ($link_desc && $slide->link) { ?>
-        									<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>>
-        										<?php echo strip_tags($slide->description,"<br><span><em><i><b><strong><small><big>"); ?>
-        									</a>
-        									<?php } else { ?>
-        										<?php echo $slide->description; ?>
-        									<?php } ?>
-        							</div>
+        								<img class="<?php echo $carousel_class; ?>-item-img" src="<?php echo $slide->image; ?>" alt="<?php echo $slide->alt; ?>" <?php echo (!empty($slide->img_title) ? ' title="'.$slide->img_title.'"':''); ?>"/>
+        							<?php if (($slide->link && $action==1) || $action>1) { ?>
+        								</a>
         							<?php } ?>
-        							
-        							<?php if($show_readmore && $slide->link) { ?>
-        								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo $readmore_text ; ?></a>
-        							<?php } ?>
+        						<?php } ?>
+        						<?php if ($params->get('slider_source') && ($params->get('show_title') || $show_desc && !empty($slide->description) || $show_readmore && $slide->link)) { ?>
+            						<!-- Slide description area: START -->
+            						<div class="<?php echo $carousel_class; ?>-caption" >
+            							<?php if($params->get('show_title')) { ?>
+            							<div class="slide-title">
+            							<?php if ($link_title && $slide->link) { ?><a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>><?php } ?>
+            										<?php echo $slide->title; ?>
+            									<?php if($link_title && $slide->link) { ?></a><?php } ?>
+            							</div>
+            							<?php } ?>
+            							
+            							<?php if ($show_desc) { ?>
+            							<div class="slide-text">
+            									<?php if ($link_desc && $slide->link) { ?>
+            									<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?>>
+            										<?php echo strip_tags($slide->description,"<br><span><em><i><b><strong><small><big>"); ?>
+            									</a>
+            									<?php } else { ?>
+            										<?php echo $slide->description; ?>
+            									<?php } ?>
+            							</div>
+            							<?php } ?>
+            							
+            							<?php if($show_readmore && $slide->link) { ?>
+            								<a href="<?php echo $slide->link; ?>" target="<?php echo $slide->target; ?>" <?php echo $rel; ?> class="readmore"><?php echo $readmore_text ; ?></a>
+            							<?php } ?>
+            						</div>
+            						<!-- Slide description area: END -->
+        						<?php } ?>						
         						</div>
-        						<!-- Slide description area: END -->
-    						<?php } ?>						
     						</div>
-    						<div class="<?php echo $carousel_class; ?>-item-height"></div>
-    						
     					</div>
     					<?php } ?>
     				</div><!-- end slide-frame -->
