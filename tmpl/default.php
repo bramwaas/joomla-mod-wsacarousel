@@ -103,7 +103,8 @@ float: left;
 background-color: " . $ii_bgc . "; 
   height: 0;
   overflow: hidden;
-  padding: 0 0 " . 100 / $style['aspectratio'] . "% 0 ;
+  padding: 0 0 " . (100 /$style['vicnt'])/ $style['aspectratio'] . "% 0 ;
+padding-bottom: calc(" . (100 /$style['vicnt'])/ $style['aspectratio'] . "% - " . (1/$style['vicnt'])/ $style['aspectratio']  . "*" . $style['marginr'] . ");
 }
 #wsacarousel-container" . $mid . " .".  $carousel_class ."-item-inner .aspect-ratio-box-inside{ 
   position: absolute;
