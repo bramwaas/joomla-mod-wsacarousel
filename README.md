@@ -45,8 +45,8 @@ Inline css is used in all version to override the default 100% translation in th
 There is also inline css used for other functionalities.
 
 **Browser compatibility issues.**  
-Bootstrap 5 is not compatible with IE10 and IE11 and maybe some other older browsers due to the use of more modern javascript.
-From version 1.1.0 With option: Fit a size of image to: auto; we use "object-fit: contain" css property to fit the complete image as good as possible in the slide. This is not supporterd in IE and some older (mobile phone) browsers. In those cases too high images are stretched. 
+Bootstrap 5 is not compatible with IE10 and IE11 and maybe some other older browsers due to the use of more modern javascript.  
+From version 1.1.0 With option: "Fit a size of image to: auto" we use "object-fit: contain" css property to fit the complete image as good as possible in the slide. This is not supporterd in IE and some older (mobile phone) browsers. In those cases too high images are stretched when option "Full width Slider" is No or clipped when that option is Yes.      
 In IE and bootstrap 3 the old frame seems to be removed to fast I have not found the reason. So if you want maximum quality also on IE I would suggest using bootstrap 4.  
 
 **Other issues.**  
