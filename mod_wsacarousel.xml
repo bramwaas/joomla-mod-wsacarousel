@@ -225,5 +225,8 @@
 			
 		</fields>
 	</config>
+    <updateservers>
+	<server type="extension" priority="1" name="WsaCarousel Slider / Carousel Module"><![CDATA[https://www.waasdorpsoekhan.nl/update/wsacarousel/mod_wsacarousel-update.xml]]></server>
+    </updateservers>
 	
 </extension>
