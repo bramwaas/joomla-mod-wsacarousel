@@ -21,15 +21,16 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with DJ-ImageSlider. If not, see <http://www.gnu.org/licenses/>.
+ * along with mod_wsacarousel. If not, see <http://www.gnu.org/licenses/>.
  * 0.0.7
  * 0.2.0 slide delay added.
  * 1.0.6 20-2-2022 adjustments for J4
  * 1.0.7
- * 1.10.0 4-3-2022 using bootstrap css icons  as default navigation icons
+ * 1.1.0 4-3-2022 using bootstrap css icons  as default navigation icons
  *        8-3-2022 copied from helper.php to comply with Joomla namespaced model
  *        10-3-2022 added doc blocks.
  *        14-3-2022 added svg as default images for navigatition
+ * 1.1.1 2-11-2022 moved default assignment next and prev to solve a Undefined var warning       
  */
 namespace WaasdorpSoekhan\Module\Wsacarousel\Site\Helper;
 // no direct access
@@ -450,15 +451,15 @@ class WsacarouselHelper
 	        $next = $params->get('right_arrow');
 	        $play = $params->get('play_button');
 	        $pause = $params->get('pause_button');
-	        if(empty($prev) ) $prev = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-width="2" stroke-opacity="0.5"  class="bi bi-chevron-left" viewBox="0 0 320 512">
-		  <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/>
-          </svg>');
-	        if(empty($next) ) $next = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-width="2" stroke-opacity="0.5"  class="bi bi-chevron-right" viewBox="0 0 320 512">
-		  <path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/>
-		  </svg>');
 	        }
 	       break;  
 	    }
+	    if(empty($prev) ) $prev = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-width="2" stroke-opacity="0.5"  class="bi bi-chevron-left" viewBox="0 0 320 512">
+		  <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/>
+          </svg>');
+	    if(empty($next) ) $next = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" stroke="#010101" stroke-width="2" stroke-opacity="0.5"  class="bi bi-chevron-right" viewBox="0 0 320 512">
+		  <path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/>
+		  </svg>');
 	    if(empty($play) ) $play = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-160 -64 640 640" class="bi bi-play-fill" >
         <circle fill="#010101" fill-opacity="0.1" cx="160" cy="256" r="320"/>
 		<path  fill="white" d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/>
