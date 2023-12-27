@@ -563,7 +563,7 @@ class WsacarouselHelper
 	 */
 	static function hexToRgb($hex, $alpha = false) {
 	    if (empty($hex)) return NULL;
-	    $hex      = str_replace('#', '', $hex);
+	    $hex      = ltrim($hex,'#');
 	    $lhex = (int) (strlen($hex));
 	    if ($lhex < 3 OR $lhex > 6) return NULL;
 	    $split_hex_color = str_split( $hex,  (int) $lhex/3 );
