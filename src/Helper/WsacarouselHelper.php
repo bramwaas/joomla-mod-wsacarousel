@@ -565,11 +565,14 @@ class WsacarouselHelper
 	    if (empty($hex)) return NULL;
 	    $hex      = ltrim($hex,'#');
 	    $lhex = (int) (strlen($hex));
-	    if ($lhex < 3 OR $lhex > 6) return NULL;
-	    $split_hex_color = str_split( $hex,  (int) $lhex/3 );
-	    $rgb['r'] = hexdec( $split_hex_color[0] );
-	    $rgb['g'] = hexdec( $split_hex_color[1] );
-	    $rgb['b'] = hexdec( $split_hex_color[2] );
+	    if (($lhex == 3 OR $lhex == 6)) { 
+	       $split_hex_color = str_split( $hex,  (int) $lhex/3 );
+	       $rgb['r'] = hexdec( str_pad($split_hex_color[0], 2, $split_hex_color[0]) );
+	       $rgb['g'] = hexdec( str_pad($split_hex_color[1], 2, $split_hex_color[1]) );
+	       $rgb['b'] = hexdec( str_pad($split_hex_color[2], 2, $split_hex_color[2]) );
+	    }
+	    else 
+	        return NULL;
 	    if ( $alpha !== false ) {
 	        $rgb['a'] = $alpha;
 	    }
