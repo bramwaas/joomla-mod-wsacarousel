@@ -3,7 +3,7 @@
  * @version $Id: WsaCarousel.php 
  * @package wsacarousel
  * @subpackage wsacarousel Module
- * @copyright Copyright (C) 2018 -2022 A.H.C. Waasdorp, All rights reserved.
+ * @copyright Copyright (C) 2018 -2024 A.H.C. Waasdorp, All rights reserved.
  * @license http://www.gnu.org/licenses GNU/GPL
  * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
@@ -30,7 +30,8 @@
  *        8-3-2022 copied from helper.php to comply with Joomla namespaced model
  *        10-3-2022 added doc blocks.
  *        14-3-2022 added svg as default images for navigatition
- * 1.1.1 2-11-2022 moved default assignment next and prev to solve a Undefined var warning       
+ * 1.1.1 2-11-2022 moved default assignment next and prev to solve a Undefined var warning
+ * 1.1.2 27-12-2023 undefined arraykey 2 (hexcolor)       
  */
 namespace WaasdorpSoekhan\Module\Wsacarousel\Site\Helper;
 // no direct access
@@ -556,13 +557,16 @@ class WsacarouselHelper
 	 * $hex     String  The hex color value #rrggbb  
 	 * $alpha   decimal The decimal opacity value (0 - 1)
 	 *
-	 * @return  $rgb  Array   The rgba color and alpha values 
+	 * @return  $rgb  Array   The rgba color and alpha values or NULL when no coerect length of $hex
 	 *
 	 * @since   1.1
 	 */
 	static function hexToRgb($hex, $alpha = false) {
+	    if (empty($hex)) return NULL;
 	    $hex      = str_replace('#', '', $hex);
-	    $split_hex_color = str_split( $hex, 2 );
+	    $lhex = (int) (strlen($hex));
+	    if ($lhex < 3 OR $lhex > 6) return NULL;
+	    $split_hex_color = str_split( $hex,  (int) $lhex/3 );
 	    $rgb['r'] = hexdec( $split_hex_color[0] );
 	    $rgb['g'] = hexdec( $split_hex_color[1] );
 	    $rgb['b'] = hexdec( $split_hex_color[2] );

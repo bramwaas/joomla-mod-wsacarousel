@@ -3,7 +3,7 @@
  * @version $Id: default.php
  * @package wsacarousel
  * @subpackage wsacarousel Module
- * @copyright Copyright (C) 2018 -2022 wsacarousel, All rights reserved.
+ * @copyright Copyright (C) 2018 -2024 wsacarousel, All rights reserved.
  * @license http://www.gnu.org/licenses GNU/GPL
  * @author url: https://www.waasdorpsoekhan.nl
  * @author email contact@waasdorpsoekhan.nl
@@ -31,7 +31,7 @@
  *  26-2-2022 - 28 improved navigation and added an extra option (showBoth on mouse over)
  *           added standard indicators and play/pauze buttons.
  * 1.0.8 6-3-2022 small patch to enable autoplay off           
- * 1.10.0 3-3-2022 adding bootstrap 5 attributes classes 
+ * 1.1.0 3-3-2022 adding bootstrap 5 attributes classes 
  *       5-3-2022 choosing default navbuttons or image. Autoplay on/off
  *       6-3-2022 fill frame with php instead of javascript.  
  *       7-3-2022 looponce on off working.
@@ -44,6 +44,7 @@
  *       31-3-2022 wcag removed keyboard acces always on (tabindex="0")
  *       1-4-2022  added old padding box trick to keep aspect-ratio in IE and other older browsers.
  *       2-4-2022  merged outermost div with #carousel-loader... to allocate 100% width to full width slider in flex box
+ * 1.1.2 27-12-2023 undefined prop $slide->$delay      
  */
 // no direct access
 defined('_JEXEC') or die ('Restricted access');
@@ -367,7 +368,7 @@ else {
 			<?php $itemnr = 0; 
 			 foreach ($slides as $slide) { /* frame per slide  */
 					$itemnr++; ?>
-          			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if($slide->delay > 0) echo $bs_data .'interval="' . $slide->delay  . '" '; ?>>
+          			<div class="<?php echo $carousel_class; ?>-item item item<?php echo $itemnr; if ($itemnr==1) echo " active"; ?>" <?php if(!empty($slide->delay) && $slide->delay > 0) echo $bs_data .'interval="' . $slide->delay  . '" '; ?>>
           		<?php for ($seq = 0; ($seq < $style['vicnt']); $seq++) { /* slides in frame */
           		    $slide = $slides[($itemnr + $seq -1) % $slidecnt];
           		    $rel = (!empty($slide->rel) ? 'rel="'.$slide->rel.'"':''); ?>
